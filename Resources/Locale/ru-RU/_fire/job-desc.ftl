@@ -14,9 +14,12 @@ job-name-classd = Сотрудник класса D
 job-description-classd = Над ними ставят опыты...
 job-name-Governor = Комендант
 job-description-Governor = Занимается внешней безопасностью комплекса от угроз с планеты.
-job-name-perimeter-security-officer = Офицер Охраны Периметра
+job-name-perimeter-security-officer = Офицер Периметра
 job-description-perimeter-security-officer = Занимается как охраной периметра комплекса, так и вылазками на поверхность.
 job-name-field-scientist = Полевой Агент
 job-description-field-scientist = Агент, работающий совместно с группой сдерживания SCP, он занимается захватом SCP объектов в полевых условиях, транспортирует SCP с одного места в другое.
 job-name-head-of-containment = Глава Сдерживания
 job-description-head-of-containment = Ответственный за правильное выполнение процедур сдерживания.
+
+department-Outer = Охрана Периметра
+department-Containment = Агенство Сдерживания

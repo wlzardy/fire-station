@@ -1,5 +1,6 @@
 - type: department
   id: Containment
+  name: department-Containment
   description: department-containment-description
   color: "#999999"
   weight: 30
@@ -14,6 +15,7 @@
 
 - type: department
   id: Outer
+  name: department-Outer
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
