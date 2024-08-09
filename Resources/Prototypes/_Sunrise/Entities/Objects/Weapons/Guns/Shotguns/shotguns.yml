@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: XM1014
   parent: BaseWeaponShotgun
   id: WeaponXM1014

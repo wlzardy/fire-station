@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: MG-60
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunMG60
@@ -20,7 +20,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 100
-    fireRate: 5
+    fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -82,7 +82,7 @@
   - type: Gun
     minAngle: 40
     maxAngle: 60
-    fireRate: 5
+    fireRate: 8
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
   - type: ItemSlots
@@ -141,7 +141,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 100
-    fireRate: 5
+    fireRate: 8
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:

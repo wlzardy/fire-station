@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: MagazineDragunov
   name: Dragunov magazine
   description: Standart USSP type of heavy magazines.

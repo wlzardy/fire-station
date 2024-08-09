@@ -137,6 +137,8 @@
     - Pacified
     - StaminaModifier
     - Flashed
+    - RadiationProtection
+    - Drowsiness
     - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human
@@ -171,6 +173,7 @@
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
+  - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
     interactSuccessString: hugging-success-generic
@@ -190,6 +193,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -213,10 +218,12 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  # Sunrise-Start
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+  # Sunrise-End
 
 - type: entity
   save: false
@@ -229,10 +236,10 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: Carriable # Sunrise-edit
-  - type: CanEscapeInventory # Sunrise-edit
-  - type: Blinkable # Sunrise-SCP edit.
-  - type: EyeClosing # Sunrise-SCP edit.
+  # Sunrise-Start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-End
   - type: Barotrauma
     damage:
       types:
@@ -248,7 +255,6 @@
       groups:
         Brute: -0.07
   - type: Fingerprint
-
   - type: Blindable
   # Other
   - type: Temperature
@@ -262,6 +268,11 @@
     heatDamage:
       types:
         Heat: 1.5 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.8
+      280: 0.6
+      260: 0.4
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
@@ -350,6 +361,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too

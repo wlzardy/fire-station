@@ -45,7 +45,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 6  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots

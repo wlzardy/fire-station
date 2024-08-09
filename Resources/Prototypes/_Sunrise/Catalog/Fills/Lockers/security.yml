@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: GunSafe
   id: GunSafeEnergyGunMini
   name: сейф миниатюрных энергетических пушек

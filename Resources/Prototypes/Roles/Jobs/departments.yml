@@ -1,76 +1,78 @@
 - type: department
   id: Cargo
+  name: department-Cargo
   description: department-Cargo-description
   color: "#A46106"
   roles:
-  - CargoTechnician  # Оператор Грузов
-  - Quartermaster  # Координатор Логистики
-  - SalvageSpecialist  # Оператор Материалов
-  # - MinerBorg # Sunrise-Edit
+  - CargoTechnician
+  - Quartermaster
+  - SalvageSpecialist
+  - MinerBorg # Sunrise-Edit
 
 - type: department
   id: Civilian
+  name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
   weight: -10
   roles:
-  # - Bartender
-  # - Borg
+  - Bartender
+  - Borg
   - Botanist
-  # - Boxer
-  # - Chaplain
+  - Boxer
+  - Chaplain
   - Chef
-  # - Clown
+  - Clown
   - HeadOfPersonnel
   - Janitor
   - Lawyer
-  # - Librarian
-  # - Mime
-  # - Musician
+  - Librarian
+  - Mime
+  - Musician
   - Passenger
   - Reporter
   - Visitor
-  # - Zookeeper
-  # - ServiceWorker
-  # - JanitorBorg # Sunrise-Edit
-  # - ServiceBorg # Sunrise-Edit
-  # - ClownBorg # Sunrise-Edit
-  # - Barber # Sunrise-Roles
+  - Zookeeper
+  - ServiceWorker
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - Barber # Sunrise-Roles
 
 - type: department
   id: Command
+  name: department-Command
   description: department-Command-description
   color: "#052EED" # Sunrise-Edit
   roles:
-  - Captain  # Глава Комплекса
-  - ChiefEngineer  # Глава Инженерного Отдела
-  - ChiefMedicalOfficer  # Начальник Медицинского Отдела
-  - HeadOfPersonnel  # Видоизменяется на золотистые тона
+  - Captain
+  - ChiefEngineer
+  - ChiefMedicalOfficer
+  - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
-  - Quartermaster  # Координатор Логистики
-  - HeadOfContainment  # Глава Отдела Сдерживания
-  - SiteManager  # Менеджер Комплекса
-  - Governor  # комендант
+  - Quartermaster
 #  - NanoTrasenRepresentative  #Sunrise-Edit
   primary: false
   weight: 100
 
 - type: department
   id: Engineering
+  name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
   weight: 10  # Sunrise-weights
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
-  - SeniorEngineer  # старший технический специалист
-  - StationEngineer  # технический специалист
+  - SeniorEngineer  # Sunrise-Senior
+  - StationEngineer
   - TechnicalAssistant
-  # - EngineerBorg # Sunrise-Edit
+  - EngineerBorg # Sunrise-Edit
 
 - type: department
   id: Medical
+  name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
   roles:
@@ -81,47 +83,48 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
-  # - MedicalBorg # Sunrise-Edit
+  - MedicalBorg # Sunrise-Edit
 
 - type: department
   id: Security
+  name: department-Security
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
   roles:
   - HeadOfSecurity
-  - PerimeterSecurityOfficer  # Офицер Охраны Периметра
-  - SeniorOfficer  # сержант службы безопасности
+  - SeniorOfficer  # Sunrise-Senior
   - SecurityCadet
   - SecurityOfficer
-  - Detective  # агент внутренней безопасности
+  - Detective
   - Warden
-  - Brigmedic  # медик службы безопасности
-  # - SecurityPilot # Sunrise-SecurityPilot
-  # - SecurityBorg # Sunrise-Edit
-  # - SecurityCombatBorg # Sunrise-Edit
+  - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
+  name: department-Science
   description: department-Science-description
   color: "#D381C9"
   roles:
   - ResearchDirector
-  - SeniorResearcher  # Параучёный
+  - SeniorResearcher  # Sunrise-Senior
   - Scientist
   - ResearchAssistant
-  - FieldScientist # полевой учёный
-  - Roboticist  # Параучёный
+  - Roboticist  # Sunrise-Edit
 
-# - type: department
-#   id: Specific
-#   description: department-Specific-description
-#   color: "#9FED58"
-#   weight: 5  # Sunrise-weights
-#   roles:
-#   - Boxer
-#   - Reporter
-#   - Zookeeper
-#   - Psychologist
-#   - Barber  # Sunrise-Roles
-#   primary: false
+- type: department
+  id: Specific
+  name: department-Specific
+  description: department-Specific-description
+  color: "#9FED58"
+  weight: 5  # Sunrise-weights
+  roles:
+  - Boxer
+  - Reporter
+  - Zookeeper
+  - Psychologist
+  - Barber  # Sunrise-Roles
+  primary: false

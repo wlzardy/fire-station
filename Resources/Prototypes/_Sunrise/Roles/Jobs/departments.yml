@@ -1,5 +1,6 @@
 - type: department
   id: Law
+  name: department-Law
   description: department-Law-description
   color: "#FF5297"
   weight: 80

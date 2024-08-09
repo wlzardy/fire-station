@@ -21,6 +21,7 @@
         whitelist:
           tags:
             - Cartridge57x28
+            - CartridgePistol
 
 - type: entity
   name: N1984
