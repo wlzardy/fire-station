@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Roles;
@@ -22,6 +23,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Silicons.Laws;
 
@@ -37,7 +39,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-
+    //sunrise-edit-start
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    //sunrise-edit-end
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -164,6 +168,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         EnsureEmaggedRole(uid, component);
 
         _stunSystem.TryParalyze(uid, component.StunTime, true);
+        //sunrise-edit-start
+        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        //sunrise-edit-end
 
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;
@@ -277,6 +284,21 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         laws.ObeysTo = proto.ObeysTo;
 
         return laws;
+    }
+
+    /// <summary>
+    /// Set the laws of a silicon entity while notifying the player.
+    /// </summary>
+    public void SetLaws(List<SiliconLaw> newLaws, EntityUid target)
+    {
+        if (!TryComp<SiliconLawProviderComponent>(target, out var component))
+            return;
+
+        if (component.Lawset == null)
+            component.Lawset = new SiliconLawset();
+
+        component.Lawset.Laws = newLaws;
+        NotifyLawsChanged(target);
     }
 }
 

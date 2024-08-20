@@ -40,7 +40,7 @@
 #   - PrisonDoctor
 #   - PrisonEngineer
 #   - PrisonGuard
-#   - Prisoner
+#   - PlanetPrisoner
 
 # - type: department
 #   id: Silicon
