@@ -1,0 +1,49 @@
+﻿- type: entity
+  id: ActionScp096Resurrect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 120
+    icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+    iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049ResurrectAction
+
+- type: entity
+  id: ActionScp096KillResurrected
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 0
+    icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+    iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049KillResurrectedAction
+
+- type: entity
+  id: ActionScp096KillLeavingBeing
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components: MobState
+    useDelay: 180
+    icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+    iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049KillLivingBeingAction
+
+- type: entity
+  id: ActionScp096SelfHeal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 300
+    icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+    iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049SelfHealAction
