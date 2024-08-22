@@ -11,7 +11,9 @@ public sealed partial class Scp049System : SharedScp049System
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<Scp049Component, ComponentStartup>(OnStartup);
+        InitializeActions();
     }
 
     private void OnStartup(Entity<Scp049Component> ent, ref ComponentStartup args)

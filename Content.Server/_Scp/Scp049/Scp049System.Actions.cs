@@ -1,11 +1,13 @@
 ﻿using Content.Server.Administration.Systems;
 using Content.Server.IdentityManagement;
+using Content.Server.Zombies;
 using Content.Shared._Scp.Scp049;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Zombies;
 
 namespace Content.Server._Scp.Scp049;
 
@@ -15,8 +17,7 @@ public sealed partial class Scp049System
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly IdentitySystem _identitySystem = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenateSystem = default!;
-
-
+    [Dependency] private readonly ZombieSystem _zombieSystem = default!;
 
     public void InitializeActions()
     {
@@ -38,12 +39,8 @@ public sealed partial class Scp049System
 
     private void OnResurrect(Entity<Scp049Component> ent, ref Scp049ResurrectAction args)
     {
-        EnsureComp<ScpShow049HudComponent>(args.Target);
-        var minionComponent = EnsureComp<Scp049MinionComponent>(args.Target);
-
-        minionComponent.Scp049Owner = ent;
-
-        ent.Comp.Minions.Add(ent);
+        var mobState = Comp<MobStateComponent>(ent);
+        MakeMinion(new Entity<MobStateComponent>(args.Target, mobState), ent);
 
         Dirty(ent);
 
@@ -100,5 +97,21 @@ public sealed partial class Scp049System
             ("performer", performerName));
 
         _popupSystem.PopupEntity(localeMessage, ent, PopupType.MediumCaution);
+    }
+
+    private void MakeMinion(Entity<MobStateComponent> minionEntity, Entity<Scp049Component> scpEntity)
+    {
+        var minionComponent = EnsureComp<Scp049MinionComponent>(minionEntity.Owner);
+        EnsureComp<ScpShow049HudComponent>(minionEntity);
+
+        minionComponent.Scp049Owner = scpEntity;
+        scpEntity.Comp.Minions.Add(minionEntity);
+
+        _zombieSystem.ZombifyEntity(minionEntity);
+
+        EnsureComp<NonSpreaderZombieComponent>(minionEntity);
+
+        _rejuvenateSystem.PerformRejuvenate(minionEntity);
+        _mobStateSystem.ChangeMobState(minionEntity, MobState.Alive);
     }
 }
