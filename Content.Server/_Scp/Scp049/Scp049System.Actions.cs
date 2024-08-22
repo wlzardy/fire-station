@@ -19,7 +19,7 @@ public sealed partial class Scp049System
     [Dependency] private readonly RejuvenateSystem _rejuvenateSystem = default!;
     [Dependency] private readonly ZombieSystem _zombieSystem = default!;
 
-    public void InitializeActions()
+    private void InitializeActions()
     {
         SubscribeLocalEvent<Scp049Component, Scp049KillLivingBeingAction>(OnKillLeavingBeing);
         SubscribeLocalEvent<Scp049Component, Scp049KillResurrectedAction>(OnKillResurrected);
@@ -43,8 +43,6 @@ public sealed partial class Scp049System
         MakeMinion(new Entity<MobStateComponent>(args.Target, mobState), ent);
 
         Dirty(ent);
-
-        _rejuvenateSystem.PerformRejuvenate(args.Target);
 
         var targetName = Identity.Name(args.Target, EntityManager);
         var performerName = Identity.Name(ent, EntityManager);

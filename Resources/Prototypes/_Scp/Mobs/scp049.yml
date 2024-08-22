@@ -1,0 +1,5 @@
+﻿- type: entity
+  id: Scp049
+  name: Scp049
+  description: Чумной доктор
+  components:
