@@ -24,7 +24,7 @@ public sealed class Scp049HudSystem : EquipmentHudSystem<ScpShow049HudComponent>
             return;
         }
 
-        var prototype = _prototypeManager.Index<JobIconPrototype>(ent.Comp.Icon);
+        var prototype = _prototypeManager.Index<FactionIconPrototype>(Scp049Component.Icon);
         args.StatusIcons.Add(prototype);
     }
 
@@ -35,7 +35,7 @@ public sealed class Scp049HudSystem : EquipmentHudSystem<ScpShow049HudComponent>
             return;
         }
 
-        var prototype = _prototypeManager.Index<JobIconPrototype>(ent.Comp.Icon);
+        var prototype = _prototypeManager.Index<FactionIconPrototype>(Scp049MinionComponent.Icon);
         args.StatusIcons.Add(prototype);
     }
 }

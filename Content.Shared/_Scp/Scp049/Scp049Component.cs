@@ -18,5 +18,5 @@ public sealed partial class Scp049Component : Component
     ];
 
     [DataField]
-    public ProtoId<JobIconPrototype> Icon = "Scp049StatusIcon";
+    public static ProtoId<FactionIconPrototype> Icon = "Scp049StatusIcon";
 }
