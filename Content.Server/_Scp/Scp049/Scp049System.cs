@@ -1,6 +1,7 @@
 ﻿using Content.Server.Actions;
 using Content.Shared._Scp.Scp049;
 using Content.Shared._Scp.Scp999;
+using Content.Shared.Zombies;
 
 namespace Content.Server._Scp.Scp049;
 
@@ -22,5 +23,17 @@ public sealed partial class Scp049System : SharedScp049System
         {
             _actionsSystem.AddAction(ent, action);
         }
+    }
+
+    private ZombieComponent BuildZombieComponent()
+    {
+        var zombieComponent = new ZombieComponent
+        {
+            SkinColor = Color.WhiteSmoke,
+            EyeColor = Color.Red,
+            StatusIcon = Scp049MinionComponent.Icon
+        };
+
+        return zombieComponent;
     }
 }

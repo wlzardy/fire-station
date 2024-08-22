@@ -105,7 +105,8 @@ public sealed partial class Scp049System
         minionComponent.Scp049Owner = scpEntity;
         scpEntity.Comp.Minions.Add(minionEntity);
 
-        _zombieSystem.ZombifyEntity(minionEntity);
+        var zombieComponent = BuildZombieComponent();
+        _zombieSystem.ZombifyEntity(minionEntity, zombieComponentOverride: zombieComponent);
 
         EnsureComp<NonSpreaderZombieComponent>(minionEntity);
 
