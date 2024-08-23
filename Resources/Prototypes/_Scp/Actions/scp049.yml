@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: ActionScp096Resurrect
+  id: ActionScp049Resurrect
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
@@ -15,7 +15,7 @@
       - MobState
 
 - type: entity
-  id: ActionScp096KillResurrected
+  id: ActionScp049KillResurrected
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
@@ -31,7 +31,7 @@
       - Scp049Minion
 
 - type: entity
-  id: ActionScp096KillLeavingBeing
+  id: ActionScp049KillLeavingBeing
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
@@ -46,7 +46,7 @@
       components: MobState
 
 - type: entity
-  id: ActionScp096SelfHeal
+  id: ActionScp049SelfHeal
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
