@@ -35,11 +35,13 @@ public sealed partial class Scp049System
 
         var localeMessage = Loc.GetString("scp096-self-heal", ("performer", entityName));
         _popupSystem.PopupEntity(localeMessage, args.Performer, PopupType.Medium);
+
+        args.Handled = true;
     }
 
     private void OnResurrect(Entity<Scp049Component> ent, ref Scp049ResurrectAction args)
     {
-        var mobState = Comp<MobStateComponent>(ent);
+        var mobState = Comp<MobStateComponent>(args.Target);
         MakeMinion(new Entity<MobStateComponent>(args.Target, mobState), ent);
 
         Dirty(ent);
@@ -52,6 +54,8 @@ public sealed partial class Scp049System
             ("performer", performerName));
 
         _popupSystem.PopupEntity(localeMessage, ent, PopupType.MediumCaution);
+
+        args.Handled = true;
     }
 
     private void OnKillResurrected(Entity<Scp049Component> ent, ref Scp049KillResurrectedAction args)
@@ -66,21 +70,21 @@ public sealed partial class Scp049System
             ("performer", performerName));
 
         _popupSystem.PopupEntity(localeMessage, ent, PopupType.MediumCaution);
+
+        args.Handled = true;
     }
 
     private void OnKillLeavingBeing(Entity<Scp049Component> ent, ref Scp049KillLivingBeingAction args)
     {
-        if (_mobStateSystem.IsIncapacitated(args.Target))
+        if (_mobStateSystem.IsDead(args.Target))
         {
             _popupSystem.PopupEntity(Loc.GetString("scp096-kill-action-already-dead"), args.Target, ent, PopupType.MediumCaution);
-            _actionsSystem.SetCooldown(args.Action, TimeSpan.Zero);
             return;
         }
 
         if (!_mobStateSystem.HasState(args.Target, MobState.Dead))
         {
             _popupSystem.PopupEntity(Loc.GetString("scp096-kill-action-cant-kill"), args.Target, ent, PopupType.MediumCaution);
-            _actionsSystem.SetCooldown(args.Action, TimeSpan.Zero);
             return;
         }
 
@@ -95,6 +99,8 @@ public sealed partial class Scp049System
             ("performer", performerName));
 
         _popupSystem.PopupEntity(localeMessage, ent, PopupType.MediumCaution);
+
+        args.Handled = true;
     }
 
     private void MakeMinion(Entity<MobStateComponent> minionEntity, Entity<Scp049Component> scpEntity)

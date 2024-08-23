@@ -1,13 +1,16 @@
 ﻿using Content.Server.Actions;
 using Content.Shared._Scp.Scp049;
 using Content.Shared._Scp.Scp999;
+using Content.Shared.Inventory;
 using Content.Shared.Zombies;
+using Robust.Shared.Map;
 
 namespace Content.Server._Scp.Scp049;
 
 public sealed partial class Scp049System : SharedScp049System
 {
     [Dependency] private readonly ActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     public override void Initialize()
     {
@@ -23,6 +26,9 @@ public sealed partial class Scp049System : SharedScp049System
         {
             _actionsSystem.AddAction(ent, action);
         }
+
+        var backPack = Spawn("ClothingBackpackScp049", MapCoordinates.Nullspace);
+        _inventorySystem.TryEquip(ent, backPack, "back", true, true);
     }
 
     private ZombieComponent BuildZombieComponent()

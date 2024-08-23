@@ -12,10 +12,10 @@ public sealed partial class Scp049Component : Component
     public HashSet<EntityUid> Minions = new();
 
     [DataField("actions")]
-    public List<ProtoId<EntityPrototype>> Scp049Actions =
-    [
+    public List<ProtoId<EntityPrototype>> Scp049Actions = new()
+    {
         "ActionScp096Resurrect", "ActionScp096KillResurrected", "ActionScp096KillLeavingBeing", "ActionScp096SelfHeal",
-    ];
+    };
 
     [DataField]
     public static ProtoId<FactionIconPrototype> Icon = "Scp049StatusIcon";
