@@ -13,6 +13,7 @@
   - MobFlammable
   - InventoryBase
   components:
+  - type: Pacified
   - type: Scp049
   - type: Hands
   - type: MobThresholds

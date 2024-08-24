@@ -23,16 +23,11 @@ public sealed partial class Scp049System
 {
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly IdentitySystem _identitySystem = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenateSystem = default!;
     [Dependency] private readonly ZombieSystem _zombieSystem = default!;
-    [Dependency] private readonly GhostRoleSystem _ghostRoleSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-
-    private static ProtoId<TagPrototype> SurgeryToolTag = "SurgeryTool";
 
     private void InitializeActions()
     {
@@ -56,22 +51,6 @@ public sealed partial class Scp049System
 
     private void OnResurrect(Entity<Scp049Component> scpEntity, ref Scp049ResurrectAction args)
     {
-        /*var mobState = Comp<MobStateComponent>(args.Target);
-        MakeMinion(new Entity<MobStateComponent>(args.Target, mobState), ent);
-
-        Dirty(ent);
-
-        var targetName = Identity.Name(args.Target, EntityManager);
-        var performerName = Identity.Name(ent, EntityManager);
-
-        var localeMessage = Loc.GetString("scp049-touch-action-success",
-            ("target", targetName),
-            ("performer", performerName));
-
-        _popupSystem.PopupEntity(localeMessage, ent, PopupType.MediumCaution);
-
-        args.Handled = true;*/
-
         var hasTool = false;
 
         foreach (var heldUid in _handsSystem.EnumerateHeld(scpEntity))
@@ -106,6 +85,8 @@ public sealed partial class Scp049System
         {
             BreakOnMove = true,
             BreakOnDamage = true,
+            BreakOnDropItem = true,
+            BreakOnHandChange = true
         };
 
         args.Handled = _doAfterSystem.TryStartDoAfter(doAfterArgs);
@@ -114,6 +95,7 @@ public sealed partial class Scp049System
     private void OnKillResurrected(Entity<Scp049Component> ent, ref Scp049KillResurrectedAction args)
     {
         _mobStateSystem.ChangeMobState(args.Target, MobState.Dead);
+        RemComp<Scp049MinionComponent>(args.Target);
 
         var targetName = Identity.Name(args.Target, EntityManager);
         var performerName = Identity.Name(args.Target, EntityManager);
