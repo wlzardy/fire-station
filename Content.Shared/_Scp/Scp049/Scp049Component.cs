@@ -19,4 +19,15 @@ public sealed partial class Scp049Component : Component
 
     [DataField]
     public static ProtoId<FactionIconPrototype> Icon = "Scp049StatusIcon";
+
+    [DataField]
+    public TimeSpan ResurrectionTime = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public List<EntProtoId> SurgeryTools = new()
+    {
+        "Cautery", "Drill", "Scalpel", "Retractor", "Hemostat", "Saw",
+    };
+
+    public EntProtoId NextTool = default!;
 }
