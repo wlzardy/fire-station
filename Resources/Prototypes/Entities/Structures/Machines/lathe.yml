@@ -200,6 +200,7 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
+      - ClothingHeadHelmetPubgMore  # Sunrise-edit
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -435,7 +436,6 @@
     - AutolatheMachineCircuitboard
     - CircuitImprinterMachineCircuitboard
     - OreProcessorMachineCircuitboard
-    - MaterialReclaimerMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
     - ChemDispenserMachineCircuitboard
@@ -809,12 +809,14 @@
       - MagazineVP70
       - MagazineHIBrowning
       - MagazineDeagle
+      - ClothingHeadHelmetPubg
     # Sunrise-end
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
       - BoxShellTranquilizer
+      - ClothingBackpackElectropack
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
@@ -860,7 +862,6 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
-      - ClothingBackpackElectropack
       - WeaponEnergyGun       # Sunrise - Energy Gun
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
