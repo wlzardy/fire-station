@@ -37,6 +37,15 @@
         - MobMask
         layer:
         - MobLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - None
+        layer:
+        - None
+        density: 1000
   - type: MobThresholds
     thresholds:
       0: Alive
