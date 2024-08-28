@@ -134,7 +134,7 @@
   - type: Puller
     needsHands: false
   - type: SmileSlime
-    action: SmileAffection
+    action: Scp999Affection
     soundSpecifier: /Audio/Animals/cat_meow.ogg
     actionTime: 5
     affectionPopupText: "smile-affection-popup"
