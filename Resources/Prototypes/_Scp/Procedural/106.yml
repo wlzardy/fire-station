@@ -31,7 +31,8 @@
   - !type:CornerClutterDunGen
 
   - !type:LimitedEntityDunGen
-    entity: BorgChassisGeneric
+    entity: Scp106Backrooms
+    limit: 4
 
 - type: dungeonConfig
   id: Backrooms

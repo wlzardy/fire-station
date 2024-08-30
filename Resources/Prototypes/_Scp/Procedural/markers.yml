@@ -1,0 +1,5 @@
+﻿- type: entity
+  id: Scp106Backrooms
+  parent: MarkerBase
+  components:
+  - type: Scp106BackRoomMark
