@@ -3,4 +3,4 @@
 namespace Content.Shared._Scp.Scp106.Components;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class Scp106BackRoomMark : Component;
+public sealed partial class Scp106BackRoomMarkComponent : Component;
