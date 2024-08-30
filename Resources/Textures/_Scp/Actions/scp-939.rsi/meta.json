@@ -10,7 +10,7 @@
   "states":
   [
     {
-      "name": "simulation",
+      "name": "mimic",
       "directions": 1
     },
 
