@@ -16,7 +16,7 @@
 - type: department
   id: Outer
   name: department-Outer
-  description: department-Security-description
+  description: department-Outer-description
   color: "#DE3A3A"
   weight: 20
   roles:

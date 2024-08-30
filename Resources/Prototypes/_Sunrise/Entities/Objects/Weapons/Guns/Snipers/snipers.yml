@@ -83,7 +83,7 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    fireRate: 1.25
+    # fireRate: 1.25  # Sunrise-fire edit
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -148,7 +148,7 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    fireRate: 1.25
+    # fireRate: 1.25  # Sunrise-fire edit
     minAngle: 24
     maxAngle: 45
     soundGunshot:
