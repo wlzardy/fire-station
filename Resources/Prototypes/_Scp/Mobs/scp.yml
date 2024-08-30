@@ -26,7 +26,6 @@
   - type: Tag
     tags:
     - CannotSuicide
-    - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
     baseWalkSpeed: 5
@@ -39,3 +38,6 @@
     - Scp173Clog
     - Scp173DamageStructure
     - Scp173FastMovement
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCP173
