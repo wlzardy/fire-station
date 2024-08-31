@@ -504,6 +504,30 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunriseFlippoLighterBlue
+  name: Синяя зажигалка флиппо
+  productEntity: FlippoLighterSunriseBlue
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseFlippoLighterContractor
+  name: Зажигалка флиппо Контрактника
+  productEntity: FlippoLighterSunriseContractor
+  cost:
+    Suntick: 15
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunriseClothingOuterCoatBomber
   name: Куртка-бомбер
   productEntity: ClothingOuterCoatBomber
@@ -1636,6 +1660,61 @@
 - type: listing
   id: UplinkSunrisePlushieCrusader
   productEntity: PlushieCrusader
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieGenok
+  productEntity: PlushieGenok
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMegane
+  productEntity: PlushieMegane
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieFrizko
+  productEntity: PlushieFrizko
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMiron
+  productEntity: PlushieMiron
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieBublegum
+  productEntity: PlushieBublegum
   cost:
     Suntick: 4
   categories:

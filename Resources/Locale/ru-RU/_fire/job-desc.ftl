@@ -22,4 +22,6 @@ job-name-head-of-containment = глава сдерживания
 job-description-head-of-containment = Ответственный за правильное выполнение процедур сдерживания.
 
 department-Outer = Охрана Периметра
+department-Outer-description = Защищайте периметр от угроз
 department-Containment = Агенство Сдерживания
+department-containment-description = Ни в коем случае не нарушайте процедуры содержания аномалий!

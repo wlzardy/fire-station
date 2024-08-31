@@ -79,6 +79,7 @@ public sealed partial class ZombieSystem
     /// </summary>
     /// <param name="target">the entity being zombified</param>
     /// <param name="mobState"></param>
+    /// <param name="zombieComponentOverride">Component that you created somewhere else. It must be detached from entity</param>
     /// <remarks>
     ///     ALRIGHT BIG BOYS, GIRLS AND ANYONE ELSE. YOU'VE COME TO THE LAYER OF THE BEAST. THIS IS YOUR WARNING.
     ///     This function is the god function for zombie stuff, and it is cursed. I have
@@ -86,7 +87,7 @@ public sealed partial class ZombieSystem
     ///     rewrite this, but this is how it shall lie eternal. Turn back now.
     ///     -emo
     /// </remarks>
-    public void ZombifyEntity(EntityUid target, MobStateComponent? mobState = null)
+    public void ZombifyEntity(EntityUid target, MobStateComponent? mobState = null, ZombieComponent? zombieComponentOverride = null) //FireStation edit
     {
         //Don't zombfiy zombies
         if (HasComp<ZombieComponent>(target) || HasComp<ZombieImmuneComponent>(target))
@@ -95,8 +96,17 @@ public sealed partial class ZombieSystem
         if (!Resolve(target, ref mobState, logMissing: false))
             return;
 
+        ZombieComponent zombiecomp; //FireStation edit
         //you're a real zombie now, son.
-        var zombiecomp = AddComp<ZombieComponent>(target);
+        if (zombieComponentOverride != null)
+        {
+            AddComp(target, zombieComponentOverride);
+            zombiecomp = zombieComponentOverride;
+        }
+        else
+        {
+            zombiecomp = AddComp<ZombieComponent>(target);
+        }
 
         //we need to basically remove all of these because zombies shouldn't
         //get diseases, breath, be thirst, be hungry, die in space, have offspring or be paraplegic.
@@ -193,7 +203,7 @@ public sealed partial class ZombieSystem
 
             // humanoid zombies get to pry open doors and shit
             var pryComp = EnsureComp<PryingComponent>(target);
-            pryComp.SpeedModifier = 7.00f; // Sunrise-Edit
+            pryComp.SpeedModifier = 0.75f; // Sunrise-Edit
             pryComp.PryPowered = true;
             pryComp.Force = true;
 

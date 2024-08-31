@@ -129,6 +129,41 @@
         },
         {
             "name": "crusader"
+        },
+        {
+            "name": "genok-librarian-unshaded",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "genok-librarian-shaded"
+        },
+        {
+            "name": "richard_industries"
+        },
+        {
+            "name": "plushie-frizko"
+        },
+        {
+            "name": "plushie-miron"
+        },
+        {
+            "name": "plushie-bublegum"
         }
     ]
 }

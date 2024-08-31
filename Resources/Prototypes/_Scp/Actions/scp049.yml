@@ -1,0 +1,57 @@
+﻿- type: entity
+  id: ActionScp049Resurrect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 120
+    icon: { sprite: _Scp/Actions/scp049-actions.rsi, state: resurrect }
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049ResurrectAction
+    canTargetSelf: false
+    interactOnMiss: false
+    whitelist:
+      components:
+      - MobState
+
+- type: entity
+  id: ActionScp049KillResurrected
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 0
+    icon: { sprite: _Scp/Actions/scp049-actions.rsi, state: kill_minion }
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049KillResurrectedAction
+    canTargetSelf: false
+    interactOnMiss: false
+    whitelist:
+      components:
+      - Scp049Minion
+
+- type: entity
+  id: ActionScp049KillLeavingBeing
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 180
+    icon: { sprite: _Scp/Actions/scp049-actions.rsi, state: kill }
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049KillLivingBeingAction
+    canTargetSelf: false
+    interactOnMiss: false
+    whitelist:
+      components: MobState
+
+- type: entity
+  id: ActionScp049SelfHeal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 300
+    icon: { sprite: _Scp/Actions/scp049-actions.rsi, state: heal }
+    itemIconStyle: NoItem
+    priority: 12
+    event: !type:Scp049SelfHealAction

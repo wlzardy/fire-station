@@ -1,0 +1,25 @@
+﻿- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackScp049
+  name: Бездонная сумка
+  noSpawn: true
+  components:
+  - type: Item
+    sprite: null
+    size: Ginormous
+  - type: Sprite
+    sprite: _Scp/Clothing/Back/Satchels/scp049-satchel.rsi
+    icon: icon
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: Unremoveable
+  - type: StorageFill
+    contents:
+    - id: Hemostat
+    - id: Saw
+    - id: Drill
+    - id: Cautery
+    - id: Retractor
+    - id: Scalpel
