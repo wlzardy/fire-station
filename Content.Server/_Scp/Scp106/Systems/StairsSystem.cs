@@ -3,6 +3,7 @@ using Content.Server._Scp.Scp106.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Procedural;
+using Content.Shared._Scp.Scp106.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction;
@@ -71,6 +72,7 @@ public sealed class StairsSystem : EntitySystem
         Dirty(map, light);
 
         EnsureComp<MapAtmosphereComponent>(map);
+        EnsureComp<Scp106BackRoomMapComponent>(map);
 
         _atmosphere.SetMapSpace(map, false);
 
