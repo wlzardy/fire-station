@@ -46,7 +46,7 @@ public sealed class StairsSystem : EntitySystem
             return;
 
         component.Generating = true;
-        _ = GenerateFloor(uid, component);
+        _ = GenerateFloorWithStairLinking(uid, component);
     }
 
     private void OnInteract(EntityUid uid, StaircaseComponent component, InteractHandEvent args)
@@ -58,7 +58,7 @@ public sealed class StairsSystem : EntitySystem
         _transform.SetCoordinates(args.User, xform.Coordinates);
     }
 
-    private async Task GenerateFloor(EntityUid uid, StaircaseComponent component)
+    public async Task<MapId> GenerateFloor()
     {
         var map = _mapSystem.CreateMap(out var mapId);
 
@@ -86,7 +86,14 @@ public sealed class StairsSystem : EntitySystem
 
         await _dungeon.GenerateDungeonAsync(_prototype.Index<DungeonConfigPrototype>("Backrooms"), map, gridComp, Vector2i.Zero, _random.Next());
 
-        if (FindValidStairOnFloor(mapId) is not { } pair)
+        return mapId;
+    }
+
+    public async Task GenerateFloorWithStairLinking(EntityUid uid, StaircaseComponent component)
+    {
+        var map = await GenerateFloor();
+
+        if (FindValidStairOnFloor(map) is not { } pair)
             return;
 
         var secondStairEnt = pair.Item1;
