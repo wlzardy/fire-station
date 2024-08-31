@@ -41,7 +41,7 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSCP173
-      
+
 - type: entity
   parent: BaseSCP
   id: Scp106
@@ -62,6 +62,10 @@
     tags:
     - CannotSuicide
     - FootstepSound
+  - type: GiveActions
+    actions:
+    - Scp106BackroomsAction
+    - Scp106RandomTeleportAction
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2

@@ -34,9 +34,6 @@ public sealed class Scp106System : SharedScp106System
 
     private void OnMapInit(Entity<Scp106Component> ent, ref MapInitEvent args)
     {
-        _actionsSystem.AddAction(ent, "Scp106BackroomsAction");
-        _actionsSystem.AddAction(ent, "Scp106RandomTeleportAction");
-
         var marks = SearchForMarks();
         if (marks.Count == 0)
             _ = _stairs.GenerateFloor();
