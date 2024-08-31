@@ -60,3 +60,7 @@
     baseSprintSpeed: 4
   - type: Scp106
   - type: ScpRestriction
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5000: Dead
