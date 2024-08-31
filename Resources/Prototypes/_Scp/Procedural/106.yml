@@ -75,6 +75,10 @@
   - !type:LimitedEntityDunGen
     entity: StairsDown106
 
+  # TODO: Add Mobs/Items.
+  # For items -> LimitedEntityDunGen
+  # For mobs -> MobsDunGen
+
 - type: dungeonConfig
   id: Backrooms
   data:
