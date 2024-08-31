@@ -53,14 +53,24 @@
   - type: Tag
     tags:
     - CannotSuicide
-    - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4
+    baseSprintSpeed: 2
   - type: Scp106
   - type: ScpRestriction
   - type: MobThresholds
     thresholds:
       0: Alive
       5000: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
