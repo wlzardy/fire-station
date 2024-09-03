@@ -3,14 +3,13 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Shared._Scp.Scp939;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Scp.Scp939;
 
-public sealed partial class Scp939System : SharedScp939System
+public sealed partial class Scp939System : EntitySystem
 {
     [Dependency] private readonly SmokeSystem _smokeSystem = default!;
     [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
@@ -18,7 +17,6 @@ public sealed partial class Scp939System : SharedScp939System
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private static readonly string SleepKey = "Sleep";
 

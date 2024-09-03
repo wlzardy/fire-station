@@ -1,5 +1,4 @@
 ﻿using Content.Server.Chat.Systems;
-using Content.Server.Radio;
 using Content.Shared._Scp.Scp939;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Throwing;
