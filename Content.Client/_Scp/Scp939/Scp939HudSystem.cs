@@ -3,9 +3,11 @@ using Content.Client.Overlays;
 using Content.Client.SSDIndicator;
 using Content.Client.Stealth;
 using Content.Shared._Scp.Scp939;
+using Content.Shared.Movement.Components;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -63,6 +65,19 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
     private void OnMove(Entity<Scp939VisibilityComponent> ent, ref MoveEvent args)
     {
         ent.Comp.VisibilityAcc = 0f;
+
+        if (!TryComp<MovementSpeedModifierComponent>(ent, out var speedModifierComponent)
+            || !TryComp<PhysicsComponent>(ent, out var physicsComponent))
+        {
+            return;
+        }
+
+        var currentVelocity = physicsComponent.LinearVelocity.Length();
+
+        if(speedModifierComponent.BaseWalkSpeed > currentVelocity)
+        {
+            ent.Comp.VisibilityAcc = ent.Comp.HideTime / 2f;
+        }
     }
 
     public override void Update(float frameTime)
