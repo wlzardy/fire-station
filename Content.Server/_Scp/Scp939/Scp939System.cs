@@ -6,6 +6,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Scp.Scp939;
 
@@ -17,7 +18,7 @@ public sealed partial class Scp939System : SharedScp939System
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private static readonly string SleepKey = "Sleep";
 
@@ -28,6 +29,8 @@ public sealed partial class Scp939System : SharedScp939System
 
         SubscribeLocalEvent<Scp939Component, ComponentInit>(OnInit);
         SubscribeLocalEvent<Scp939Component, SleepStateChangedEvent>(OnSleepChanged);
+
+        InitializeVisibility();
     }
 
     private void OnSleepChanged(Entity<Scp939Component> ent, ref SleepStateChangedEvent args)

@@ -1,0 +1,125 @@
+﻿using System.Linq;
+using Content.Client.Overlays;
+using Content.Client.SSDIndicator;
+using Content.Client.Stealth;
+using Content.Shared._Scp.Scp939;
+using Content.Shared.StatusIcon.Components;
+using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
+
+namespace Content.Client._Scp.Scp939;
+
+public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
+{
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private ShaderInstance _shaderInstance = default!;
+
+    private List<ShaderInstance> _shaderInstances = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<Scp939VisibilityComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<Scp939VisibilityComponent, BeforePostShaderRenderEvent>(BeforeRender);
+        SubscribeLocalEvent<Scp939VisibilityComponent, GetStatusIconsEvent>(OnGetStatusIcons, after: new []{typeof(SSDIndicatorSystem)});
+
+        _shaderInstance = _prototypeManager.Index<ShaderPrototype>("Hide").Instance().Duplicate();
+
+        for (int i = 0; i < 100; i++)
+        {
+            _shaderInstances.Add(_shaderInstance.Duplicate());
+        }
+
+        UpdatesAfter.Add(typeof(StealthSystem));
+    }
+
+    private void OnGetStatusIcons(Entity<Scp939VisibilityComponent> ent, ref GetStatusIconsEvent args)
+    {
+        var visibility = GetVisibility(ent);
+
+        if (visibility <= 0.5f)
+        {
+            args.StatusIcons.Clear();
+        }
+    }
+
+    protected override void DeactivateInternal()
+    {
+        base.DeactivateInternal();
+
+        var query = EntityQueryEnumerator<Scp939VisibilityComponent, SpriteComponent>();
+
+        while (query.MoveNext(out var entityUid, out var visibilityComponent, out var spriteComponent))
+        {
+            spriteComponent.PostShader = null;
+        }
+    }
+
+    private void OnMove(Entity<Scp939VisibilityComponent> ent, ref MoveEvent args)
+    {
+        ent.Comp.LastTimeDoSomething = _gameTiming.CurTime;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (!IsActive)
+        {
+            return;
+        }
+
+        var query = EntityQueryEnumerator<SpriteComponent, Scp939VisibilityComponent>();
+
+        var shaderId = 0;
+
+        while (query.MoveNext(out var entityUid, out var spriteComponent, out var visibilityComponent))
+        {
+            if (_shaderInstances.Count <= shaderId)
+            {
+                _shaderInstances.Add(_shaderInstance.Duplicate());
+            }
+
+            var shader = _shaderInstances[shaderId];
+
+            UpdateVisibility(spriteComponent, shader);
+
+            shaderId++;
+        }
+    }
+
+    private void UpdateVisibility(SpriteComponent spriteComponent, ShaderInstance shader)
+    {
+        spriteComponent.Color = Color.White;
+        spriteComponent.GetScreenTexture = true;
+        spriteComponent.RaiseShaderEvent = true;
+
+        spriteComponent.PostShader = shader;
+    }
+
+    private void BeforeRender(Entity<Scp939VisibilityComponent> ent, ref BeforePostShaderRenderEvent args)
+    {
+        var visibility = GetVisibility(ent);
+        args.Sprite.PostShader?.SetParameter("visibility", visibility);
+    }
+
+    private float GetVisibility(Entity<Scp939VisibilityComponent> ent)
+    {
+
+        var passedTime = _gameTiming.CurTime - ent.Comp.LastTimeDoSomething;
+        var passedSeconds = (float)passedTime.TotalSeconds;
+
+        if (passedSeconds > ent.Comp.HideTime)
+        {
+            return 0;
+        }
+
+        var visibility = 1f - (passedSeconds / ent.Comp.HideTime);
+        return Math.Clamp(visibility, 0f, 1f);
+    }
+}
