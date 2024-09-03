@@ -5,6 +5,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Scp.Scp939;
@@ -17,8 +18,7 @@ public sealed partial class Scp939System : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-
-    private static readonly string SleepKey = "Sleep";
+    [Dependency] private readonly SharedEyeSystem _eyeSystem = default!;
 
     public override void Initialize()
     {
@@ -27,8 +27,20 @@ public sealed partial class Scp939System : EntitySystem
 
         SubscribeLocalEvent<Scp939Component, ComponentInit>(OnInit);
         SubscribeLocalEvent<Scp939Component, SleepStateChangedEvent>(OnSleepChanged);
+        SubscribeLocalEvent<Scp939Component, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<Scp939Component, PlayerDetachedEvent>(OnPlayerDetached);
 
         InitializeVisibility();
+    }
+
+    private void OnPlayerAttached(Entity<Scp939Component> ent, ref PlayerAttachedEvent args)
+    {
+        _eyeSystem.SetDrawFov(ent, false);
+    }
+
+    private void OnPlayerDetached(Entity<Scp939Component> ent, ref PlayerDetachedEvent args)
+    {
+        _eyeSystem.SetDrawFov(ent, true);
     }
 
     private void OnSleepChanged(Entity<Scp939Component> ent, ref SleepStateChangedEvent args)
