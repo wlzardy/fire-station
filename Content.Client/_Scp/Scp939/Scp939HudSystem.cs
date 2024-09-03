@@ -3,8 +3,10 @@ using Content.Client.Overlays;
 using Content.Client.SSDIndicator;
 using Content.Client.Stealth;
 using Content.Shared._Scp.Scp939;
+using Content.Shared.Examine;
 using Content.Shared.Movement.Components;
 using Content.Shared.StatusIcon.Components;
+using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Physics.Components;
@@ -29,6 +31,7 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
         SubscribeLocalEvent<Scp939VisibilityComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<Scp939VisibilityComponent, BeforePostShaderRenderEvent>(BeforeRender);
         SubscribeLocalEvent<Scp939VisibilityComponent, GetStatusIconsEvent>(OnGetStatusIcons, after: new []{typeof(SSDIndicatorSystem)});
+        SubscribeLocalEvent<Scp939VisibilityComponent, ExamineAttemptEvent>(OnExamine);
 
         _shaderInstance = _prototypeManager.Index<ShaderPrototype>("Hide").Instance().Duplicate();
 
@@ -38,6 +41,21 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
         }
 
         UpdatesAfter.Add(typeof(StealthSystem));
+    }
+
+    private void OnExamine(Entity<Scp939VisibilityComponent> ent, ref ExamineAttemptEvent args)
+    {
+        if (!IsActive)
+        {
+            return;
+        }
+
+        var visibility = GetVisibility(ent);
+
+        if (visibility < 0.2f)
+        {
+            args.Cancel();
+        }
     }
 
     private void OnGetStatusIcons(Entity<Scp939VisibilityComponent> ent, ref GetStatusIconsEvent args)
