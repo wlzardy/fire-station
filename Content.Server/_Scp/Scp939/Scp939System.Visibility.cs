@@ -26,7 +26,7 @@ public sealed partial class Scp939System
         }
 
         var visibilityComponent = EnsureComp<Scp939VisibilityComponent>(ent);
-        visibilityComponent.LastTimeDoSomething = _gameTiming.CurTime;
+        visibilityComponent.VisibilityAcc = 0;
     }
 
 
@@ -37,7 +37,7 @@ public sealed partial class Scp939System
 
     private void MobDidSomething(Entity<Scp939VisibilityComponent> ent)
     {
-        ent.Comp.LastTimeDoSomething = _gameTiming.CurTime;
+        ent.Comp.VisibilityAcc = 0;
         Dirty(ent);
     }
 }

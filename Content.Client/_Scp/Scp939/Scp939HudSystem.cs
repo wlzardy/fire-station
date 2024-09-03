@@ -62,7 +62,7 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
 
     private void OnMove(Entity<Scp939VisibilityComponent> ent, ref MoveEvent args)
     {
-        ent.Comp.LastTimeDoSomething = _gameTiming.CurTime;
+        ent.Comp.VisibilityAcc = 0f;
     }
 
     public override void Update(float frameTime)
@@ -90,6 +90,8 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
             UpdateVisibility(spriteComponent, shader);
 
             shaderId++;
+
+            visibilityComponent.VisibilityAcc += frameTime;
         }
     }
 
@@ -110,16 +112,13 @@ public sealed class Scp939HudSystem : EquipmentHudSystem<Scp939Component>
 
     private float GetVisibility(Entity<Scp939VisibilityComponent> ent)
     {
+        var acc = ent.Comp.VisibilityAcc;
 
-        var passedTime = _gameTiming.CurTime - ent.Comp.LastTimeDoSomething;
-        var passedSeconds = (float)passedTime.TotalSeconds;
-
-        if (passedSeconds > ent.Comp.HideTime)
+        if (acc > ent.Comp.HideTime)
         {
             return 0;
         }
 
-        var visibility = 1f - (passedSeconds / ent.Comp.HideTime);
-        return Math.Clamp(visibility, 0f, 1f);
+        return Math.Clamp(1f - (acc / ent.Comp.HideTime), 0f, 1f);
     }
 }
