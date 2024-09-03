@@ -1,5 +1,9 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.Clothing;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
@@ -8,6 +12,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
+using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
@@ -27,6 +32,8 @@ public abstract class SharedScp035System : EntitySystem
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -35,7 +42,10 @@ public abstract class SharedScp035System : EntitySystem
         SubscribeLocalEvent<Scp035MaskComponent, ClothingGotEquippedEvent>(OnMaskEquipped);
         SubscribeLocalEvent<Scp035MaskComponent, ClothingGotUnequippedEvent>(OnMaskUnequipped);
         SubscribeLocalEvent<Scp035MaskComponent, BeingEquippedAttemptEvent>(OnEquippeAttempt);
+        SubscribeLocalEvent((Entity<Scp035MaskComponent> _, ref BeforeDamageChangedEvent args) => args.Cancelled = true);
 
+        SubscribeLocalEvent<Scp035MaskUserComponent, MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<Scp035MaskUserComponent, MaskStunActionEvent>(OnStun);
         SubscribeLocalEvent<Scp035MaskUserComponent, MaskOrderActionEvent>(OnOrder);
         SubscribeLocalEvent<Scp035MaskUserComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<Scp035MaskUserComponent, ComponentShutdown>(OnMaskShutdown);
@@ -58,10 +68,23 @@ public abstract class SharedScp035System : EntitySystem
         _action.AddAction(args.Wearer, "ActionScp035OrderFollow", maskUserComponent.ActionOrderFollowEntity);
         _action.AddAction(args.Wearer, "ActionScp035OrderKill", maskUserComponent.ActionOrderKillEmEntity);
         _action.AddAction(args.Wearer, "ActionScp035OrderLoose", maskUserComponent.ActionOrderLooseEntity);
+        _action.AddAction(args.Wearer, "ActionScp035Stun", maskUserComponent.ActionStunEntity);
         Dirty(args.Wearer, maskUserComponent);
 
-        _factionSystem.ClearFactions(ent.Owner);
-        _factionSystem.AddFaction(ent.Owner, "SimpleHostile");
+        _factionSystem.ClearFactions(args.Wearer);
+        _factionSystem.AddFaction(args.Wearer, "SimpleHostile");
+
+        _mobThreshold.SetMobStateThreshold(args.Wearer, FixedPoint2.New(1000), MobState.Critical);
+        _mobThreshold.SetMobStateThreshold(args.Wearer, FixedPoint2.New(1000), MobState.Dead);
+        RemComp<SlowOnDamageComponent>(args.Wearer);
+
+        _stun.TryParalyze(args.Wearer, TimeSpan.FromSeconds(5), true);
+
+        if (_net.IsServer)
+            _popup.PopupEntity("Вы ошеломлены!", args.Wearer, args.Wearer, PopupType.LargeCaution);
+
+        var chainsaw = Spawn("Chainsaw", Transform(args.Wearer).Coordinates);
+        _hands.TryForcePickupAnyHand(args.Wearer, chainsaw, false);
     }
 
     private void OnMaskUnequipped(Entity<Scp035MaskComponent> ent, ref ClothingGotUnequippedEvent args)
@@ -110,6 +133,32 @@ public abstract class SharedScp035System : EntitySystem
         QueueDel(ent);
     }
 
+    private void OnMeleeHit(Entity<Scp035MaskUserComponent> ent, ref MeleeHitEvent args)
+    {
+        args.BonusDamage = args.BaseDamage * 4;
+    }
+
+    private void OnStun(Entity<Scp035MaskUserComponent> ent, ref MaskStunActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        {
+            if(_net.IsServer)
+                _popup.PopupEntity("Работает только на людей.", args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(10), true);
+
+        if (_net.IsServer)
+            _popup.PopupEntity("ваше тело онемело!", args.Target, args.Target, PopupType.LargeCaution);
+
+        args.Handled = true;
+    }
+
     private void OnMaskShutdown(Entity<Scp035MaskUserComponent> ent, ref ComponentShutdown args)
     {
         foreach (var servant in ent.Comp.Servants)
@@ -125,6 +174,7 @@ public abstract class SharedScp035System : EntitySystem
         _action.RemoveAction(ent, ent.Comp.ActionOrderFollowEntity);
         _action.RemoveAction(ent, ent.Comp.ActionOrderKillEmEntity);
         _action.RemoveAction(ent, ent.Comp.ActionOrderLooseEntity);
+        _action.RemoveAction(ent, ent.Comp.ActionStunEntity);
     }
 
     private void OnServantShutdown(Entity<Scp035ServantComponent> ent, ref ComponentShutdown args)

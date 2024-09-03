@@ -8,4 +8,7 @@ public sealed partial class Scp035MaskComponent : Component
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? User;
+
+    public TimeSpan NextMessaging = TimeSpan.Zero;
+    public TimeSpan NextLiquidSpawning = TimeSpan.Zero;
 }

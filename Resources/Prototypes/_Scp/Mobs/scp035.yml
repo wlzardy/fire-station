@@ -258,3 +258,19 @@
       !type:MaskOrderActionEvent
       type: Loose
     priority: 8
+
+- type: entity
+  id: ActionScp035Stun
+  name: Гипноз.
+  components:
+  - type: EntityTargetAction
+    useDelay: 180
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: ratKingArmy
+    priority: 9
+    event: !type:MaskStunActionEvent
+    canTargetSelf: false
+    interactOnMiss: false
+    whitelist:
+      components: MobState

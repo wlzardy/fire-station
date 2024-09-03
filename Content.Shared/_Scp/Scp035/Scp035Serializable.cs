@@ -19,3 +19,5 @@ public sealed partial class MaskOrderActionEvent : InstantActionEvent
     [DataField("type")]
     public MaskOrderType Type;
 }
+
+public sealed partial class MaskStunActionEvent : EntityTargetActionEvent;

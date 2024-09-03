@@ -35,4 +35,7 @@ public sealed partial class Scp035MaskUserComponent : Component
 
     [AutoNetworkedField]
     public EntityUid ActionOrderLooseEntity;
+
+    [AutoNetworkedField]
+    public EntityUid ActionStunEntity;
 }
