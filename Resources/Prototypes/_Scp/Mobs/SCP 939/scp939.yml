@@ -6,11 +6,20 @@
   - MobDamageable
   - MobCombat
   - MobBloodstream
-  - MobRespirator
   - MobAtmosStandard
   - MobFlammable
   components:
   - type: Scp939
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+        Slash: 10
   - type: MobThresholds
     thresholds:
       0: Alive
