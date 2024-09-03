@@ -9,7 +9,7 @@ namespace Content.Shared._Scp.Scp939;
 public sealed partial class Scp939Component : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public Solution? SmokeSolution { get; set; }
+    public Solution SmokeSolution { get; set; } = new("АМН-С227", 200);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float SmokeDuration { get; set; } = 30.0f;

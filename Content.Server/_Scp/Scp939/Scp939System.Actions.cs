@@ -1,4 +1,5 @@
 ﻿using Content.Shared._Scp.Scp939;
+using Content.Shared.Coordinates.Helpers;
 
 namespace Content.Server._Scp.Scp939;
 
@@ -17,9 +18,13 @@ public sealed partial class Scp939System
 
     private void OnGasAction(Entity<Scp939Component> ent, ref Scp939GasAction args)
     {
-        _smokeSystem.StartSmoke(ent, ent.Comp.SmokeSolution!, ent.Comp.SmokeDuration, ent.Comp.SmokeSpread);
+        var xform = Transform(ent);
+        var smokeEntity = Spawn("АМН-С227Smoke", xform.Coordinates.SnapToGrid());
+
+        _smokeSystem.StartSmoke(smokeEntity, ent.Comp.SmokeSolution, ent.Comp.SmokeDuration, ent.Comp.SmokeSpread);
+
         args.Handled = true;
     }
 
-    
+
 }
