@@ -15,7 +15,10 @@ public sealed partial class Scp939Component : Component
     public float SmokeDuration { get; set; } = 30.0f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int SmokeSpread { get; set; } = 10;
+    public int SmokeSpreadRadius { get; set; } = 10;
+
+    [DataField]
+    public EntProtoId SmokeProtoId = "АМН-С227Smoke";
 
     [DataField]
     public List<EntProtoId> Actions = new()
@@ -25,8 +28,11 @@ public sealed partial class Scp939Component : Component
         "Scp939Sleep",
     };
 
-    [DataField("sleepingHealing")]
-    public DamageSpecifier SleepingHealing = new()
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float HibernationDuration = 60.0f;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier HibernationHealingRate = new()
     {
         DamageDict = new ()
         {

@@ -46,7 +46,7 @@ public sealed partial class Scp939System : SharedScp939System
 
         while (query.MoveNext(out var uid, out var scp939Component, out _))
         {
-            _damageableSystem.TryChangeDamage(uid, scp939Component.SleepingHealing * frameTime);
+            _damageableSystem.TryChangeDamage(uid, scp939Component.HibernationHealingRate * frameTime);
         }
     }
 
