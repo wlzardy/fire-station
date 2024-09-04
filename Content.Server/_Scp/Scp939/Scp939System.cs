@@ -36,11 +36,13 @@ public sealed partial class Scp939System : EntitySystem
     private void OnPlayerAttached(Entity<Scp939Component> ent, ref PlayerAttachedEvent args)
     {
         _eyeSystem.SetDrawFov(ent, false);
+        _eyeSystem.SetDrawLight(ent.Owner, false);
     }
 
     private void OnPlayerDetached(Entity<Scp939Component> ent, ref PlayerDetachedEvent args)
     {
         _eyeSystem.SetDrawFov(ent, true);
+        _eyeSystem.SetDrawLight(ent.Owner, true);
     }
 
     private void OnSleepChanged(Entity<Scp939Component> ent, ref SleepStateChangedEvent args)
