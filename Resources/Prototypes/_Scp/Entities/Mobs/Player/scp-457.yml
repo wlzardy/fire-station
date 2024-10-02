@@ -40,7 +40,6 @@
       collection: FootstepBlood
       params:
         volume: 6
-  - type: Perishable
   - type: Damageable
     damageModifierSet: HellSpawn
   - type: MobThresholds
