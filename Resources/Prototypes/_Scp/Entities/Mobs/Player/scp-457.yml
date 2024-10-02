@@ -91,8 +91,8 @@
     damageCap: 0
     damage:
       types:
-        Cold: -0.1
-        Heat: -5
+        Cold: -1
+        Heat: -200
   - type: Flammable
     canExtinguish: true
     alwaysCombustible: true
