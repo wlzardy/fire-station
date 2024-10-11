@@ -26,6 +26,12 @@
             "name": "nt"
         },
         {
+            "name": "scp173"
+        },
+        {
+            "name": "scp217"
+        },
+        {
             "name": "poster_being_set",
             "delays": [
                 [

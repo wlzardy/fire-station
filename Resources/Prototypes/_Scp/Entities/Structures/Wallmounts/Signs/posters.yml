@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿# Просто плакаты
+
+- type: entity
   parent: PosterBase
   id: PosterScpBase
   abstract: true
@@ -10,7 +12,7 @@
   parent: PosterScpBase
   id: PosterScp
   name: Secure Contain Protect
-  description: Постер с эмблемой организации SCP
+  description: Плакат с эмблемой организации SCP
   components:
   - type: Sprite
     state: scp
@@ -19,7 +21,7 @@
   parent: PosterScpBase
   id: PosterChaos
   name: Хаос
-  description: Постер с эмблемой повстанцев хаоса
+  description: Плакат с эмблемой повстанцев хаоса
   components:
   - type: Sprite
     state: chaos
@@ -28,7 +30,7 @@
   parent: PosterScpBase
   id: PosterGoc
   name: Г.О.К.
-  description: Постер с эмблемой Глобальной Оккультной Организации
+  description: Плакат с эмблемой Глобальной Оккультной Организации
   components:
   - type: Sprite
     state: goc
@@ -37,7 +39,7 @@
   parent: PosterScpBase
   id: PosterBreath
   name: Перемен
-  description: Содержание этого постера вам что-то напоминает.. Что?..
+  description: Содержание этого плаката вам что-то напоминает.. Что?..
   components:
   - type: Sprite
     state: changes
@@ -46,7 +48,7 @@
   parent: PosterScpBase
   id: PosterBreath
   name: Дыши!
-  description: Постер, призывающий... дышать!!
+  description: Плакат, призывающий... дышать!!
   components:
   - type: Sprite
     state: breath
@@ -55,7 +57,126 @@
   parent: PosterScpBase
   id: PosterNtYours
   name: НТ твое!
-  description: Постер, призывающий вступить в Nanotrasen
+  description: Плакат, призывающий вступить в Nanotrasen
   components:
   - type: Sprite
     state: nt
+
+- type: entity
+  parent: PosterScpBase
+  id: PosterLook
+  name: Смотри в оба
+  description: Плакат, призывающий держать зрительный контакт
+  components:
+  - type: Sprite
+    state: scp173
+
+- type: entity
+  parent: PosterScpBase
+  id: Poster217
+  name: SCP-217
+  description: Плакат, показывающий анатомию SCP-217
+  components:
+  - type: Sprite
+    state: scp217
+
+# Плакаты камер содержания сцп
+
+- type: entity
+  parent: PosterBase
+  id: PosterScpContainmentRoomBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Scp/Structures/Wallmounts/scp-posters.rsi
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP049
+  name: SCP-049
+  description: Информационный плакат SCP-049
+  components:
+  - type: Sprite
+    state: scp049
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP096
+  name: SCP-096
+  description: Информационный плакат SCP-096
+  components:
+  - type: Sprite
+    state: scp096
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP126
+  name: SCP-126
+  description: Информационный плакат SCP-126
+  components:
+  - type: Sprite
+    state: scp126
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP173
+  name: SCP-173
+  description: Информационный плакат SCP-173
+  components:
+  - type: Sprite
+    state: scp173
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP969
+  name: SCP-969
+  description: Информационный плакат SCP-969
+  components:
+  - type: Sprite
+    state: scp969
+
+- type: entity
+  parent: PosterScpContainmentRoomBase
+  id: PosterSCP999
+  name: SCP-999
+  description: Информационный плакат SCP-999
+  components:
+  - type: Sprite
+    state: scp999
+
+# Плакаты со схемами
+
+- type: entity
+  parent: PosterBase
+  id: PosterSchemaBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Scp/Structures/Wallmounts/long-posters.rsi
+
+- type: entity
+  parent: PosterSchemaBase
+  id: PosterAKDisassemblySchema
+  name: схема автомата калашникова
+  description: Информационный плакат, изображающий автомат калашникова в разборе
+  components:
+  - type: Sprite
+    state: ak
+
+- type: entity
+  parent: PosterSchemaBase
+  id: PosterMk56DisassemblySchema
+  name: схема пистолета
+  description: Информационный плакат, изображающий пистолет mk56 в разборе
+  components:
+  - type: Sprite
+    state: mk56
+
+- type: entity
+  parent: PosterSchemaBase
+  id: PosterEngineeringSchema
+  name: схема инженерного оборудования
+  description: Информационный плакат, изображающий системы используемые космическими шаттлами и гаечного ключа
+  components:
+  - type: Sprite
+    state: shuttle
