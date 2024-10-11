@@ -179,4 +179,4 @@
   description: Информационный плакат, изображающий системы используемые космическими шаттлами и гаечного ключа
   components:
   - type: Sprite
-    state: shuttle
+    state: engineering
