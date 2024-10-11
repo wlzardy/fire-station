@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Scp/Structures/posters.rsi
+    sprite: _Scp/Structures/Wallmounts/posters.rsi
 
 - type: entity
   parent: PosterScpBase
@@ -13,7 +13,7 @@
   description: Постер с эмблемой организации SCP
   components:
   - type: Sprite
-    state: posterscp
+    state: scp
 
 - type: entity
   parent: PosterScpBase
@@ -22,34 +22,34 @@
   description: Постер с эмблемой повстанцев хаоса
   components:
   - type: Sprite
-    state: posterchaos
+    state: chaos
 
 - type: entity
   parent: PosterScpBase
-  id: PosterGok
+  id: PosterGoc
   name: Г.О.К.
   description: Постер с эмблемой Глобальной Оккультной Организации
   components:
   - type: Sprite
-    state: postergok
+    state: goc
 
 - type: entity
   parent: PosterScpBase
-  id: PosterPeremen
+  id: PosterBreath
   name: Перемен
   description: Содержание этого постера вам что-то напоминает.. Что?..
   components:
   - type: Sprite
-    state: posterperemen
+    state: changes
 
 - type: entity
   parent: PosterScpBase
-  id: PosterDyshi
+  id: PosterBreath
   name: Дыши!
   description: Постер, призывающий... дышать!!
   components:
   - type: Sprite
-    state: posterdyshi
+    state: breath
 
 - type: entity
   parent: PosterScpBase
@@ -58,4 +58,4 @@
   description: Постер, призывающий вступить в Nanotrasen
   components:
   - type: Sprite
-    state: posterntyours
+    state: nt
