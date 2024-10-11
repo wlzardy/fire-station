@@ -9,8 +9,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterScp
-  name: "Secure Contain Protect"
-  description: "Постер с эмблемой организации SCP"
+  name: Secure Contain Protect
+  description: Постер с эмблемой организации SCP
   components:
   - type: Sprite
     state: posterscp
@@ -18,8 +18,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterChaos
-  name: "Хаос"
-  description: "Постер с эмблемой повстанцев хаоса"
+  name: Хаос
+  description: Постер с эмблемой повстанцев хаоса
   components:
   - type: Sprite
     state: posterchaos
@@ -27,8 +27,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterGok
-  name: "Г.О.К."
-  description: "Постер с эмблемой Глобальной Оккультной Организации"
+  name: Г.О.К.
+  description: Постер с эмблемой Глобальной Оккультной Организации
   components:
   - type: Sprite
     state: postergok
@@ -36,8 +36,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterPeremen
-  name: "Перемен"
-  description: "Содержание этого постера вам что-то напоминает.. Что?.."
+  name: Перемен
+  description: Содержание этого постера вам что-то напоминает.. Что?..
   components:
   - type: Sprite
     state: posterperemen
@@ -45,8 +45,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterDyshi
-  name: "Дыши!"
-  description: "Постер, призывающий... дышать!!"
+  name: Дыши!
+  description: Постер, призывающий... дышать!!
   components:
   - type: Sprite
     state: posterdyshi
@@ -54,8 +54,8 @@
 - type: entity
   parent: PosterScpBase
   id: PosterNtYours
-  name: "НТ твое!"
-  description: "Постер, призывающий вступить в Nanotrasen"
+  name: НТ твое!
+  description: Постер, призывающий вступить в Nanotrasen
   components:
   - type: Sprite
     state: posterntyours
