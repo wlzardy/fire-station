@@ -10,6 +10,15 @@
 
 - type: entity
   parent: PosterScpBase
+  id: PosterTattered
+  name: порванный плакат
+  description: От него остались лишь жалкие обрывки, непозволяющие различить оригинальное изображение
+  components:
+  - type: Sprite
+    state: tattered
+
+- type: entity
+  parent: PosterScpBase
   id: PosterScp
   name: Secure Contain Protect
   description: Плакат с эмблемой организации SCP
