@@ -273,4 +273,5 @@
     canTargetSelf: false
     interactOnMiss: false
     whitelist:
-      components: MobState
+      components:
+      - MobState
