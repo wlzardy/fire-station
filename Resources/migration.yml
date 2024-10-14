@@ -467,3 +467,9 @@ ClothingHeadHelmetHardsuitSecurity: ClothingHeadHelmetHardsuitSecuritySunrise
 EffectHearts: null
 ConveyorBelt: null
 SpawnPointPrisoner: SpawnPointPlanetPrisoner
+
+# Fire added start
+PosterDyshi: PosterBreath
+PosterPeremen: PosterBreath
+PosterGok: PosterGoc
+# Fire added end
