@@ -114,7 +114,7 @@
   id: RipleyAPLU
   name: research-technology-ripley-aplu
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     state: ripley
   discipline: Industrial
   tier: 1
@@ -202,7 +202,7 @@
   id: Ripley2
   name: research-technology-ripley-mkii
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
     state: ripleymkii
   discipline: Industrial
   tier: 2
@@ -218,7 +218,7 @@
   id: Clarke
   name: research-technology-clarke
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/clarke.rsi
     state: clarke
   discipline: Industrial
   tier: 2
