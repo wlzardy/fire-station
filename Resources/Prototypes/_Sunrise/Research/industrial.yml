@@ -22,7 +22,7 @@
   discipline: Industrial
   tier: 1
   cost:
-    Default: 2500
+    Default: 5000
   recipeUnlocks:
   - CargoSuit
   - BluespaceBox
