@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using Content.Server.Audio;
 using Content.Server.Defusable.WireActions;
 using Content.Server.Interaction;
@@ -6,6 +7,8 @@ using Content.Server.Power;
 using Content.Server.Wires;
 using Content.Shared._Scp.Blinking;
 using Content.Shared._Scp.Scp096;
+using Content.Shared._Scp.Scp096.Mask;
+using Content.Shared._Scp.Scp096.Protection;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Doors.Components;
@@ -36,6 +39,7 @@ public sealed partial class Scp096System : SharedScp096System
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly Scp096MaskSystem _scp096Mask = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -85,6 +89,34 @@ public sealed partial class Scp096System : SharedScp096System
     protected override void OnRageTimeExceeded(Entity<Scp096Component> scpEntity)
     {
         RemoveAllTargets(scpEntity);
+    }
+
+    public bool TryAddTarget(EntityUid targetUid, bool ignoreDistance = false, bool ignoreAngle = false)
+    {
+        var query = EntityQuery<Scp096Component>().ToHashSet();
+
+        if (query.Count == 0)
+            return false;
+
+        var scpEntity = (query.First().Owner, query.First());
+
+        return TryAddTarget(scpEntity, targetUid, ignoreDistance, ignoreAngle);
+    }
+
+    public bool TryAddTarget(Entity<Scp096Component> scpEntity, EntityUid targetUid, bool ignoreDistance = false, bool ignoreAngle = false)
+    {
+        if (!IsValidTarget(scpEntity, targetUid, ignoreDistance, ignoreAngle))
+            return false;
+
+        if (!CanBeAggro(scpEntity))
+            return false;
+
+        if (HasComp<Scp096ProtectionComponent>(targetUid))
+            return false;
+
+        AddTarget(scpEntity, targetUid);
+
+        return true;
     }
 
     private void AddTarget(Entity<Scp096Component> scpEntity, EntityUid targetUid)
@@ -146,6 +178,10 @@ public sealed partial class Scp096System : SharedScp096System
         if (_mobStateSystem.IsIncapacitated(entity) || Comp<BlindableComponent>(entity).IsBlind)
             return false;
 
+        // В маске мы мирные
+        if (_scp096Mask.TryGetScp096Mask(entity, out _))
+            return false;
+
         return true;
     }
 
@@ -188,14 +224,11 @@ public sealed partial class Scp096System : SharedScp096System
 
         foreach (var targetUid in query)
         {
-            if (!IsValidTarget(scpEntity, targetUid))
-                continue;
-
-            AddTarget(scpEntity, targetUid);
+            TryAddTarget(scpEntity, targetUid);
         }
     }
 
-    private bool IsValidTarget(Entity<Scp096Component> scpEntity, EntityUid targetUid)
+    private bool IsValidTarget(Entity<Scp096Component> scpEntity, EntityUid targetUid, bool ignoreDistance = false, bool ignoreAngle = false)
     {
         if (!TryComp<BlinkableComponent>(targetUid, out var blinkableComponent) ||
             !TryComp<BlindableComponent>(targetUid, out var blindableComponent))
@@ -207,8 +240,8 @@ public sealed partial class Scp096System : SharedScp096System
 
         return !_blinkingSystem.IsBlind(targetUid, blinkableComponent) &&
                !blindableComponent.IsBlind &&
-               IsInRange(scpEntity.Owner, targetUid, targetXform, scpEntity.Comp.AgroDistance) &&
-               IsWithinViewAngle(scpEntity.Owner, targetUid, scpEntity.Comp.ArgoAngle);
+               (IsInRange(scpEntity.Owner, targetUid, targetXform, scpEntity.Comp.AgroDistance) || ignoreDistance) &&
+               (IsWithinViewAngle(scpEntity.Owner, targetUid, scpEntity.Comp.ArgoAngle) || ignoreAngle);
     }
 
     private bool IsInRange(EntityUid scpEntity, EntityUid targetEntity, TransformComponent targetXform, float range)
