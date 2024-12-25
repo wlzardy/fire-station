@@ -6,3 +6,18 @@
   weight: 80
   roles:
   - ClassD
+
+- type: department
+  id: SCP
+  name: department-scp
+  description: department-scp
+  color: "#FF5297"
+  weight: 80
+  roles:
+  - Scp049
+  - Scp939
+  - Scp173
+  - Scp999
+  - Scp096
+  - Scp106
+  - Scp082
