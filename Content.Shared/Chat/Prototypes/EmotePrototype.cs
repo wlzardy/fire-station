@@ -68,6 +68,9 @@ public sealed partial class EmotePrototype : IPrototype
     /// </summary>
     [DataField]
     public HashSet<string> ChatTriggers = new();
+
+    [DataField]
+    public bool Animation;
 }
 
 /// <summary>
@@ -81,5 +84,6 @@ public enum EmoteCategory : byte
     Invalid = 0,
     Vocal = 1 << 0,
     Hands = 1 << 1,
+    Verb = 1 << 2,
     General = byte.MaxValue
 }

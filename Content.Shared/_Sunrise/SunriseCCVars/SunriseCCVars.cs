@@ -63,7 +63,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ServiceAuthEnabled =
-        CVarDef.Create("service_auth.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("service_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServiceAuthApiUrl =
         CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
@@ -110,6 +110,9 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> SponsorApiToken =
         CVarDef.Create("sponsor.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    public static readonly CVarDef<string> SponsorGhostTheme =
+        CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
      *  Greetings
@@ -316,4 +319,24 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    /**
+     * Tape Player
+     */
+
+    public static readonly CVarDef<bool> JumpEnabled =
+        CVarDef.Create("jump.enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> JumpDeadChanse =
+        CVarDef.Create("jump.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> JumpSoundEnabled =
+        CVarDef.Create("jump.sound_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /**
+     * Tape Player
+     */
+
+    public static readonly CVarDef<float> FlipDeadChanse =
+        CVarDef.Create("flip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
 }
