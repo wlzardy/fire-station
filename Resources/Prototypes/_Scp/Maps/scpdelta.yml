@@ -19,13 +19,13 @@
         - type: StationJobs
           availableJobs:
             #scp
-            SCP049: [ 1, 1 ]
-            SCP096: [ 1, 1 ]
-            SCP939: [ 1, 1 ]
-            SCP082: [ 1, 1 ]
-            SCP173: [ 1, 1 ]
-            SCP106: [ 1, 1 ]
-            SCP999: [ 1, 1 ]
+            Scp049: [ 1, 1 ]
+            Scp096: [ 1, 1 ]
+            Scp939: [ 1, 1 ]
+            Scp082: [ 1, 1 ]
+            Scp173: [ 1, 1 ]
+            Scp106: [ 1, 1 ]
+            Scp999: [ 1, 1 ]
             #command
             Captain: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
