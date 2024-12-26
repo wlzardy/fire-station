@@ -65,7 +65,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      2500: Critical
+      4000: Critical
+      10000: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -73,10 +74,12 @@
     damageCap: 0
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
+        Brute: -1.0
+        Burn: -1.0
+        Toxin: -1.0
       types:
         Bloodloss: -1.0
+  - type: CanBePulledDead
   - type: SlowOnDamage
     speedModifierThresholds:
       1000: 0.9

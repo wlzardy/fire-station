@@ -81,6 +81,25 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      6000: Critical
+      10000: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 0
+    damage:
+      groups:
+        Brute: -1.0
+        Burn: -1.0
+        Toxin: -1.0
+      types:
+        Bloodloss: -1.0
+  - type: CanBePulledDead
   - type: ActionGrant
     actions:
     - Scp173Blind
@@ -128,7 +147,20 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      5000: Dead
+      10000: Critical
+      15000: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 0
+    damage:
+      groups:
+        Brute: -0.25
+        Burn: -0.25
+        Toxin: -0.25
+      types:
+        Bloodloss: -0.25
   - type: Fixtures
     fixtures:
       fix1:
@@ -139,7 +171,7 @@
         mask:
         - SmallMobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -148,3 +180,5 @@
           Default: { state: 106 }
           Entering: { state: lusha_from_ded }
           Exiting: { state: ded_from_lusha }
+  - type: TTS
+    voice: HearthstoneSotis

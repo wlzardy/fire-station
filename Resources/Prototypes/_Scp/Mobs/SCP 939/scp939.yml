@@ -14,6 +14,8 @@
     - map: [ "enum.Scp939Layers.Base" ]
       state: alive
   - type: Scp939
+  - type: CanBePulledSleeping
+    exclusive: true
   - type: MeleeWeapon
     soundHit:
       collection: Punch
@@ -28,7 +30,19 @@
     thresholds:
       0: Alive
       4000: Critical
-      4500: Dead
+      8000: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 0
+    damage:
+      groups:
+        Brute: -1.0
+        Burn: -1.0
+        Toxin: -1.0
+      types:
+        Bloodloss: -1.0
   - type: Buckle
   - type: SSDIndicator
   - type: Stripping
