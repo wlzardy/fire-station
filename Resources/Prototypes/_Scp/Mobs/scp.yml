@@ -120,12 +120,6 @@
   id: Scp106
   suffix: SCP-106
   components:
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
   - type: Sprite
     drawdepth: Mobs
     sprite: _Scp/scp-106.rsi
