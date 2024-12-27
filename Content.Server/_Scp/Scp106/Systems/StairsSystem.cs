@@ -28,6 +28,7 @@ public sealed class StairsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly Scp106System _scp106 = default!;
 
     public override void Initialize()
     {
@@ -52,6 +53,12 @@ public sealed class StairsSystem : EntitySystem
 
     private void OnInteract(EntityUid uid, StaircaseComponent component, InteractHandEvent args)
     {
+        if (_random.Prob(0.10f))
+        {
+            _scp106.SendToStation(args.User);
+            return;
+        }
+
         if (component.LinkedStair is not { } stair)
             return;
 

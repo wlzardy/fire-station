@@ -5,7 +5,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Shared._Scp.Scp106.Components;
 using Content.Shared._Scp.Scp106.Systems;
-using Content.Shared.Actions;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Random.Helpers;
@@ -118,7 +117,7 @@ public sealed class Scp106System : SharedScp106System
         return true;
     }
 
-    private bool TryFindRandomTile(out Vector2i tile,
+    public bool TryFindRandomTile(out Vector2i tile,
         [NotNullWhen(true)] out EntityUid? targetStation,
         out EntityUid targetGrid,
         out EntityCoordinates targetCoords)
@@ -138,7 +137,7 @@ public sealed class Scp106System : SharedScp106System
         return false;
     }
 
-    private bool TryFindRandomTileOnStation(Entity<StationDataComponent> station,
+    public bool TryFindRandomTileOnStation(Entity<StationDataComponent> station,
         out Vector2i tile,
         out EntityUid targetGrid,
         out EntityCoordinates targetCoords)
