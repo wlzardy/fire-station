@@ -126,7 +126,6 @@
     layers:
     - map: [ "base" ]
       state: 106
-  - type: Muted
   - type: Tag
     tags:
     - CannotSuicide
