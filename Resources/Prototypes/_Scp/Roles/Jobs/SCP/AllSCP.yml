@@ -12,6 +12,7 @@
   canBeAntag: false
   jobEntity: Scp049
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp939
@@ -27,6 +28,7 @@
   canBeAntag: false
   jobEntity: Scp939
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp173
@@ -42,6 +44,7 @@
   canBeAntag: false
   jobEntity: Scp173
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp999
@@ -57,6 +60,7 @@
   canBeAntag: false
   jobEntity: Scp999
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp096
@@ -72,6 +76,7 @@
   canBeAntag: false
   jobEntity: Scp096
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp106
@@ -87,6 +92,7 @@
   canBeAntag: false
   jobEntity: Scp106
   alwaysUseSpawner: true
+  applyTraits: false
 
 - type: job
   id: Scp082
@@ -95,10 +101,11 @@
   playTimeTracker: JobScp082
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 720000 # 200h
+    time: 99999999999 # Временно 200h 720000
   weight: 25
   icon: JobIconScp082
   joinNotifyCrew: false
   canBeAntag: false
   jobEntity: Scp082 # TODO: Поменять после добавления каннибала
   alwaysUseSpawner: true
+  applyTraits: false

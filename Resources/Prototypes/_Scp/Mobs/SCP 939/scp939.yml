@@ -5,6 +5,7 @@
   - BaseScp
   - MobCombat
   - MobAtmosStandard
+  - MobBloodstream
   - InventoryBase
   components:
   - type: Sprite
@@ -17,6 +18,7 @@
   - type: Scp939
   - type: CanBePulledSleeping
     exclusive: true
+  - type: Muted
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
