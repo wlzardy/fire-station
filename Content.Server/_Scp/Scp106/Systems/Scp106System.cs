@@ -45,6 +45,15 @@ public sealed class Scp106System : SharedScp106System
         if (HasComp<Scp106BackRoomMapComponent>(Transform(target).MapUid))
             return;
 
+        if (HasComp<Scp106Component>(target))
+        {
+            var a = await GetTransferMark();
+            _transform.SetCoordinates(target, a);
+            _transform.AttachToGridOrMap(target);
+
+            return;
+        }
+
         // Телепортировать только людей
         if (!HasComp<HumanoidAppearanceComponent>(target))
             return;
