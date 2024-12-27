@@ -5,6 +5,7 @@
   - BaseScp
   - MobCombat
   - MobAtmosStandard
+  - InventoryBase
   components:
   - type: Sprite
     noRot: true
@@ -53,6 +54,8 @@
     interfaces:
       enum.VoiceMaskUIKey.Key:
         type: Scp939Bui
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -67,3 +70,6 @@
     tags:
     - IgnorePortals
     - DoorBumpOpener
+  - type: Inventory
+    templateId: scp939
+  - type: Strippable
