@@ -118,3 +118,16 @@
   - type: ConditionalSpawner
     prototypes:
     - Scp131B
+
+# class D
+
+- type: entity
+  name: Class-D spawner
+  id: SpawnClassD
+  parent: SpawnPointJobBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpawnPoint
+    job_id: ClassD
