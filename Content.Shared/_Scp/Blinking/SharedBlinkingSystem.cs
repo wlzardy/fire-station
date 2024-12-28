@@ -20,13 +20,16 @@ public abstract class SharedBlinkingSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
-    private readonly TimeSpan _blinkingInterval = TimeSpan.FromSeconds(5);
+    private readonly TimeSpan _blinkingInterval = TimeSpan.FromSeconds(6);
     private readonly TimeSpan _blinkingDuration = TimeSpan.FromSeconds(2);
 
     private static readonly TimeSpan BlinkingIntervalVariance = TimeSpan.FromSeconds(3);
 
-    public bool IsBlind(EntityUid uid, BlinkableComponent component, bool useTimeCompensation = false)
+    public bool IsBlind(EntityUid uid, BlinkableComponent? component = null, bool useTimeCompensation = false)
     {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
         if (_net.IsClient && useTimeCompensation)
         {
             if (_gameTiming.CurTime < component.BlinkEndTime)

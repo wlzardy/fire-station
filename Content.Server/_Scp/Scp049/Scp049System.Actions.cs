@@ -6,6 +6,7 @@ using Content.Server.IdentityManagement;
 using Content.Server.Mind;
 using Content.Server.NPC.HTN;
 using Content.Server.Zombies;
+using Content.Shared._Scp.Mobs.Components;
 using Content.Shared._Scp.Scp049;
 using Content.Shared._Scp.Scp049.Scp049Protection;
 using Content.Shared.DoAfter;
@@ -112,21 +113,26 @@ public sealed partial class Scp049System
 
     private void OnKillLeavingBeing(Entity<Scp049Component> ent, ref Scp049KillLivingBeingAction args)
     {
-        if (_mobStateSystem.IsDead(args.Target))
+        var target = args.Target;
+
+        if (HasComp<ScpComponent>(target))
+            return;
+
+        if (_mobStateSystem.IsDead(target))
         {
-            _popupSystem.PopupEntity(Loc.GetString("scp049-kill-action-already-dead"), args.Target, ent, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("scp049-kill-action-already-dead"), target, ent, PopupType.MediumCaution);
             return;
         }
 
-        if (!_mobStateSystem.HasState(args.Target, MobState.Dead))
+        if (!_mobStateSystem.HasState(target, MobState.Dead))
         {
-            _popupSystem.PopupEntity(Loc.GetString("scp049-kill-action-cant-kill"), args.Target, ent, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("scp049-kill-action-cant-kill"), target, ent, PopupType.MediumCaution);
             return;
         }
 
-        _mobStateSystem.ChangeMobState(args.Target, MobState.Dead);
+        _mobStateSystem.ChangeMobState(target, MobState.Dead);
 
-        var targetName = Identity.Name(args.Target, EntityManager);
+        var targetName = Identity.Name(target, EntityManager);
         var performerName = Identity.Name(ent, EntityManager);
 
 
@@ -142,6 +148,9 @@ public sealed partial class Scp049System
     private bool TryMakeMinion(Entity<MobStateComponent> minionEntity, Entity<Scp049Component> scpEntity)
     {
         if (HasComp<Scp049ProtectionComponent>(minionEntity))
+            return false;
+
+        if (HasComp<ScpComponent>(minionEntity))
             return false;
 
         MakeMinion(minionEntity, scpEntity);
@@ -176,14 +185,11 @@ public sealed partial class Scp049System
             _mindSystem.TryGetSession(mindComponent, out _))
             return;
 
-        var ghostRoleComponent = new GhostRoleComponent
-        {
-            RoleName = Loc.GetString("scp049-ghost-role-name"),
-            RoleDescription = Loc.GetString("scp049-ghost-role-description"),
-            RoleRules = Loc.GetString("scp049-ghost-role-rules"),
-        };
+        var ghostRoleComponent = EnsureComp<GhostRoleComponent>(minionUid);
+        ghostRoleComponent.RoleName = Loc.GetString("scp049-ghost-role-name");
+        ghostRoleComponent.RoleDescription = Loc.GetString("scp049-ghost-role-description");
+        ghostRoleComponent.RoleRules = Loc.GetString("scp049-ghost-role-rules");
 
-        AddComp(minionUid, ghostRoleComponent);
         EnsureComp<GhostTakeoverAvailableComponent>(minionUid);
     }
 }

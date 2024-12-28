@@ -51,7 +51,7 @@
     - DoorBumpOpener
   - type: Muted
   - type: MovementSpeedModifier
-    baseWalkSpeed: 15
+    baseWalkSpeed: 7
     baseSprintSpeed: 4
   - type: Damageable
     damageContainer: Biological
@@ -61,6 +61,8 @@
     size: Huge
   - type: ReplacementAccent
     accent: mouse
+#  - type: Blinkable мейби в другой жизни, когда будет не криво работать и балансно
+#  - type: EyeClosing
 
 - type: entity
   id: Scp131B

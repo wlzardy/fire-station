@@ -52,6 +52,7 @@
   components:
   - type: Scp
   - type: ScpRestriction
+  - type: FootprintEmitter
   - type: ZombieImmune # ебало игроков представили?
 
 # Сцп
@@ -73,7 +74,7 @@
   - type: ShowBlinkable
   - type: MovementSpeedModifier
     baseWalkSpeed: 5
-    baseSprintSpeed: 15
+    baseSprintSpeed: 12
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -92,6 +93,13 @@
         Toxin: -0.25
       types:
         Bloodloss: -0.25
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 10
   - type: CanBePulledDead
   - type: Muted
   - type: ActionGrant
@@ -108,6 +116,20 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSCP173
+  - type: FootprintEmitter
+    walkStepInterval: 0.5
+    leftBareFootState:
+      - dragging-1
+      - dragging-2
+      - dragging-3
+      - dragging-4
+      - dragging-5
+    rightBareFootState:
+      - dragging-1
+      - dragging-2
+      - dragging-3
+      - dragging-4
+      - dragging-5
 
 - type: entity
   parent: [BaseScp, MobCombat]
