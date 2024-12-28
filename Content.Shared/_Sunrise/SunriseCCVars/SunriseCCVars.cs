@@ -231,7 +231,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<string> LobbyChangelogsList =
-        CVarDef.Create("lobby_changelog.list", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby_changelog.list", "ChangelogFire.yml", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Cryoteleport
