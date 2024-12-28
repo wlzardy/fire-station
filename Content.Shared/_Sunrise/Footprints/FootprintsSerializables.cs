@@ -72,8 +72,6 @@ public sealed partial class FootprintEmitterComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
 
-    // Fire edit start - красивые следы для 173го требуют жертв
-
     /// <summary>
     /// State ID for left bare footprint
     /// </summary>
@@ -109,20 +107,19 @@ public sealed partial class FootprintEmitterComponent : Component
     {
         "footprint-suit",
     };
-    // Fire edit end
 
     /// <summary>
     /// Array of state IDs for dragging animations
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] DraggingStates =
-    [
+    {
         "dragging-1",
         "dragging-2",
         "dragging-3",
         "dragging-4",
         "dragging-5",
-    ];
+    };
 
     /// <summary>
     /// Prototype ID for footprint entity
@@ -145,16 +142,16 @@ public sealed partial class FootprintEmitterComponent : Component
     [DataField]
     public float DragMarkInterval = 0.5f;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("footsSolution")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public string FootsSolutionName = "foots";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("footssolutionRef")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public Entity<SolutionComponent>? FootsSolution;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfaceSolution")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public string BodySurfaceSolutionName = "body_surface";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfacesolutionRef")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
