@@ -1,5 +1,5 @@
-defaultWindowTitle: FIRE STATION 2.0
+defaultWindowTitle: FIRE STATION 2.0 # Fire-Station Edit
 windowIconSet: /Textures/Logo/icon
-splashLogo: /Textures/_Sunrise/loading_screen.jpg
+splashLogo: /Textures/_Scp/loading_screen.png # Fire-Station Edit
 
 # PJB PLEASE
