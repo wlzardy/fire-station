@@ -29,7 +29,6 @@
         Base: default
       Dead:
         Base: dead
-  - type: Muted
   - type: Fixtures
     fixtures:
       fix1:
@@ -40,9 +39,9 @@
 #          position: "0, -0.2"
         density: 80
         mask:
-        - MobMask
+        - SmallMobMask
         layer:
-        - MobLayer
+        - SmallMobMask
       fix2:
         shape:
           !type:PhysShapeAabb
