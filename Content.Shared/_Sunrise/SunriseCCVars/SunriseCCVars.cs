@@ -224,7 +224,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<string> RoadmapId =
-        CVarDef.Create("roadmap.id", "SunriseRoadmap");
+        CVarDef.Create("roadmap.id", "FireStationRoadmap");
 
     /**
      * Lobby Changelog
