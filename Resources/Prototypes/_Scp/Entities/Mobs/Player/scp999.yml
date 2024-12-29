@@ -42,7 +42,7 @@
         mask:
         - SmallMobMask
         layer:
-        - SmallMobMask
+        - SmallMobLayer
       fix2:
         shape:
           !type:PhysShapeAabb
