@@ -7,7 +7,7 @@
   minPlayers: 0
   stations:
     Delta:
-      stationProto: StandardNanotrasenStation
+      stationProto: StandardNanotrasenStation # TODO: Сцп комплекс имена
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Дельта {1}'
@@ -78,40 +78,19 @@
         - type: RelativeJobsCount
           jobs:
             ClassD:
-              HeadOfSecurity: 3
-              Warden: 3
-              SeniorOfficer: 3
+              HeadOfSecurity: 2
+              Warden: 2
+              SeniorOfficer: 2
               SecurityOfficer: 2
               SecurityCadet: 1
+          maxCount: 18
         - type: StationGoal
           goals:
-          - Shuttle
-          - Singularity
-          - SolarPanels
-          - Artifacts
-          - Bank
-          - Zoo
-          - MiningOutpost
-          - Tesla
-          - XenobiologyRepair
-          - VirusologyAmbusol
-          - Containment
-          - WeaponsSecurity
-          - MaintsRepair
-          - DormsBuild
-          - BattleShuttle
-          - Transit
-          - NukeRoom
-          - Permabrig
-          - Farm
-          - Delegates
-          - Cyborgs
-          - Testing
-          - Anomaly
-          - Replenishment
-          - IntelWeapons
-          - Reports
-          - Reconnaissance
-          - Saboteurs
-          - Furs
-          - Crew
+          - Scp1
+          - Scp2
+          - Scp3
+          - Scp4
+          - Scp5
+          - Scp6
+          - Scp7
+          - Scp8

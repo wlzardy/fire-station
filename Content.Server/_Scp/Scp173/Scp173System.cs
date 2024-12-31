@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Examine;
 using Content.Server.Ghost;
 using Content.Server.Light.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._Scp.Containment.Cage;
 using Content.Shared._Scp.Scp173;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Coordinates.Helpers;
@@ -23,6 +25,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Robust.Server.Audio;
@@ -101,12 +104,33 @@ public sealed class Scp173System : SharedScp173System
         if (args.Handled)
             return;
 
-        var defileRadius = 3f;
+        if (IsInScpCage(uid, out var storage))
+        {
+            var message = Loc.GetString("scp-cage-suppress-ability", ("container", Name(storage.Value)));
+            _popupSystem.PopupEntity(message, uid, uid, PopupType.LargeCaution);
+
+            return;
+        }
+
+        var defileRadius = 4f;
         var defileTilePryAmount = 10;
 
         var xform = Transform(uid);
+
         if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
+
+        var lookup = _lookup.GetEntitiesInRange(uid, defileRadius);
+
+        // Блокирование действия разрушения. Применяется в камере 173го
+        if (lookup.Any(HasComp<Scp173BlockStructureDamageComponent>))
+        {
+            var message = Loc.GetString("scp173-damage-structures-blocked");
+            _popupSystem.PopupEntity(message, uid, uid, PopupType.LargeCaution);
+
+            return;
+        }
+
         var tiles = map.GetTilesIntersecting(Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
             new Vector2(defileRadius * 2, defileRadius))).ToArray();
 
@@ -120,8 +144,6 @@ public sealed class Scp173System : SharedScp173System
             _tile.PryTile(value);
         }
 
-        var lookup = _lookup.GetEntitiesInRange(uid, defileRadius, LookupFlags.Approximate | LookupFlags.Static);
-        var tags = GetEntityQuery<TagComponent>();
         var entityStorage = GetEntityQuery<EntityStorageComponent>();
         var items = GetEntityQuery<ItemComponent>();
         var lights = GetEntityQuery<PoweredLightComponent>();
@@ -129,24 +151,23 @@ public sealed class Scp173System : SharedScp173System
         foreach (var ent in lookup)
         {
             // break windows/walls
-            if (tags.HasComponent(ent))
+            if (_tag.HasTag(ent, "Window") || _tag.HasTag(ent, "Wall"))
             {
-                if (_tag.HasTag(ent, "Window") || _tag.HasTag(ent, "Wall"))
-                {
-                    var dspec = new DamageSpecifier();
-                    dspec.DamageDict.Add("Structural", 60);
-                    _damageable.TryChangeDamage(ent, dspec, true);
-                }
+                var dspec = new DamageSpecifier();
+                dspec.DamageDict.Add("Structural", 60);
+                _damageable.TryChangeDamage(ent, dspec);
             }
 
             // randomly opens some lockers and such.
-            if (entityStorage.TryGetComponent(ent, out var entstorecomp))
-                _entityStorage.OpenStorage(ent, entstorecomp);
+            if (!HasComp<ScpCageComponent>(ent) && entityStorage.TryGetComponent(ent, out var entstorecomp))
+                _entityStorage.OpenStorage(ent, entstorecomp); // TODO: Пофиксить, что оно открывает ЗАЛОЧЕННЫЕ шкафы и они остаются залоченными, но открытыми
 
             // chucks items
             if (items.HasComponent(ent) &&
                 TryComp<PhysicsComponent>(ent, out var phys) && phys.BodyType != BodyType.Static)
+            {
                 _throwing.TryThrow(ent, _random.NextAngle().ToWorldVec());
+            }
 
             // flicker lights
             if (lights.HasComponent(ent))
@@ -163,10 +184,18 @@ public sealed class Scp173System : SharedScp173System
         if (args.Handled)
             return;
 
+        if (IsInScpCage(ent, out var storage))
+        {
+            var message = Loc.GetString("scp-cage-suppress-ability", ("container", Name(storage.Value)));
+            _popupSystem.PopupEntity(message, ent, ent, PopupType.LargeCaution);
+
+            return;
+        }
+
         var coords = Transform(ent).Coordinates;
 
         var tempSol = new Solution();
-        tempSol.AddReagent("Scp173Reagent", 25);
+        tempSol.AddReagent(ent.Comp.Reagent, 25);
         _puddle.TrySpillAt(coords, tempSol, out _);
 
         FixedPoint2 total = 0;
@@ -180,7 +209,7 @@ public sealed class Scp173System : SharedScp173System
             total = allReagents.Where(reagent => reagent.Key.ID == "Scp173Reagent").Aggregate(total, (current, reagent) => current + reagent.Value);
         }
 
-        if (total >= 200)
+        if (total >= ent.Comp.MinTotalSolutionVolume)
         {
             var transform = Transform(args.Performer);
 
@@ -205,9 +234,18 @@ public sealed class Scp173System : SharedScp173System
         if (args.Handled)
             return;
 
-        if (Is173Watched(ent, out var watchersCount) && watchersCount > 3)
+        if (IsInScpCage(ent, out var storage))
         {
-            _popupSystem.PopupClient("Слишком много людей", ent, PopupType.LargeCaution);
+            var message = Loc.GetString("scp-cage-suppress-ability", ("container", Name(storage.Value)));
+            _popupSystem.PopupEntity(message, ent, ent, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (Is173Watched(ent, out var watchersCount) && watchersCount > ent.Comp.MaxWatchers)
+        {
+            var message = Loc.GetString("scp173-fast-movement-too-many-watchers");
+            _popupSystem.PopupClient(message, ent, PopupType.LargeCaution);
             return;
         }
 
@@ -382,6 +420,20 @@ public sealed class Scp173System : SharedScp173System
         var layer = (CollisionGroup)collidedEntityPhysics.CollisionLayer;
 
         return layer.HasFlag(CollisionGroup.WallLayer) || layer.HasFlag(CollisionGroup.TableLayer);
+    }
+
+    private bool IsInScpCage(EntityUid uid, [NotNullWhen(true)] out EntityUid? storage)
+    {
+        storage = null;
+
+        if (TryComp<InsideEntityStorageComponent>(uid, out var insideEntityStorageComponent) &&
+            HasComp<ScpCageComponent>(insideEntityStorageComponent.Storage))
+        {
+            storage = insideEntityStorageComponent.Storage;
+            return true;
+        }
+
+        return false;
     }
 
 }
