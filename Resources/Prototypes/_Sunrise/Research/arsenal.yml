@@ -71,3 +71,5 @@
   recipeUnlocks:
   - WeaponGunLaserCarbineAutomatic
   - WeaponEnergyGunPistol
+  technologyPrerequisites:
+  - ExperimentalBatteryAmmo
