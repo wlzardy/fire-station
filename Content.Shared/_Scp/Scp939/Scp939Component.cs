@@ -9,13 +9,13 @@ namespace Content.Shared._Scp.Scp939;
 public sealed partial class Scp939Component : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public Solution SmokeSolution { get; set; } = new("АМН-С227", 200);
+    public Solution SmokeSolution = new("АМН-С227", 200);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float SmokeDuration { get; set; } = 30.0f;
+    public float SmokeDuration = 30.0f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int SmokeSpreadRadius { get; set; } = 10;
+    public int SmokeSpreadRadius = 10;
 
     [DataField]
     public EntProtoId SmokeProtoId = "АМН-С227Smoke";
@@ -36,11 +36,11 @@ public sealed partial class Scp939Component : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -9.0f },
-            { "Slash", -9.0f },
-            { "Piercing", -9.0f },
-            { "Heat", -9.0f },
-            { "Shock", -9.0f },
+            { "Blunt", -20.0f },
+            { "Slash", -20.0f },
+            { "Piercing", -20.0f },
+            { "Heat", -20.0f },
+            { "Shock", -20.0f },
         }
     };
 
@@ -56,5 +56,14 @@ public sealed partial class Scp939Component : Component
     public TimeSpan? PoorEyesightTimeStart; // Когда начали плохо видеть
 
     #endregion
+
+    [DataField]
+    public int MaxRememberedMessages = 20;
+
+    /// <summary>
+    /// Запомненые объектом слова. Ключ - сказанная фраза, значение - пара, в которой ключ имя сказавшего и значение прототип его ттса
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<string, KeyValuePair<string, string?>> RememberedMessages = new();
 
 }

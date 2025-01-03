@@ -31,27 +31,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      4000: Critical
+      1200: Critical
       8000: Dead
-  - type: PassiveDamage
-    allowedStates:
-    - Alive
-    - Critical
-    damageCap: 0
-    damage:
-      groups:
-        Brute: -0.25
-        Burn: -0.25
-        Toxin: -0.25
-      types:
-        Bloodloss: -0.25
   - type: Buckle
   - type: Stripping
-  - type: VoiceMask
   - type: UserInterface
     interfaces:
-      enum.VoiceMaskUIKey.Key:
-        type: Scp939Bui
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
   - type: MovementSpeedModifier
@@ -78,3 +63,4 @@
   - type: FootprintEmitter
     leftBareFootState: "footprint-left-bare-lizard"
     rightBareFootState: "footprint-right-bare-lizard"
+  - type: TTS
