@@ -622,3 +622,10 @@
     type: Remove
   id: 16
   time: '2025-01-05T18:06:44.209951+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0432\u043E\
+      \u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u0432\u0437\u044F\u0442\u0438\u044F \u0441\u0443\u043C\u043A\u0438 SCP-049."
+    type: Tweak
+  id: 17
+  time: '2025-01-05T18:16:40.264411+00:00'
