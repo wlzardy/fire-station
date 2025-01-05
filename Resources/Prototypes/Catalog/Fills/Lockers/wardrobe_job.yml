@@ -153,15 +153,15 @@
    parent: WardrobeSecurity
    description: "Cross the thin red line."
    components:
-   - type: StorageFill # FireStation Edit
+   - type: StorageFill
      contents:
-       - id: ClothingUniformSecurity2
+       - id: ClothingUniformJumpsuitSec
        - id: ClothingBackpackSecurity
-       - id: ClothingShoesBootsSecurityGuard
-       - id: ClothingEyesGlassesSecurityGuard
-       - id: ClothingHandsGlovesSecurity
-       - id: ClothingHeadHelmetSecurity
-       - id: ClothingOuterArmorSecurity
+       - id: ClothingShoesBootsJack
+       - id: ClothingEyesGlassesSunglasses
+       - id: ClothingHeadHelmetBasic
+       - id: ClothingOuterArmorBasic
+       - id: ClothingUniformJumpskirtSec
 
  - type: entity
    id: WardrobeCargoFilled

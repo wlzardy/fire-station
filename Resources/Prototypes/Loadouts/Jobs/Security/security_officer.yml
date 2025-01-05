@@ -28,55 +28,48 @@
 - type: loadout
   id: SecurityHelmet
   equipment:
-    head: ClothingHeadHelmetSecurity
-
-- type: loadout
-  id: SecurityHelmet2
-  equipment:
-    head: ClothingHeadClosedHelmetSecurity
+    head: ClothingHeadHelmetBasic
 
 - type: loadout
   id: SecurityHat
   equipment:
-    head: ClothingHeadHatSecBlack
+    head: ClothingHeadHatSecsoft
 
 - type: loadout
   id: SecurityBeret
   equipment:
-    head: ClothingHeadSecurityBeret
-
-# Neck
-- type: loadout
-  id: SecurityMantle
-  equipment:
-    neck: ClothingNeckMantleSecurity
-
-# Gloves
-- type: loadout
-  id: SecurityGloves
-  equipment:
-    gloves: ClothingHandsGlovesSecurity
+    head: ClothingHeadHatBeretSecurity
 
 - type: loadout
-  id: SecurityGlovesWinter
+  id: TrooperHat
   equipment:
-    gloves: ClothingHandsGlovesWinterSecurity
+    head: ClothingHeadHatSecurityTrooper
 
 # Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
   equipment:
-    jumpsuit: ClothingUniformSecurity2
+    jumpsuit: ClothingUniformJumpsuitSec
 
 - type: loadout
-  id: SecurityJumpsuit2
+  id: SecurityJumpskirt
   equipment:
-    jumpsuit: ClothingUniformSecurity
+    jumpsuit: ClothingUniformJumpskirtSec
 
 - type: loadout
-  id: SecurityJumpsuit3
+  id: SecurityJumpsuitGrey
   equipment:
-    jumpsuit: ClothingUniformSecurity3
+    jumpsuit: ClothingUniformJumpsuitSecGrey
+
+- type: loadout
+  id: SecurityJumpskirtGrey
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecGrey
+
+- type: loadout
+  id: TrooperUniform
+  equipment:
+    jumpsuit: ClothingUniformSecurityTrooper
 
 # Sunrise-Edit
 #- type: loadout
@@ -126,23 +119,33 @@
 - type: loadout
   id: ArmorVest
   equipment:
-    outerClothing: ClothingOuterArmorSecurity
+    outerClothing: ClothingOuterArmorBasic
 
 - type: loadout
-  id: ArmorVest2
+  id: ArmorVestSlim
   equipment:
-    outerClothing: ClothingOuterArmorSecurity2
+    outerClothing: ClothingOuterArmorBasicSlim
+
+- type: loadout
+  id: SecurityOfficerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterSec
 
 # Shoes
 - type: loadout
   id: CombatBoots
   equipment:
-    shoes: ClothingShoesBootsSecurityGuard
+    shoes: ClothingShoesBootsCombatFilled
+
+- type: loadout
+  id: JackBoots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
 
 - type: loadout
   id: SecurityWinterBoots
   equipment:
-    shoes: ClothingShoesBootsWinterSecurityGuard
+    shoes: ClothingShoesBootsWinterSecFilled
 
 # Sunrise-Edit
 # PDA

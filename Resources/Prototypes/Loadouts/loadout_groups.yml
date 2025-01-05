@@ -956,31 +956,21 @@
   minLimit: 0
   loadouts:
   - SecurityHelmet
-  - SecurityHelmet2
   - SecurityBeret
   - SecurityHat
+  - TrooperHat
 
 - type: loadoutGroup
   id: SecurityJumpsuit
   name: loadout-group-security-jumpsuit
   loadouts:
   - SecurityJumpsuit
-  - SecurityJumpsuit2
-  - SecurityJumpsuit3
-
-- type: loadoutGroup
-  id: SecurityGloves
-  name: loadout-group-security-gloves
-  loadouts:
-  - SecurityGloves
-  - SecurityGlovesWinter
-
-- type: loadoutGroup
-  id: SecurityMantle
-  name: loadout-group-security-mantle
-  minLimit: 0
-  loadouts:
-  - SecurityMantle
+  - SecurityJumpskirt
+  - SecurityJumpsuitGrey
+  - SecurityJumpskirtGrey
+#  - SeniorOfficerJumpsuit # Sunrise-Edit
+#  - SeniorOfficerJumpskirt # Sunrise-Edit
+  - TrooperUniform
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1002,13 +992,14 @@
   name: loadout-group-security-outerclothing
   loadouts:
   - ArmorVest
-  - ArmorVest2
+  - ArmorVestSlim
+  - SecurityOfficerWintercoat
 
 - type: loadoutGroup
   id: SecurityShoes
   name: loadout-group-security-shoes
   loadouts:
-  - CombatBoots
+  - JackBoots
   - SecurityWinterBoots
 
 - type: loadoutGroup
@@ -1045,19 +1036,11 @@
   - DetectiveCoatDark # Sunrise-edit
 
 - type: loadoutGroup
-  id: SecurityCadetHead
-  name: loadout-group-security-cadet-helmet
-  minLimit: 0
+  id: SecurityCadetJumpsuit
+  name: loadout-group-security-cadet-jumpsuit
   loadouts:
-  - SecurityHelmet
-  - SecurityHelmet2
-
-# - type: loadoutGroup
-#   id: SecurityCadetJumpsuit
-#   name: loadout-group-security-cadet-jumpsuit
-#   loadouts:
-#   - RedJumpsuit
-#   - RedJumpskirt
+  - RedJumpsuit
+  - RedJumpskirt
 
 - type: loadoutGroup
   id: SurvivalSecurity
