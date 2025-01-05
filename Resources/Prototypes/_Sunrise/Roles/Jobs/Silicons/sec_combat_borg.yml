@@ -14,4 +14,3 @@
   canBeAntag: false
   displayWeight: -10  # Sunrise
   jobEntity: PlayerBorgSecurityCombatBattery
-  setPreference: false # Fire added
