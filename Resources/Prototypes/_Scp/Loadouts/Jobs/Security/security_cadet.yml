@@ -1,0 +1,10 @@
+# Head
+- type: loadout
+  id: GuardSecurityHelmet
+  equipment:
+    head: ClothingHeadHelmetSecurity
+
+- type: loadout
+  id: GuardSecurityHelmet2
+  equipment:
+    head: ClothingHeadClosedHelmetSecurity

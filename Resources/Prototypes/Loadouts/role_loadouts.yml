@@ -497,11 +497,11 @@
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
-  - SecurityHead
-  - SecurityJumpsuit
+#  - SecurityHead
+#  - SecurityJumpsuit
   - SecurityBackpack
-  - SecurityOuterClothing
-  - SecurityShoes
+#  - SecurityOuterClothing
+#  - SecurityShoes
   #- SecurityPDA
   - SecurityBelt
   - SurvivalSecurity
@@ -514,12 +514,20 @@
   - Pants
   - Socks
   # Sunrise-end
+  # Fire-Station-Start
+  - GuardHead
+  - GuardGloves
+  - GuardJumpsuit
+  - GuardArmorVest
+  - GuardShoes
+  - GuardOuterClothing
+  # Fire-Station-End
 
 - type: roleLoadout
   id: JobDetective
   groups:
   - DetectiveHead
-  - DetectiveNeck
+#  - DetectiveNeck # Fire-Station XZ
   - DetectiveJumpsuit
   - SecurityBackpack
   - DetectiveOuterClothing
@@ -538,7 +546,7 @@
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
-  - SecurityCadetJumpsuit
+  # - SecurityCadetJumpsuit # FireStation Edit
   - SecurityBackpack
   - SurvivalSecurity
   - Trinkets
@@ -549,6 +557,15 @@
   - Pants
   - Socks
   # Sunrise-end
+  # Fire-Station-Start
+  - GuardHead
+  - GuardGloves
+  - GuardJumpsuit
+  - GuardArmorVest
+  - GuardShoes
+  - GuardCadetHead
+  - GuardOuterClothing
+  # Fire-Station-End
 
 # Medical
 - type: roleLoadout
