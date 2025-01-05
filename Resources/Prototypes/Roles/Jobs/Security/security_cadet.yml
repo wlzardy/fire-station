@@ -29,10 +29,6 @@
   id: SecurityCadetGear
   equipment:
     mask: ClothingMaskSecurityBandBlack
-    gloves: ClothingHandsGlovesSecurity
-    jumpsuit: ClothingUniformSecurity2
-    shoes: ClothingShoesBootsSecurityGuard
-    outerClothing: ClothingOuterArmorSecurity
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
