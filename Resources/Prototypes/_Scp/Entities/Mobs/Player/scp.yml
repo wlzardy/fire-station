@@ -81,11 +81,11 @@
       - !type:PlaySoundBehavior
         sound: !type:SoundPathSpecifier
           path: /Audio/_Scp/demon-dying.ogg
-    - type: Tag
-      tags:
-      - FootstepSound
-      - CannotSuicide
-      - DoorBumpOpener
+  - type: Tag
+    tags:
+    - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
 
 # Сцп
 # TODO: Переместить в отдельный файл
@@ -133,7 +133,6 @@
     damage:
       groups:
         Brute: 10
-  - type: CanBePulledDead
   - type: Muted
   - type: ActionGrant
     actions:
@@ -145,7 +144,7 @@
     footstepSoundCollection:
       collection: FootstepSCP173
   - type: FootprintEmitter
-    walkStepInterval: 0.5
+    walkStepInterval: 0.3
     leftBareFootState:
       - dragging-1
       - dragging-2
@@ -176,6 +175,11 @@
   - type: ScpRestriction
     blockBePulled: false
     blockPull: false
+  - type: MeleeWeapon
+    bluntStaminaDamageFactor: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2
@@ -216,7 +220,7 @@
           Default: { state: 106 }
           Entering: { state: lusha_from_ded }
           Exiting: { state: ded_from_lusha }
-  - type: GiveActions
+  - type: ActionGrant
     actions:
     - Scp106BackroomsAction
     - Scp106RandomTeleportAction
