@@ -49,7 +49,9 @@
     state: syringe_gun
   discipline: Biochemical
   tier: 1
-  cost: 5000
+  cost:
+    Default: 5000
+    Scp: 2500
   recipeUnlocks:
     - MiniSyringe
     - LauncherSyringeMed
@@ -62,7 +64,9 @@
     state: syringe_gun
   discipline: Biochemical
   tier: 2
-  cost: 7500
+  cost:
+    Default: 7500
+    Scp: 5000
   recipeUnlocks:
     - LauncherSyringePistol
 

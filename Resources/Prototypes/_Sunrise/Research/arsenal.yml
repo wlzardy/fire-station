@@ -82,7 +82,9 @@
     state: combat
   discipline: Arsenal
   tier: 2
-  cost: 7500
+  cost:
+    Default: 7500
+    Scp: 2500
   recipeUnlocks:
   - PowerCellCombat
   - PowerCellHyper
