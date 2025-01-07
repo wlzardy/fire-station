@@ -32,7 +32,6 @@ namespace Content.Shared.Preferences
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         public const int MaxNameLength = 32;
-        public const int MaxDescLength = 512;
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -573,10 +572,11 @@ namespace Content.Shared.Preferences
 
             // Sunrise-Start
             IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
-            var maxDescLength = MaxDescLength;
+            var maxDescLength = configManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
             if (sponsors != null)
             {
-                maxDescLength = sponsors.GetSizeFlavor(session.UserId);
+                if (sponsors.IsSponsor(session.UserId))
+                    maxDescLength = sponsors.GetSizeFlavor(session.UserId);
                 if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
                 {
                     FlavorText = string.Empty;

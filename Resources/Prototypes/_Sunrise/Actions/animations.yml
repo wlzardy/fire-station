@@ -8,7 +8,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
     - Scp # Fire added
@@ -25,7 +24,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
     - Scp # Fire added
@@ -42,7 +40,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
     - Scp # Fire added
@@ -59,7 +56,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
     - Scp # Fire added
