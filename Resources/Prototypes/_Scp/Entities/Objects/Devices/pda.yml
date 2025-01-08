@@ -5,6 +5,6 @@
   description: Why isn't it gray?
   components:
   - type: Pda
-    id: PassengerIDCard
+    id: ClassDIDCard
   - type: PdaBorderColor
     borderColor: "#717059"
