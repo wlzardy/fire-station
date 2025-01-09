@@ -15,7 +15,7 @@
 - type: startingGear
   id: ClassDGear
   equipment:
-    id: ClassDPDA
+    id: PassengerPDA
     jumpsuit: ClothingUniformClassD
     shoes: ClothingShoesClassD
     ears: ClothingHeadsetClassD
