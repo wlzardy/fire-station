@@ -1,0 +1,8 @@
+- type: entity
+  parent: BasePDA
+  id: ClassDPDA
+  components:
+  - type: Pda
+    id: ClassDIDCard
+  - type: PdaBorderColor
+    borderColor: "#717059"

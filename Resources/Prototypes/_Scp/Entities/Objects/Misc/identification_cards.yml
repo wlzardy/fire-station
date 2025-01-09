@@ -1,0 +1,12 @@
+- type: entity
+  parent: IDCardStandard
+  id: ClassDIDCard
+  name: class D ID card
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: orange-space-prison
+    - state: idprisoner-space-prison
+  - type: PresetIdCard
+    job: ClassD
