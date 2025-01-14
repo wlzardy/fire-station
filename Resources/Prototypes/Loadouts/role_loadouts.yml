@@ -520,7 +520,6 @@
   - GuardJumpsuit
   - GuardArmorVest
   - GuardShoes
-  - GuardOuterClothing
   # Fire-Station-End
 
 - type: roleLoadout
@@ -564,7 +563,6 @@
   - GuardArmorVest
   - GuardShoes
   - GuardCadetHead
-  - GuardOuterClothing
   # Fire-Station-End
 
 # Medical
