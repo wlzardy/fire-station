@@ -18,7 +18,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpSteel
+    params:
+      volume: -7
   itemDrop: FSFloorTileItemSteel
   heatCapacity: 10000
 
@@ -42,7 +44,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpTile
+    params:
+      volume: -10
   itemDrop: FSFloorTileItemDark
   heatCapacity: 10000
 
@@ -66,7 +70,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepTile
   itemDrop: FSFloorTileItemWhite
   heatCapacity: 10000
 
@@ -90,7 +94,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepTile
   itemDrop: FSFloorTileItemBlue
   heatCapacity: 10000
 
@@ -114,7 +118,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepTile
   itemDrop: FSFloorTileItemGreen
   heatCapacity: 10000
 
@@ -148,7 +152,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpSteel
+    params:
+      volume: -7
   itemDrop: FSFloorTileItemMiniSteel
   heatCapacity: 10000
 
@@ -182,7 +188,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpTile
+    params:
+      volume: -10
   itemDrop: FSFloorTileItemMiniSteelDark
   heatCapacity: 10000
 
@@ -216,7 +224,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepTile
   itemDrop: FSFloorTileItemMiniSteelWhite
   heatCapacity: 10000
 
@@ -229,7 +237,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpSteel
+    params:
+      volume: -7
   itemDrop: FSFloorTileItemMonoSteel
   heatCapacity: 10000
 
@@ -242,7 +252,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepTile
   itemDrop: FSFloorTileItemMonoSteelWhite
   heatCapacity: 10000
 
@@ -255,7 +265,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpTile
+    params:
+      volume: -10
   itemDrop: FSFloorTileItemMonoSteelDark
   heatCapacity: 10000
 
@@ -279,7 +291,9 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpSteel
+    params:
+      volume: -7
   itemDrop: FSFloorTileItemCheckerSteel
   heatCapacity: 10000
 
@@ -303,6 +317,8 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
-    collection: FootstepFloor
+    collection: FootstepScpTile
+    params:
+      volume: -10
   itemDrop: FSFloorTileItemCheckerDark
   heatCapacity: 10000

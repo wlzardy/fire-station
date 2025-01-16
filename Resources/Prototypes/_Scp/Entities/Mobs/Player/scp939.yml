@@ -20,7 +20,7 @@
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
-      collection: AlienClaw
+      collection: HitScp939
     angle: 30
     animation: WeaponArcClaw
     attackRate: 1
@@ -63,3 +63,17 @@
     rightBareFootState:
     - footprint-right-bare-lizard
   - type: TTS
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepScp939
+  - type: EmitSoundRandomly
+    sound:
+      collection: IdleScp939
+      params:
+        maxDistance: 6
+  - type: KillGlobalSound
+    sound:
+      collection: DistanceKillScp939
+    originWhitelist:
+      components:
+      - Scp939

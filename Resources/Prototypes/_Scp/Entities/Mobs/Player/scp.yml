@@ -142,7 +142,7 @@
     - Scp173FastMovement
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepSCP173
+      collection: FootstepScp173Classic
   - type: FootprintEmitter
     walkStepInterval: 0.3
     leftBareFootState:
@@ -180,6 +180,7 @@
     altDisarm: false
     angle: 0
     animation: WeaponArcPunch
+    soundHit: /Audio/_Scp/Scp106/hit.ogg
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2
@@ -227,3 +228,34 @@
     - Scp106BecomePhantom
   - type: TTS
     voice: HearthstoneSotis
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepScp106
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          HurtScp106
+      Burn:
+        collection:
+          HurtScp106
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection:
+          HurtScp106
+      Burn:
+        collection:
+          HurtScp106
+  - type: KillGlobalSound
+    sound:
+      collection: DistanceKillScp106
+    originWhitelist:
+      components:
+      - Scp106
+  - type: AmbientSound
+    enabled: true
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/_Scp/Scp106/breath.ogg
