@@ -24,7 +24,7 @@ public abstract class SharedBlinkingSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private readonly TimeSpan _blinkingInterval = TimeSpan.FromSeconds(8);
-    private readonly TimeSpan _blinkingDuration = TimeSpan.FromSeconds(2);
+    private readonly TimeSpan _blinkingDuration = TimeSpan.FromSeconds(2.4);
 
     private static readonly TimeSpan BlinkingIntervalVariance = TimeSpan.FromSeconds(4);
 
@@ -69,6 +69,7 @@ public abstract class SharedBlinkingSystem : EntitySystem
                 continue;
             }
 
+            // TODO: Перенести на ивенты
             if (_closingSystem.AreEyesClosed(uid))
             {
                 ResetBlink(uid, blinkableComponent);
@@ -77,6 +78,7 @@ public abstract class SharedBlinkingSystem : EntitySystem
 
             var currentTime = _gameTiming.CurTime;
 
+            // TODO: Пофиксить, что первый раз все моргают одновременно
             if (currentTime >= blinkableComponent.NextBlink)
             {
                 Blink(uid, blinkableComponent);
@@ -92,7 +94,7 @@ public abstract class SharedBlinkingSystem : EntitySystem
         Dirty(uid, component);
 
         if (_gameTiming.IsFirstTimePredicted && _player.LocalEntity == uid)
-            _audio.PlayEntity(_blinkSound, uid, uid);
+            _audio.PlayGlobal(_blinkSound, Filter.Local(), true);
 
         var variance = _random.NextDouble() * BlinkingIntervalVariance.TotalSeconds * 2 - BlinkingIntervalVariance.TotalSeconds;
 
