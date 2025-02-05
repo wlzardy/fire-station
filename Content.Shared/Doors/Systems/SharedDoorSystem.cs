@@ -57,6 +57,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
     private readonly HashSet<Entity<PhysicsComponent>> _doorIntersecting = new();
 
+    // Fire edit start
+    private readonly SoundSpecifier _doorSmashSound = new SoundCollectionSpecifier("DoorSmash");
+    // Fire edit end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -458,7 +462,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!HasAccess(uid, user, door))
             return false;
 
-        return !ev.PerformCollisionCheck || !GetColliding(uid).Any();
+        // Fire edit - давить людей давить людей давить людей
+        return !ev.PerformCollisionCheck || !GetColliding(uid).Any() || door.UnsafeClosing;
     }
 
     public void StartClosing(EntityUid uid, DoorComponent? door = null, EntityUid? user = null, bool predicted = false)
@@ -549,6 +554,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid);
 
             _stunSystem.TryParalyze(entity, stunTime, true);
+            Audio.PlayPredicted(_doorSmashSound, entity, entity); // Fire
         }
 
         if (door.CurrentlyCrushing.Count == 0)
