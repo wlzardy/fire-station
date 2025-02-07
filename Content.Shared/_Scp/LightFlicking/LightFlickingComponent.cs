@@ -11,6 +11,7 @@ public sealed partial class LightFlickingComponent : Component
     [ViewVariables] public TimeSpan? NextFlickStartChanceTime = null;
     [ViewVariables] public TimeSpan NextFlickTime;
 
-    [ViewVariables] public float DumpedRadius;
-    [ViewVariables] public float DumpedEnergy;
+    [AutoNetworkedField, ViewVariables] public float DumpedRadius;
+    [AutoNetworkedField, ViewVariables] public float DumpedEnergy;
+    [AutoNetworkedField, ViewVariables] public Color DumpedColor;
 }

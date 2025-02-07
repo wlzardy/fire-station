@@ -2,34 +2,42 @@
 using Content.Server.Light.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared._Scp.LightFlicking;
+using Content.Shared._Scp.LightFlicking.MalfunctionLight;
+using Content.Shared.Light.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Scp.LightFlicking;
 
-public sealed class LightFlickingSystem : EntitySystem
+public sealed class LightFlickingSystem : SharedLightFlickingSystem
 {
+    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private readonly LightBulbSystem _bulb = default!;
     [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
-    private const float FlickingStartChance = 0.2f;
-    private readonly TimeSpan _flickCheckInterval = TimeSpan.FromMinutes(20);
-    private readonly TimeSpan _flickCheckVariation = TimeSpan.FromMinutes(10);
+    private const float FlickingStartChance = 0.1f;
+
+    private readonly TimeSpan _flickCheckInterval = TimeSpan.FromMinutes(1);
+    private readonly TimeSpan _flickCheckVariation = TimeSpan.FromMinutes(1);
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<LightFlickingComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LightFlickingComponent, MapInitEvent>(OnMapInit, after: [typeof(PoweredLightSystem)]);
 
         SubscribeLocalEvent<LightFlickingComponent, LightEjectEvent>(OnLightEject);
         SubscribeLocalEvent<LightFlickingComponent, LightInsertEvent>(OnLightInsert);
     }
 
+    #region Event handlers
+
     private void OnMapInit(Entity<LightFlickingComponent> ent, ref MapInitEvent args)
     {
-        SetNextTime(ent);
+        if (!HasComp<PoweredLightComponent>(ent))
+            return;
+
+        SetupFlicking(ent);
+        SetNextFlickingStartTime(ent);
     }
 
     private void OnLightEject(Entity<LightFlickingComponent> ent, ref LightEjectEvent args)
@@ -45,8 +53,9 @@ public sealed class LightFlickingSystem : EntitySystem
 
         ent.Comp.Enabled = true;
         Dirty(ent);
-
     }
+
+    #endregion
 
     public override void Update(float frameTime)
     {
@@ -54,9 +63,10 @@ public sealed class LightFlickingSystem : EntitySystem
 
         var query = AllEntityQuery<LightFlickingComponent, PoweredLightComponent>();
 
+        // Обработка "поврждения" лампочек для пометки их как мигающие
         while (query.MoveNext(out var uid, out var flicking, out _))
         {
-            if (_timing.CurTime <= flicking.NextFlickStartChanceTime)
+            if (Timing.CurTime <= flicking.NextFlickStartChanceTime)
                 continue;
 
             if (!TryGetBulb(uid, out var bulb))
@@ -68,24 +78,17 @@ public sealed class LightFlickingSystem : EntitySystem
             if (flicking.Enabled)
                 continue;
 
-            if (!_random.Prob(FlickingStartChance))
+            if (!Random.Prob(FlickingStartChance))
             {
-                SetNextTime((uid, flicking));
+                SetNextFlickingStartTime((uid, flicking));
                 continue;
             }
 
             flicking.Enabled = true;
-            MalfunctionBulb(uid);
-
             Dirty(uid, flicking);
+
+            MalfunctionBulb(uid);
         }
-
-    }
-
-    private void SetNextTime(Entity<LightFlickingComponent> ent)
-    {
-        var variation = _flickCheckInterval - _random.Next(_flickCheckVariation);
-        ent.Comp.NextFlickStartChanceTime = _timing.CurTime + variation;
     }
 
     private bool TryGetBulb(EntityUid lightUid, [NotNullWhen(true)] out EntityUid? bulb)
@@ -100,11 +103,59 @@ public sealed class LightFlickingSystem : EntitySystem
         return true;
     }
 
+    private bool TryGetBulbEntity(EntityUid lightUid, [NotNullWhen(true)] out Entity<LightBulbComponent>? bulb)
+    {
+        bulb = null;
+
+        if (!TryGetBulb(lightUid, out var bulbUid))
+            return false;
+
+        if (!TryComp<LightBulbComponent>(bulbUid, out var lightBulbComponent))
+            return false;
+
+        bulb = (bulbUid.Value, lightBulbComponent);
+
+        return true;
+    }
+
+    #region Flicking
+
+    private void SetupFlicking(Entity<LightFlickingComponent> ent)
+    {
+        var light = _pointLight.EnsureLight(ent);
+        ent.Comp.DumpedRadius = light.Radius;
+        ent.Comp.DumpedEnergy = light.Energy;
+
+        if (TryGetBulbEntity(ent, out var bulb))
+            ent.Comp.DumpedColor = bulb.Value.Comp.Color;
+
+        Dirty(ent);
+
+        SetNextFlickingTime(ent);
+    }
+
+    #endregion
+
+    #region Flicking start time
+
+    private void SetNextFlickingStartTime(Entity<LightFlickingComponent> ent)
+    {
+        var variation = _flickCheckInterval - Random.Next(_flickCheckVariation);
+        ent.Comp.NextFlickStartChanceTime = Timing.CurTime + variation;
+
+        Dirty(ent);
+    }
+
     private void MalfunctionBulb(EntityUid lightUid)
     {
         if (!TryGetBulb(lightUid, out var bulb))
             return;
 
+        // TODO: Пофиксить, что после вставления лампы она принимает этот коричневый цвет, вместо нужного оригинального
+        _bulb.SetColor(bulb.Value, Color.FromHex("#997e65")); // коричневый
         EnsureComp<MalfunctionLightComponent>(bulb.Value);
     }
+
+    #endregion
+
 }
