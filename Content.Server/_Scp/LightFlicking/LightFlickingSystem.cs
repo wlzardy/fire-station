@@ -16,8 +16,8 @@ public sealed class LightFlickingSystem : SharedLightFlickingSystem
 
     private const float FlickingStartChance = 0.1f;
 
-    private readonly TimeSpan _flickCheckInterval = TimeSpan.FromMinutes(1);
-    private readonly TimeSpan _flickCheckVariation = TimeSpan.FromMinutes(1);
+    private readonly TimeSpan _flickCheckInterval = TimeSpan.FromMinutes(30);
+    private readonly TimeSpan _flickCheckVariation = TimeSpan.FromMinutes(15);
 
     public override void Initialize()
     {
