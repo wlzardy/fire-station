@@ -1,9 +1,15 @@
 using System.Linq;
+using System.Numerics;
+using Content.Shared._Sunrise.VentCraw.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Tools.Components;
+using Content.Shared.Emoting;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
-using Content.Shared._Sunrise.VentCraw.Components;
+using Content.Shared.Movement.Pulling.Events;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Throwing;
+using Content.Shared.Tools.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
@@ -15,7 +21,7 @@ namespace Content.Shared._Sunrise.VentCraw;
 /// <summary>
 /// A system that handles the crawling behavior for vent creatures.
 /// </summary>
-public sealed class SharedVentCrawableSystem : EntitySystem
+public abstract class SharedVentCrawableSystem : EntitySystem
 {
     [Dependency] private readonly SharedVentTubeSystem _ventCrawTubeSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
@@ -30,6 +36,42 @@ public sealed class SharedVentCrawableSystem : EntitySystem
 
         SubscribeLocalEvent<VentCrawHolderComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<VentCrawHolderComponent, MoveInputEvent>(OnMoveInput);
+
+        SubscribeLocalEvent<BeingVentCrawComponent, UseAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, PickupAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, ThrowAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, InteractionAttemptEvent>(OnInteractAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, PullAttemptEvent>(OnPullAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, AttackAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, ChangeDirectionAttemptEvent>(OnAttempt);
+        // SubscribeLocalEvent<BeingVentCrawComponent, EmoteAttemptEvent>(OnEmoteAttempt);
+        // SubscribeLocalEvent<BeingVentCrawComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+    }
+
+    // SUNRISE-TODO: Не уверен что стоит блокировать эмоции и речь в трубах, но атмос-фелинид может знатно подзаебать.
+    // private void OnSpeakAttempt(EntityUid uid, BeingVentCrawComponent component, SpeakAttemptEvent args)
+    // {
+    //     args.Cancel();
+    // }
+    //
+    // private void OnEmoteAttempt(EntityUid uid, BeingVentCrawComponent component, EmoteAttemptEvent args)
+    // {
+    //     args.Cancel();
+    // }
+
+    private void OnInteractAttempt(Entity<BeingVentCrawComponent> ent, ref InteractionAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnAttempt(EntityUid uid, BeingVentCrawComponent component, CancellableEntityEventArgs args)
+    {
+        args.Cancel();
+    }
+
+    private void OnPullAttempt(EntityUid uid, BeingVentCrawComponent component, PullAttemptEvent args)
+    {
+        args.Cancelled = true;
     }
 
     /// <summary>
@@ -37,18 +79,42 @@ public sealed class SharedVentCrawableSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
     /// <param name="component">The VentCrawHolderComponent instance.</param>
+    /// <param name="holder"></param>
     /// <param name="args">The MoveInputEvent arguments.</param>
     private void OnMoveInput(EntityUid uid, VentCrawHolderComponent holder, ref MoveInputEvent args)
     {
-
         if (!EntityManager.EntityExists(holder.CurrentTube))
         {
             var ev = new VentCrawExitEvent();
             RaiseLocalEvent(uid, ref ev);
         }
 
-        holder.IsMoving = args.State;
-        holder.CurrentDirection = args.Dir;
+        holder.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
+        holder.CurrentDirection = DirVecForButtons(args.Entity.Comp.HeldMoveButtons).GetDir();
+    }
+
+    private Vector2 DirVecForButtons(MoveButtons buttons)
+    {
+        var x = 0;
+        var y = 0;
+        x -= HasFlag(buttons, MoveButtons.Left) ? 1 : 0;
+        x += HasFlag(buttons, MoveButtons.Right) ? 1 : 0;
+        y -= HasFlag(buttons, MoveButtons.Down) ? 1 : 0;
+        y += HasFlag(buttons, MoveButtons.Up) ? 1 : 0;
+
+        var vec = new Vector2(x, y);
+
+        if (vec.LengthSquared() > 1.0e-6)
+        {
+            vec = vec.Normalized();
+        }
+
+        return vec;
+    }
+
+    private static bool HasFlag(MoveButtons buttons, MoveButtons flag)
+    {
+        return (buttons & flag) == flag;
     }
 
     /// <summary>

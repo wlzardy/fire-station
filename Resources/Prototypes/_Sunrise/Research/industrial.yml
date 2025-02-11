@@ -45,3 +45,15 @@
   recipeUnlocks:
   - BasicNVD
 
+- type: technology
+  id: BasicThermals
+  name: research-technology-basic-thermals
+  icon:
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+    state: icon
+  discipline: Industrial
+  tier: 2
+  cost:
+    Default: 5000
+  recipeUnlocks:
+  - BasicThermals

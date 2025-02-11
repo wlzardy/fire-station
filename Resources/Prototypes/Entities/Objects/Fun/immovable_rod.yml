@@ -70,13 +70,13 @@
   categories: [ HideSpawnMenu ] # Fire
   components:
   - type: ImmovableRod
-    minSpeed: 35
+    maxSpeed: 25
     destroyTiles: false
     randomizeVelocity: false
     shouldGib: false
     damage:
       types:
-        Blunt: 200
+        Blunt: 190
   - type: MovementIgnoreGravity
     gravityState: true
   - type: InputMover
