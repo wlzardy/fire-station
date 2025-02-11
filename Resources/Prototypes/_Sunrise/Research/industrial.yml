@@ -55,5 +55,6 @@
   tier: 2
   cost:
     Default: 5000
+    Scp: 2500
   recipeUnlocks:
   - BasicThermals
