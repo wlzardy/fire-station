@@ -1,8 +1,6 @@
 ﻿- type: entity
-  parent: [ClothingShoesMilitaryBase, BaseRestrictedContraband]
+  parent: [ClothingShoesMilitaryBase, BaseChaosContraband]
   id: ClothingShoesBootsChaos
-  name: chaos jackboots
-  description: Combat boots for combat scenarios or combat situations. All combat, all the time.
   components:
   - type: Sprite
     sprite: _Scp/Clothing/Shoes/Boots/chaosboots.rsi
