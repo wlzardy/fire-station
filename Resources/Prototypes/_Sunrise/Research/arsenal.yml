@@ -158,6 +158,8 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 25000
+  cost:
+    Default: 25000
+    Scp: 12500
   recipeUnlocks:
   - WeaponTemperatureGun
