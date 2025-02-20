@@ -79,14 +79,6 @@
   - WeaponDisabler
   # Sunrise-Start
   - WeaponMechCombatDisabler
-  - MagazinePistolSubMachineGunRubber
-  - MagazineMagnumRubber
-  - MagazineLightRifleRubber
-  - MagazineRifleRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxRifleRubber
   # Sunrise-End
 
 - type: technology
@@ -194,6 +186,7 @@
     Scp: 5000
   recipeUnlocks:
   - WeaponXrayCannon
+  - WeaponMechCombatXray  #Sunrise-Add
 
 - type: technology
   id: BasicShuttleArmament
@@ -236,6 +229,7 @@
   - WeaponAdvancedLaser
   - PortableRecharger
   - WeaponMechCombatImmolationGun # Sunrise-Add
+  - WeaponMechCombatIon # Sunrise-Add
 
 - type: technology
   id: ExperimentalBatteryAmmo
