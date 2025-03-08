@@ -2101,3 +2101,12 @@
   id: 68
   time: '2025-03-07T07:38:05.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/238
+- author: EngineerLND
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u0438\u0433\
+      \u043D\u043E\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 SCP \u0442\
+      \u0443\u0440\u0435\u043B\u044F\u043C\u0438."
+    type: Fix
+  id: 69
+  time: '2025-03-08T10:21:52.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/242
