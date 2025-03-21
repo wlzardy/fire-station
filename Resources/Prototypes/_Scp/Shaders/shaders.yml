@@ -22,3 +22,13 @@
   id: Vignette
   kind: source
   path: "/Textures/_Scp/Shaders/vignette.swsl"
+
+- type: shader
+  id: Warping
+  kind: source
+  path: "/Textures/_Scp/Shaders/warping.swsl"
+
+- type: shader
+  id: Portal
+  kind: source
+  path: "/Textures/_Scp/Shaders/portal.swsl"
