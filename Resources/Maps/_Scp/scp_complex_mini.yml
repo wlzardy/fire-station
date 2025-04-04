@@ -90,7 +90,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: SCPlowprofile
+      name: ScpComplexMini
     - type: Transform
       pos: -0.51063824,-0.4893613
       parent: 1
@@ -2934,7 +2934,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: SCPlowprofile
+      id: ScpComplexMini
     - type: NavMap
 - proto: AirAlarm
   entities:
