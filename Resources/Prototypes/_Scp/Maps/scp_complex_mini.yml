@@ -1,12 +1,12 @@
 - type: gameMap
-  id: SCPComplex
+  id: ScpComplexMini
   mapName: 'Complex SCP'
-  mapPath: /Maps/_Scp/scp_complex.yml
+  mapPath: /Maps/_Scp/scp_complex_mini.yml
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 0
   stations:
-    SCPComplex:
+    ScpComplexMini:
       stationProto: StandardScpStation
       components:
         - type: StationNameSetup
@@ -53,12 +53,12 @@
             SeniorHeavyContainmentZoneOfficer: [ 1, 1 ]
             HeavyContainmentZoneOfficer: [ 5, 7 ]
             JuniorHeavyContainmentZoneOfficer: [ 3, -1 ]
-            FieldMedicalSpecialist: [ 2, 2 ]
+            FieldMedicalSpecialist: [ 1, 1 ]
             #Dont Fuck with the Scientist team
-            LeadResearche: [ 1, 1 ]
-            AnomabiologyResearche: [ 5, 7 ]
-            AnomarchologyResearche: [ 5, 7 ]
-            ProductionSpecialis: [ 1, 1 ]
+            LeadResearcher: [ 1, 1 ]
+            AnomabiologyResearcher: [ 5, 7 ]
+            AnomarchologyResearcher: [ 5, 7 ]
+            ProductionSpecialist: [ 1, 1 ]
             JuniorResearcher: [ 3, -1 ]
             #Medical
             SeniorMedicalSpecialist: [ 1, 1 ]
