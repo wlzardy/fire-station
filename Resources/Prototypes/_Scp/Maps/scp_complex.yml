@@ -38,11 +38,11 @@
             HeadOfMedicalSector: [ 1, 1 ]
             SeniorLogisticsOfficer: [ 1, 1 ]
             #Law
-            MentalControlOfficer: [ 1, 1 ]
-            InternalSecurityOperative: [ 1, 1 ]
-            EthicsCommitteeRepresentative: [ 1, 1 ]
-            JudicialInspector: [ 1, 1 ]
-            TribunalOfficer: [ 1, 1 ]
+            # MentalControlOfficer: [ 1, 1 ]
+            # InternalSecurityOperative: [ 1, 1 ]
+            # EthicsCommitteeRepresentative: [ 1, 1 ]
+            # JudicialInspector: [ 1, 1 ]
+            # TribunalOfficer: [ 1, 1 ]
             #Sec Light Zone
             ExternalAdministrativeZoneCommandant: [ 1, 1 ]
             SeniorExternalAdministrativeZoneOfficer: [ 1, 1 ]
