@@ -1,0 +1,1 @@
+ui-options-grain-toggle-overlay = Использовать шейдер зернистости

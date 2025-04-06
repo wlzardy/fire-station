@@ -36,6 +36,7 @@
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>
                 <CheckBox Name="ChatIconsEnableCheckBox" Text="{Loc 'ui-options-chat-icons-enable'}" />
                 <CheckBox Name="ChatPointingVisualsEnableCheckBox" Text="{Loc 'ui-options-chat-pointing-visuals-enable'}" />
+                <CheckBox Name="GrainToggleOverlayCheckBox" Text="{Loc 'ui-options-grain-toggle-overlay'}" /> <!--Scp-edit-->
 
             </BoxContainer>
         </ScrollContainer>
