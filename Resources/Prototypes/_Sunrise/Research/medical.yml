@@ -64,7 +64,9 @@
     state: med-hypospray
   discipline: Biochemical
   tier: 2
-  cost: 6500
+  cost:
+    Default: 6500
+    Scp: 2500
   recipeUnlocks:
     - HyposprayMedical
 
