@@ -9,7 +9,6 @@
     - IAA
     - Lawyer
     - NtrOfficer
-  editorHidden: true # Fire added
 
 - type: department # Surnise-Blueshield
   id: Blueshield
@@ -20,7 +19,6 @@
     - BlueShield
   primary: false
   weight: 50
-  editorHidden: true # Fire added
 
 - type: department
   id: PlanetPrison
@@ -37,4 +35,3 @@
   - PrisonEngineer
   - PrisonGuard
   - PlanetPrisoner
-  editorHidden: true # Fire added
