@@ -41,14 +41,11 @@
 - type: startingGear
   id: InternalSecurityOperativeGear
   equipment:
-    shoes: ClothingShoesBootsBlueShieldFilled
-    eyes: ClothingEyesGlassesBlueShield
-    head: ClothingHeadHatBeretBlueShield
-    outerClothing: ClothingOuterArmorBlueShield
-    id: BlueShieldPDA
+    shoes: ClothingShoesBootsInternalSecurityOperativeFilled
+    eyes: ClothingEyesGlassesInternalSecurityOperative
+    head: ClothingHeadHatBeretInternalSecurityOperative
+    outerClothing: ClothingOuterArmorInternalSecurityOperative
+    id: InternalSecurityOperativePDA
     ears: ClothingHeadsetAltInternalSecurity
-    belt: ClothingBeltBlueShieldWebbingFilled
+    belt: ClothingBeltInternalSecurityOperativeWebbingFilled
     gloves: ClothingHandsGlovesCombat
-  storage:
-    back:
-    - HandheldCrewMonitor
