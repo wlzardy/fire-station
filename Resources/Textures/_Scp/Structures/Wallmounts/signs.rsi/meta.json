@@ -8,60 +8,13 @@
     },
     "states": [
         {
-            "name": "005",
-            "directions": 4
+            "name": "CSS"
         },
         {
-            "name": "035",
-            "directions": 4
+            "name": "administration"
         },
         {
-            "name": "049",
-            "directions": 4
-        },
-        {
-            "name": "096",
-            "directions": 4
-        },
-        {
-            "name": "106",
-            "directions": 4
-        },
-        {
-            "name": "173",
-            "directions": 4
-        },
-        {
-            "name": "500",
-            "directions": 4
-        },
-        {
-            "name": "612",
-            "directions": 4
-        },
-        {
-            "name": "939",
-            "directions": 4
-        },
-        {
-            "name": "969",
-            "directions": 4
-        },
-        {
-            "name": "999",
-            "directions": 4
-        },
-        {
-            "name": "classd",
-            "directions": 4
-        },
-        {
-            "name": "hcz",
-            "directions": 4
-        },
-        {
-            "name": "lcz",
-            "directions": 4
+            "name": "head"
         }
     ]
 }
