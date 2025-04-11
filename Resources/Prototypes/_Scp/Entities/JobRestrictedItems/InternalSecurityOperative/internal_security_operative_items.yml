@@ -31,8 +31,9 @@
     access: [["BlueShield"]]
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGunMultiphase
     - id: HandheldCrewMonitor
+    - id: WeaponRevolverMatebaNew
+    - id: SpeedLoaderMagnum
 
 - type: entity
   parent: LockerBlueshield
@@ -41,6 +42,7 @@
 - type: entity
   parent: LockerInternalSecurityOperative
   id: LockerInternalSecurityOperativeFilled
+  suffix: Filled
   components:
   - type: StorageFill
     contents:
@@ -49,7 +51,29 @@
     - id: CigarGoldCase
       prob: 0.25
     - id: TrackingImplanter
-      amount: 8
+      amount: 3
+    - id: MindShieldImplanter
+      amount: 3
+
+- type: entity
+  parent: LockerInternalSecurityOperativeFilled
+  id: LockerInternalSecurityOperativeFilledHardsuit
+  suffix: Filled, Hardsuit
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDisabler
+    - id: ClothingHeadsetAltAdministration
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: TrackingImplanter
+      amount: 3
+    - id: MindShieldImplanter
+      amount: 3
+    - id: OxygenTankFilled
+    - id: ClothingMaskBreathMedicalSecurity
+    - id: ClothingMaskGasInternalSecurityOperative
+    - id: ClothingOuterHardsuitInternalSecurityOperative
 
 # Одежда
 - type: entity
@@ -126,6 +150,13 @@
 - type: entity
   parent: ClothingOuterHardsuitBlueshield
   id: ClothingOuterHardsuitInternalSecurityOperative
+  components:
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitInternalSecurityOperative
+
+- type: entity
+  parent: ClothingMaskGasBlueShield
+  id: ClothingMaskGasInternalSecurityOperative
 
 - type: entity
   parent: ClothingShoesBootsBlueShield
