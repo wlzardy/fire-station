@@ -16,6 +16,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Shared._Scp.Audio;
 using Content.Shared._Scp.Scp106;
+using Content.Shared._Scp.Scp106.Components;
 using Content.Shared.Audio;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -86,7 +87,7 @@ public sealed class Scp106AscentRule : GameRuleSystem<Scp106AscentRuleComponent>
     {
         base.Initialize();
 
-        SubscribeLocalEvent<Scp106PortalSpawnerComponent, ComponentShutdown>(OnSpawnerShutdown);
+        SubscribeLocalEvent<Scp106PortalSpawnerComponent, EntityTerminatingEvent>(OnSpawnerShutdown);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Clear());
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, PlayerAttachedEvent>(OnPlayerAttached);
@@ -172,6 +173,9 @@ public sealed class Scp106AscentRule : GameRuleSystem<Scp106AscentRuleComponent>
             return;
         }
 
+        if (!TryGetRandomStation(out var station))
+            return;
+
         RaiseNetworkEvent(new NetworkAmbientMusicEvent(ShiftStartedMusic));
 
         var statusEffectQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, StatusEffectsComponent>();
@@ -205,8 +209,7 @@ public sealed class Scp106AscentRule : GameRuleSystem<Scp106AscentRuleComponent>
         if (audio != null)
             _effectsManager.TryAddEffect(audio.Value, FancyEffect);
 
-        if (!TryGetRandomStation(out var station))
-            return;
+        EnsureComp<Scp106DimensionShiftingMapComponent>(station.Value);
 
         Timer.Spawn(AscentAnnounceAfter,
             () =>
@@ -264,7 +267,7 @@ public sealed class Scp106AscentRule : GameRuleSystem<Scp106AscentRuleComponent>
         return TimeSpan.FromSeconds(nuke.Timer);
     }
 
-    private void OnSpawnerShutdown(Entity<Scp106PortalSpawnerComponent> ent, ref ComponentShutdown args)
+    private void OnSpawnerShutdown(Entity<Scp106PortalSpawnerComponent> ent, ref EntityTerminatingEvent args)
     {
         if (!_gameTicker.IsGameRuleAdded(Scp106System.AscentRule))
             return;
@@ -318,11 +321,11 @@ public sealed class Scp106AscentRule : GameRuleSystem<Scp106AscentRuleComponent>
         if (_gameTicker.IsGameRuleActive(Scp106System.AscentRule))
         {
             RaiseNetworkEvent(new WarpingOverlayToggle(true), ent);
-            RaiseNetworkEvent(new NetworkAmbientMusicEvent(ShiftStartedMusic));
+            RaiseNetworkEvent(new NetworkAmbientMusicEvent(ShiftStartedMusic), ent);
         }
         else if (_gameTicker.IsGameRuleAdded(Scp106System.AscentRule))
         {
-            RaiseNetworkEvent(new NetworkAmbientMusicEvent(ShiftAddedMusic));
+            RaiseNetworkEvent(new NetworkAmbientMusicEvent(ShiftAddedMusic), ent);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared._Scp.Scp106.Components;
 using Content.Shared._Scp.Scp106.Protection;
+using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mind;
@@ -27,12 +28,13 @@ public abstract partial class SharedScp106System : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly MobStateSystem _mob = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/_Scp/Scp106/return.ogg");
 
     private const float DamageInPocketDimensionMultiplier = 3f;
-    protected static readonly TimeSpan TeleportTimeCompensation = TimeSpan.FromSeconds(0.5f);
+    protected static readonly TimeSpan TeleportTimeCompensation = TimeSpan.FromSeconds(0.1f);
 
     public override void Initialize()
     {
@@ -48,6 +50,24 @@ public abstract partial class SharedScp106System : EntitySystem
         SubscribeLocalEvent<Scp106Component, Scp106BackroomsActionEvent>(OnBackroomsDoAfter);
         SubscribeLocalEvent<Scp106Component, Scp106RandomTeleportActionEvent>(OnTeleportDoAfter);
         SubscribeLocalEvent<Scp106PhantomComponent, Scp106BecomeTeleportPhantomActionEvent>(OnBecomeTeleportPhantomActionEvent);
+
+        #region Store & Its abilities
+
+        // Abilities in that store - I love lambdas >:)
+
+        // TODO: Проверка на хендхелд и кенселед
+        SubscribeLocalEvent((Entity<Scp106Component> ent, ref Scp106BoughtPhantomAction args) =>
+            _actions.AddAction(ent, args.BoughtAction));
+        SubscribeLocalEvent((Entity<Scp106Component> ent, ref Scp106BoughtBareBladeAction args) =>
+            _actions.AddAction(ent, args.BoughtAction));
+        SubscribeLocalEvent((Entity<Scp106Component> ent, ref Scp106BoughtCreatePortal args) =>
+            _actions.AddAction(ent, args.BoughtAction));
+
+        SubscribeLocalEvent<Scp106Component, Scp106OnUpgradePhantomAction>(OnUpgradePhantomAction);
+
+        SubscribeLocalEvent<Scp106Component, Scp106BareBladeAction>(OnScp106BareBladeAction);
+
+        #endregion
 
         #region Phantom
 
@@ -149,20 +169,24 @@ public abstract partial class SharedScp106System : EntitySystem
 
 	private void OnBackroomsDoAfter(Entity<Scp106Component> ent, ref Scp106BackroomsActionEvent args)
 	{
-        if (args.Cancelled)
+        if (args.Cancelled || args.Handled)
             return;
 
         DoTeleportEffects(ent);
         SendToBackrooms(ent);
+
+        args.Handled = true;
     }
 
 	private void OnTeleportDoAfter(Entity<Scp106Component> ent, ref Scp106RandomTeleportActionEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || args.Handled)
             return;
 
         DoTeleportEffects(ent);
         SendToStation(ent);
+
+        args.Handled = true;
     }
 
     private void OnMeleeHit(Entity<Scp106Component> ent, ref MeleeHitEvent args)
@@ -220,7 +244,8 @@ public abstract partial class SharedScp106System : EntitySystem
     {
         if (ent.Comp.IsContained)
         {
-            _popup.PopupClient("Ваши способности подавлены", ent, ent, PopupType.SmallCaution);
+            if (_timing.IsFirstTimePredicted)
+                _popup.PopupClient("Ваши способности подавлены", ent, ent,  PopupType.SmallCaution);
 
             return true;
         }

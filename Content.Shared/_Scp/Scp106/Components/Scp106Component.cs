@@ -14,9 +14,10 @@ public sealed partial class Scp106Component : Component
     /// Если объект сдержан, он не должен иметь возможности юзать способки
     /// TODO: Возможно переместить в <see cref="ScpComponent"/>
     /// </summary>
-    [DataField] public bool IsContained;
+    [DataField, AutoNetworkedField]
+    public bool IsContained;
 
-    public TimeSpan TeleportationDuration = TimeSpan.FromSeconds(5);
+    public TimeSpan TeleportationDuration = TimeSpan.FromSeconds(3.7f);
 
     #region Abilities
 
@@ -31,8 +32,10 @@ public sealed partial class Scp106Component : Component
     public FixedPoint2 Essence = 0f;
     public TimeSpan NextEssenceAddedTime;
 
+    [AutoNetworkedField]
     public TimeSpan PhantomCoolDown = TimeSpan.FromSeconds(300);
 
+    [ViewVariables]
     public bool HandTransformed = false;
     public EntityUid? Sword;
 
