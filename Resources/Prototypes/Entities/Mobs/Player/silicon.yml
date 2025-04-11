@@ -454,6 +454,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+  - type: ShowMindShieldIcons
   - type: Tag
     tags:
     - HideContextMenu
