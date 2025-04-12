@@ -60,7 +60,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             unrevivable = true;
 
         // Fire edit start - для артефактов сцп
-        RaiseLocalEvent(args.Target.Value, new EntityAnalyzedEvent ());
+        RaiseLocalEvent(target, new EntityAnalyzedEvent ());
         // Fire edit end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
