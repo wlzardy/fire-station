@@ -475,9 +475,11 @@
   - type: RoundstartStationVariationRule
     rules:
     - id: BasicPoweredLightVariationPass
+    # Sunrise-Edit
     #- id: BasicTrashVariationPass
     - id: ScpSolidWallRustingVariationPass # Fire-Edit
     - id: ScpReinforcedWallRustingVariationPass # Fire-Edit
+    # Sunrise-Edit
     #- id: BasicPuddleMessVariationPass
     #  prob: 0.99
     #  orGroup: puddleMess

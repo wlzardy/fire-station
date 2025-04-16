@@ -52,7 +52,7 @@
       capacity: 1
       whitelist:
         components:
-        - Artifact
+        - XenoArtifact
       blacklist:
         components:
         - Scp
