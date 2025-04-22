@@ -27,6 +27,10 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
     [Dependency] private readonly IResourceCache _resCache = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    // Fire edit start - ебучий вы случай, почему локаль не поддерживается в эффектах
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+    // Fire edit end
+
     private readonly ArtifactAnalyzerSystem _artifactAnalyzer;
     private readonly XenoArtifactSystem _xenoArtifact;
     private readonly AudioSystem _audio;
@@ -202,9 +206,15 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
 
         var hasInfo = _xenoArtifact.HasUnlockedPredecessor(artifact.Value, node.Value);
 
+        // Fire edit start - поддержка локали в эффектах
+        var description = _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? string.Empty;
+        description = _loc.TryGetString(description, out var descriptionLocalized) ? descriptionLocalized : description;
+
         EffectValueLabel.SetMarkup(Loc.GetString("analysis-console-info-effect-value",
             ("state", hasInfo),
-            ("info", _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? string.Empty)));
+            ("info", description)));
+        // Fire edit end
+
 
         var predecessorNodes = _xenoArtifact.GetPredecessorNodes(artifact.Value.Owner, node.Value);
         if (!hasInfo)

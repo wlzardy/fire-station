@@ -1,8 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Shared._Scp.Mobs.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.Examine;
 using Content.Shared.Placeable;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Research.Components;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
 
@@ -15,6 +19,10 @@ namespace Content.Shared.Xenoarchaeology.Equipment;
 public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 {
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+    // Fire edit start - сканирование на расстоянии для сцп
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    // Fire edit end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -27,6 +35,11 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 
         SubscribeLocalEvent<AnalysisConsoleComponent, NewLinkEvent>(OnNewLink);
         SubscribeLocalEvent<AnalysisConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
+
+        // Fire edit start - сканирование артефактов на расстоянии
+        // Ивент вызывается при открытии консоли и сообщает, что нужно поискать артефакты в радиусе для сканирования
+        SubscribeLocalEvent<AnalysisConsoleComponent, ConsoleServerSearchForArtifactInRadius>(OnSearchInRadius);
+        // Fire edit end
     }
 
     private void OnItemPlaced(Entity<ArtifactAnalyzerComponent> ent, ref ItemPlacedEvent args)
@@ -131,6 +144,33 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
             return false;
 
         analysisConsole = (ent.Comp.Console.Value, consoleComp);
+        return true;
+    }
+
+    private void OnSearchInRadius(Entity<AnalysisConsoleComponent> ent, ref ConsoleServerSearchForArtifactInRadius args)
+    {
+        if (!TryGetAnalyzer(ent, out var analyzer))
+            return;
+
+        TryFindAndSetEntityInRadius(analyzer.Value);
+    }
+
+    public bool TryFindAndSetEntityInRadius(Entity<ArtifactAnalyzerComponent> analyzer)
+    {
+        if (analyzer.Comp.CurrentArtifact != null && Exists(analyzer.Comp.CurrentArtifact))
+            return false;
+
+        var coords = Transform(analyzer).Coordinates;
+        var potentialTargets = _lookup.GetEntitiesInRange<ScpComponent>(coords, 12f)
+            .Where(t => _examine.InRangeUnOccluded(analyzer, Transform(t).Coordinates, 12f))
+            .ToHashSet();
+
+        if (potentialTargets.Count == 0)
+            return false;
+
+        analyzer.Comp.CurrentArtifact = potentialTargets.LastOrDefault();
+        Dirty(analyzer);
+
         return true;
     }
 }

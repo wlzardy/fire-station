@@ -184,6 +184,8 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost:
+    Default: 10000
+    Scp: 5000
   recipeUnlocks:
   - DeviceDesynchronizer

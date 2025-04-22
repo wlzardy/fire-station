@@ -8,7 +8,9 @@
     state: fab-idle
   discipline: Experimental
   tier: 2
-  cost: 7500
+  cost:
+    Default: 7500
+    Scp: 3500
   recipeUnlocks:
   - ExosuitFabricatorHyperConvectionMachineCircuitboard
   technologyPrerequisites:
@@ -25,7 +27,9 @@
     state: phazon
   discipline: Experimental
   tier: 3
-  cost: 20000
+  cost:
+    Default: 20000
+    Scp: 10000
   recipeUnlocks:
   - MechPhasicScanningModule
   - PhazonHarness
