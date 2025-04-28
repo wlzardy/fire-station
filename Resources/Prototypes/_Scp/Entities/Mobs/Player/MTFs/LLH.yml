@@ -1,0 +1,316 @@
+﻿# ID КАРТА
+# Командир
+- type: entity
+  parent: IDCardMTFStandard
+  id: IDCardLLHLeader
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PresetIdCard
+    job: LLHLeader
+# Специалист
+- type: entity
+  parent: IDCardMTFStandard
+  id: IDCardLLHSpecialist
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PresetIdCard
+    job: LLHSpecialist
+# Кадет
+- type: entity
+  parent: IDCardMTFStandard
+  id: IDCardLLHCadet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PresetIdCard
+    job: LLHCadet
+
+# КПК
+# Командир
+- type: entity
+  parent: BaseMTFPDA
+  id: LLHLeaderPDA
+  components:
+  - type: Pda
+    id: IDCardLLHLeader
+# Специалист
+- type: entity
+  parent: BaseMTFPDA
+  id: LLHSpecialistPDA
+  components:
+  - type: Pda
+    id: IDCardLLHSpecialist
+# Кадет
+- type: entity
+  parent: BaseMTFPDA
+  id: LLHCadetPDA
+  components:
+  - type: Pda
+    id: IDCardLLHCadet
+
+# кастом вещи группы
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingDeathSquadronBackpack
+  id: ClothingBackpackLLH
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingMaskGasSwat
+  id: ClothingMaskGasLLH
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingOuterArmorHeavy
+  id: ClothingOuterArmorHeavyLLH
+
+
+
+
+
+
+
+
+
+# ПРОФЕССИИ
+# Командир
+- type: job
+  id: LLHLeader
+  name: ghost-role-information-mtf-leader-LLH-name
+  description: ghost-role-information-mtf-leader-description
+  playTimeTracker: JobLLHLeader
+  setPreference: false
+  startingGear: LLHLeaderGear
+  icon: JobIconLLH
+  supervisors: ghost-role-information-mtf-LLH-leader-supervisors
+  canBeAntag: false
+  radioBold: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: startingGear
+  id: LLHLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformLLH
+    back: ClothingBackpackLLH
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasLLH
+    eyes: ClothingEyesNVDSec
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorHeavyLLH
+    id: LLHLeaderPDA
+    ears: ClothingHeadsetAltRegionalAdministration
+    belt: MTFCommanderWebbing
+    pocket1: BaseUplinkLLHLeader
+    pocket2: PinpointerNuclear
+  storage:
+    back:
+    - Crowbar
+    - CombatKnife
+    - HandheldCriminalRecordsMonitorUnpowered
+    - DoubleEmergencyOxygenTankFilled
+    - HandheldCrewMonitor
+    belt:
+    - Stunbaton
+    - Handcuffs
+
+- type: entity
+  id: RandomHumanoidSpawnerLLHLeader
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: ertleader
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLeader
+    - NamesOperativeLeaderLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidSpawner
+    settings: LLHLeader
+
+- type: randomHumanoidSettings
+  id: LLHLeader
+  parent: CommonMTFLeader
+  randomizeName: false
+  components:
+  - type: GhostRole
+    name: ghost-role-information-mtf-leader-LLH-name
+    description: ghost-role-information-mtf-leader-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+    job: LLHLeader
+  - type: Loadout
+    prototypes: [ LLHLeaderGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesLeader
+    - NamesOperativeLeaderLast
+    nameFormat: name-format-ert
+
+# специалист
+- type: job
+  id: LLHSpecialist
+  name: ghost-role-information-mtf-specialist-LLH-name
+  description: ghost-role-information-mtf-specialist-description
+  playTimeTracker: JobLLHSpecialist
+  setPreference: false
+  startingGear: LLHSpecialistGear
+  icon: JobIconLLH
+  supervisors: ghost-role-information-mtf-LLH-specialist-supervisors
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: startingGear
+  id: LLHSpecialistGear
+  equipment:
+    jumpsuit: ClothingUniformLLH
+    back: ClothingBackpackLLH
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasLLH
+    eyes: ClothingEyesNVDSec
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorHeavyLLH
+    id: LLHSpecialistPDA
+    ears: ClothingHeadsetAltRegionalAdministration
+    belt: MTFWebbing
+    pocket1: BaseUplinkLLHSpecialist
+    pocket2: CombatKnife
+  storage:
+    back:
+    - Crowbar
+    - DoubleEmergencyOxygenTankFilled
+    belt:
+    - Stunbaton
+    - Handcuffs
+
+- type: entity
+  id: RandomHumanoidSpawnerLLHSpecialist
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: ertsecurityeva
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCadet
+    - NamesOperativeLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidSpawner
+    settings: LLHSpecialist
+
+- type: randomHumanoidSettings
+  id: LLHSpecialist
+  parent: CommonMTFSpecialist
+  randomizeName: false
+  components:
+  - type: GhostRole
+    name: ghost-role-information-mtf-specialist-LLH-name
+    description: ghost-role-information-mtf-specialist-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+    job: LLHSpecialist
+  - type: Loadout
+    prototypes: [ LLHSpecialistGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCadet
+    - NamesOperativeLast
+    nameFormat: name-format-ert
+
+# кадет
+- type: job
+  id: LLHCadet
+  name: ghost-role-information-mtf-cadet-LLH-name
+  description: ghost-role-information-mtf-cadet-description
+  playTimeTracker: JobLLHCadet
+  setPreference: false
+  startingGear: LLHCadetGear
+  icon: JobIconLLH
+  supervisors: ghost-role-information-mtf-LLH-cadet-supervisors
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: startingGear
+  id: LLHCadetGear
+  equipment:
+    jumpsuit: ClothingUniformLLH
+    back: ClothingBackpackLLH
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasLLH
+    eyes: ClothingEyesNVDSec
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorHeavyLLH
+    id: LLHCadetPDA
+    ears: ClothingHeadsetAltRegionalAdministration
+    belt: MTFWebbing
+    pocket1: BaseUplinkLLH
+    pocket2: CombatKnife
+  storage:
+    back:
+    - Crowbar
+    - DoubleEmergencyOxygenTankFilled
+    belt:
+    - Stunbaton
+    - Handcuffs
+
+- type: entity
+  id: RandomHumanoidSpawnerLLHCadet
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: ertsecurityeva
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCadet
+    - NamesOperativeLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidSpawner
+    settings: LLHCadet
+
+- type: randomHumanoidSettings
+  id: LLHCadet
+  parent: CommonMTFCadet
+  randomizeName: false
+  components:
+  - type: GhostRole
+    name: ghost-role-information-mtf-cadet-LLH-name
+    description: ghost-role-information-mtf-cadet-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+    job: LLHCadet
+  - type: Loadout
+    prototypes: [ LLHCadetGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCadet
+    - NamesOperativeLast
+    nameFormat: name-format-ert
+
+
+
+# мета
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconLLH
+  icon:
+    sprite: /Textures/_Scp/Interface/Misc/job_icons.rsi
+    state: LLH
+  jobName: mobile-task-force-LLH-name
+
+- type: playTimeTracker
+  id: JobLLHLeader
+
+- type: playTimeTracker
+  id: JobLLHSpecialist
+
+- type: playTimeTracker
+  id: JobLLHCadet

@@ -1,23 +1,23 @@
 ﻿- type: localizedDataset
-  id: NamesChaosLeader
+  id: LastNamesChaos
   values:
-    prefix: chaos-leader-
-    count: 1
+    prefix: names-chaos-last-dataset-
+    count: 30
 
 - type: localizedDataset
-  id: NamesChaos
+  id: NamesChaosLeader
   values:
-    prefix: chaos-soldier-
+    prefix: names-chaos-leader-first-dataset-
     count: 1
 
 - type: localizedDataset
   id: NamesChaosMedic
   values:
-    prefix: chaos-medic-
+    prefix: names-chaos-medic-first-dataset-
     count: 1
 
 - type: localizedDataset
-  id: LastNamesChaos
+  id: NamesChaos
   values:
-    prefix: chaos-last-name-
-    count: 30
+    prefix: names-chaos-first-dataset-
+    count: 1

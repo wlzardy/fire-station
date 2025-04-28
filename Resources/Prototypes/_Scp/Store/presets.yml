@@ -1,0 +1,25 @@
+﻿- type: entity
+  id: StorePresetScpUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-ScpUplink
+    categories:
+    - ScpAutoGun
+    - ScpLasers
+    - ScpPistols
+    - ScpAmmo
+    - ScpMedicine
+    - ScpAdditional
+    - ScpExplosive
+    - ScpMechs
+    - ScpSanitary
+    - ScpEngineering
+    #- NTCBURN
+    - ScpEquipment
+    - ScpRecontainment
+    currencyWhitelist:
+    - Bluecrystal
+    - Crystallite
+    balance:
+      Telecrystal: 0
