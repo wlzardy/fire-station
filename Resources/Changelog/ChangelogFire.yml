@@ -2760,3 +2760,15 @@
   id: 103
   time: '2025-05-01T13:19:41.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/292
+- author: ThereDrD
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 v6 -> v10"
+    type: Tweak
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043C\u0438\u043D\u0438-\u043A\u043E\u043C\u043F\u043B\u0435\u043A\
+      \u0441\u0430 v7 -> v9"
+    type: Tweak
+  id: 104
+  time: '2025-05-01T15:11:09.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/310
