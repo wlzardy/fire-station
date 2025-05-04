@@ -716,6 +716,9 @@ SignDirectionalBridge: SignDirectionalScpAdministration
 SignDirectionalSupply: SignDirectionalScpLogisticsService
 SignDirectionalHop: SignDirectionalScpPersonnelOfficer
 
+RadioHandheldSecurity: RadioHandheldExternalAdministrativeZoneSecurityService
+IntercomSecurity: IntercomMasterZoneSecurityService
+
 SignBridge: SignScpAdministration
 SignHead: SignScpHead
 SignAi: SignScpCSS
