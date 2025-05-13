@@ -2903,3 +2903,20 @@
   id: 113
   time: '2025-05-08T20:13:49.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/325
+- author: EngineerLND
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0438\u043B\u0438 \u043E\u043A\u043D\u043E\
+      \ \u0441 \u043F\u0440\u0430\u0432\u0438\u043B\u0430\u043C\u0438, \u0442\u0435\
+      \u043F\u0435\u0440\u044C \u0442\u0430\u043C \u043D\u0435\u0442 \u0434\u0435\u0437\
+      \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438."
+    type: Tweak
+  id: 114
+  time: '2025-05-13T18:17:59.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/327
+- author: Mor_Dast
+  changes:
+  - message: "SCP 939 \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0435\u043D FOV"
+    type: Add
+  id: 115
+  time: '2025-05-13T18:18:27.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/326
