@@ -80,9 +80,18 @@ ent-MTFSpecialistBackpack = Рюкзак Мобильной Оперативно
 
 
 
+spawner-on-trigger-suffix = На триггере, одноразовый
+spawner-squad-name = спавнер отряда
 
 #Вещи отдельных МОГ
 #HD
+ent-SpawnerMTFSquadHD = { spawner-squad-name } МОГ Ню-7
+    .desc = спавнер отряда МОГ
+    .suffix = Ню-7
+ent-SpawnerMTFSquadHDSpawnOnTrigger = { ent-SpawnerMTFSquadHD }
+    .desc = { ent-SpawnerMTFSquadHD.desc }
+    .suffix = { ent-SpawnerMTFSquadHD.suffix }, { spawner-on-trigger }
+
 ent-ClothingOuterArmorHD = Броня "Ню-7"
     .desc = Элитная броня отряда "Ню-7"
 
@@ -93,6 +102,13 @@ ent-ClothingShoesBootsHDFilled = Подкованные сапоги "Ню-7"
     .desc = Поговаривают, что внутри них есть подкова.
 
 #MH
+ent-SpawnerMTFSquadMH = { spawner-squad-name } МОГ Бета-7
+    .desc = { ent-SpawnerMTFSquadHD.desc }
+    .suffix = Бета-7
+ent-SpawnerMTFSquadMHSpawnOnTrigger = { ent-SpawnerMTFSquadMH }
+    .desc = { ent-SpawnerMTFSquadMH.desc }
+    .suffix = { ent-SpawnerMTFSquadMH.suffix }, { spawner-on-trigger }
+
 ent-ClothingOuterHardsuitMH = Скафандр "Бета-7"
     .desc = { ent-ClothingMaskMTF.desc }
 
@@ -106,6 +122,13 @@ ent-ClothingBeltMilitaryWebbingMH = Разгрузка Мобильной Опе
     .desc = { ent-MTFWebbing.desc }
 
 #LLH
+ent-SpawnerMTFSquadLLH = { spawner-squad-name } МОГ Омега-1
+    .desc = { ent-SpawnerMTFSquadHD.desc }
+    .suffix = Омега-1
+ent-SpawnerMTFSquadLLHSpawnOnTrigger = { ent-SpawnerMTFSquadLLH }
+    .desc = { ent-SpawnerMTFSquadLLH.desc }
+    .suffix = { ent-SpawnerMTFSquadLLH.suffix }, { spawner-on-trigger }
+
 ent-ClothingHeadHatCapLeatherLLHLeader = кожаная фуражка командира "Омега-1"
     .desc = Довольно старая вещь для этих времён, навевающая старые воспоминания...
 
@@ -119,6 +142,13 @@ ent-ClothingOuterArmorHeavyLLH = Броня "Омега-1"
     .desc = Защищает силой Кодекса Этики.
 
 #RRH
+ent-SpawnerMTFSquadRRH = { spawner-squad-name } МОГ Альфа-1
+    .desc = { ent-SpawnerMTFSquadHD.desc }
+    .suffix = Альфа-1
+ent-SpawnerMTFSquadRRHSpawnOnTrigger = { ent-SpawnerMTFSquadRRH }
+    .desc = { ent-SpawnerMTFSquadRRH.desc }
+    .suffix = { ent-SpawnerMTFSquadRRH.suffix }, { spawner-on-trigger }
+
 ent-ClothingMaskGasRRH = противогаз "Альфа-1"
     .desc = [ДАННЫЕ УДАЛЕНЫ]
 
@@ -129,4 +159,12 @@ ent-ClothingHeadHelmetHardsuitRRH = шлем скафандра "Альфа-1"
     .desc = Повинуйся и работай эффективно. Отклонение от протокола приравнивается к дезертирству.
 
 ent-ClothingOuterHardsuitRRH = скафандр "Альфа-1"
-    .desc = MANKIND IS DEAD, BLOOD IS FUEL, HELL IS FULL.
+    .desc = MANKIND IS DEAD, BLOOD IS FUEL, FACILITY IS FULL.
+
+#NTF
+ent-SpawnerMTFSquadNTF = { spawner-squad-name } МОГ Эпсилон-11
+    .desc = { ent-SpawnerMTFSquadHD.desc }
+    .suffix = Эпсилон-11
+ent-SpawnerMTFSquadNTFSpawnOnTrigger = { ent-SpawnerMTFSquadNTF }
+    .desc = { ent-SpawnerMTFSquadNTF.desc }
+    .suffix = { ent-SpawnerMTFSquadNTF.suffix }, { spawner-on-trigger }
