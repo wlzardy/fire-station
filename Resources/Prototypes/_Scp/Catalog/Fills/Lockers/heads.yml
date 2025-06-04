@@ -214,6 +214,7 @@
     - id: ClothingMaskNeckGaiter
     - id: ClothingShoesBootsSecurityGuard
     - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
     - id: RubberStampSecurityCommander
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler

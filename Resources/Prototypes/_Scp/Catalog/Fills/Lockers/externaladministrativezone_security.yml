@@ -19,6 +19,7 @@
       - id: ClothingOuterCoatWardenAlt
       - id: RubberStampWarden
       - id: DoorRemoteArmory
+      - id: HoloprojectorSecurity
       - id: Binoculars
       - id: HyperLinkBookCorporateLaw
       - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
@@ -51,6 +52,8 @@
       - id: ClothingShoesBootsSecurityGuard
       - id: WeaponMeleeNeedle
         prob: 0.1
+      - id: HoloprojectorSecurity
+        prob: 0.6
       - id: HyperLinkBookCorporateLaw # Sunrise-edit
         prob: 0.5
 

@@ -44,7 +44,7 @@
     contents:
     - id: Stunbaton
     - id: Handcuffs
-    # - id: HoloprojectorSecurity #Fire-Edit
+    - id: HoloprojectorSecurity
     - id: GrenadeFlashBang
     - id: TearGasGrenade
     - id: Truncheon

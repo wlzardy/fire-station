@@ -48,7 +48,7 @@
     - id: Stunbaton
     - id: Handcuffs
     - id: Handcuffs
-    # - id: HoloprojectorSecurity #Fire-Edit
+    - id: HoloprojectorSecurity
     #- id: RadioHandheldSecurity # Fire edit
 
 - type: entity
@@ -80,8 +80,8 @@
     contents:
       - id: Soap #Make a soap group and pick between when i'm not lazy
       - id: SprayBottleSpaceCleaner
-      # - id: CleanerGrenade #Fire-Edit
-      #   amount: 2
+      - id: CleanerGrenade
+        amount: 2
       - id: FlashlightLantern
       - id: LightReplacer
 
