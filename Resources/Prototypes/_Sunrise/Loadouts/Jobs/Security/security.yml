@@ -88,12 +88,12 @@
     back:
     - WeaponMeleeNeedle
 
-- type: loadout
-  id: SecurityHoloprojector
-  startingGear: SecurityHoloprojector
+# - type: loadout #Fire-Edit
+#   id: SecurityHoloprojector
+#   startingGear: SecurityHoloprojector
 
-- type: startingGear
-  id: SecurityHoloprojector
-  storage:
-    back:
-    - HoloprojectorSecurity
+# - type: startingGear #Fire-Edit
+#   id: SecurityHoloprojector
+#   storage:
+#     back:
+#     - HoloprojectorSecurity
