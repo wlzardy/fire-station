@@ -42,19 +42,33 @@
       - state: brigmedic
 
 - type: entity
-  id: SpawnPointBlueShield
+  id: SpawnPointBlueShieldOfficer
   parent: SpawnPointJobBase
-  name: blueshield
+  name: blue shield officer
   categories: [ HideSpawnMenu ] # Fire added
   components:
   - type: SpawnPoint
-    job_id: BlueShield
+    job_id: BlueShieldOfficer
   - type: Sprite
     sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
       - state: blueshield
       - state: jobicon
+
+- type: entity
+  id: SpawnPointBlueShieldEnsign
+  parent: SpawnPointJobBase
+  name: blue shield ensign
+  components:
+  - type: SpawnPoint
+    job_id: BlueShieldEnsign
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: blueshield
+    - state: jobicon
 
 - type: entity
   id: SpawnPointCentCommOperator
@@ -279,3 +293,15 @@
     layers:
     - state: green
     - state: adjutant
+
+- type: entity
+  id: SpawnPointminingspecialist
+  parent: SpawnPointJobBase
+  name: miningspecialist
+  components:
+  - type: SpawnPoint
+    job_id: MiningSpecialist
+  - type: Sprite
+    layers:
+    - state: green
+    - state: salvagespecialist

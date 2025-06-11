@@ -3,6 +3,7 @@ using Content.Server.AbstractAnalyzer;
 using Content.Server.Body.Components;
 using Content.Server.Medical.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Sunrise.Research.Artifact;
 using Content.Shared.Traits.Assorted;
 using Content.Shared._Scp.Research.Artifacts;
 using Content.Shared.Chemistry.EntitySystems;
@@ -59,9 +60,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
-        // Fire edit start - для артефактов сцп
+        // Sunrise edit start - новый триггер
         RaiseLocalEvent(target, new EntityAnalyzedEvent ());
-        // Fire edit end
+        // Sunrise edit end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
