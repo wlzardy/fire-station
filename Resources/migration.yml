@@ -1291,5 +1291,10 @@ FaxMachineCaptain: FaxMachineDirector
 HoloprojectorSecurity: null
 SpawnMobCleanBot: SpawnMobRoomba
 
+FSCatwalkSteel: ScpCatwalkSteel
+FSCatwalkDark: ScpCatwalkDark
+FSCatwalkWhite: ScpCatwalkWhite
+Catwalk: ScpCatwalkSteel
+
 # Fire added end
 
