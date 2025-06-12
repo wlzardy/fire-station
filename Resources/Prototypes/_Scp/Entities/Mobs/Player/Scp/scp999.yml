@@ -137,7 +137,7 @@
       proper: true
       gender: male
   - type: TypingIndicator
-    proto: SCP-999
+    proto: scp999
   - type: ReplacementAccent
     accent: mouse
   - type: Hunger

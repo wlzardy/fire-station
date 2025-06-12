@@ -645,7 +645,7 @@ CapacitorStockPart: MicroManipulatorStockPart
 # 2025-05-26 Turrets
 #WeaponEnergyTurretStation: WeaponEnergyTurretSecurity Fire
 WeaponEnergyTurretStationControlPanel: WeaponEnergyTurretSecurityControlPanel
-WeaponEnergyTurretStationMachineCircuitboard: WeaponEnergyTurretSecurityMachineCircuitboard
+WeaponEnergyTurretStationMachineCircuitboardBase: WeaponEnergyTurretSecurityMachineCircuitboard
 
 # 2025-05-30
 SpawnHonkBot: SpawnMobHonkBot
@@ -757,7 +757,7 @@ PosterGok: PosterGoc
 PosterSCP126: PosterSCP106
 
 GunSafeBlueShield: GunSafeInternalSecurityOperative
-LockerBlueshield: LockerInternalSecurityOperative
+LockerBlueShield: LockerInternalSecurityOperative
 LockerBlueshieldFilled: LockerInternalSecurityOperativeFilled
 LockerBlueshieldFilledUplink: LockerInternalSecurityOperativeFilled
 LockerBlueshieldFilledUplinkMultiphase: LockerInternalSecurityOperativeFilled
@@ -772,6 +772,7 @@ ClothingEyesGlassesBlueShield: ClothingEyesGlassesInternalSecurityOperative
 ClothingHeadHelmetHardsuitBlueshield: ClothingHeadHelmetHardsuitInternalSecurityOperative
 ClothingHeadHatBeretBlueShield: ClothingHeadHatBeretInternalSecurityOperative
 ClothingOuterArmorBlueShield: ClothingOuterArmorInternalSecurityOperative
+ClothingOuterHardsuitBlueShield: ClothingOuterHardsuitInternalSecurityOperative
 ClothingOuterHardsuitBlueshield: ClothingOuterHardsuitInternalSecurityOperative
 ClothingShoesBootsBlueShield: ClothingShoesBootsInternalSecurityOperative
 ClothingUniformJumpskirtBlueShield: ClothingUniformJumpskirtInternalSecurityOperative
@@ -799,6 +800,7 @@ Scp939Muzzler: ClothingMaskScp939
 CryogenicSleepUnitSpawnerLateJoin: null
 CryogenicSleepUnit: null
 
+WeaponEnergyTurretStationBase: WeaponEnergyTurretFacility
 WeaponEnergyTurretStation: WeaponEnergyTurretFacility
 WeaponEnergyTurretAI: WeaponEnergyTurretCSS
 
@@ -1360,6 +1362,13 @@ FSCatwalkSteel: ScpCatwalkSteel
 FSCatwalkDark: ScpCatwalkDark
 FSCatwalkWhite: ScpCatwalkWhite
 Catwalk: ScpCatwalkSteel
+
+PrintedDocumentClosingIndictment: null
+PrintedDocumentPermissionDisposeBody: null
+PrintedDocumentDeathCertificate: null
+PrintedDocumentReportOnTheChaptersMeeting: null
+SheetPrinter1: null
+BorgModuleDefibrillator: null
 
 # Fire added end
 

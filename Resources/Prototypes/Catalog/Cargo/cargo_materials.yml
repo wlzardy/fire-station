@@ -54,7 +54,7 @@
     sprite: Objects/Materials/ingots.rsi
     state: gold_3
   product: CrateMaterialGold
-  cost: 3225
+  cost: 12000 # Fire edit
   category: cargoproduct-category-name-materials
   group: market
 
@@ -64,7 +64,7 @@
     sprite: Objects/Materials/ingots.rsi
     state: silver_3
   product: CrateMaterialSilver
-  cost: 2580
+  cost: 10000 # Fire edit
   category: cargoproduct-category-name-materials
   group: market
 

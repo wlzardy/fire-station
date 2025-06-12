@@ -8,7 +8,7 @@
 - type: radioChannel
   id: BlueShield
   name: chat-radio-blue-shield
-  keycode: 'б'
+  keycode: 'Z' # Fire edit - чтобы не конфликтовало
   frequency: 1781
   color: "#005bfb"
   longRange: false

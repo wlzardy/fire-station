@@ -93,6 +93,10 @@
   - type: StorageFill
     contents:
     - id: IngotGold
+  # Fire edit start
+  - type: AccessReader
+    access: [ [ "Research" ], [ "Command" ], [ "Engineering" ] ]
+  # Fire edit end
 
 - type: entity
   id: CrateMaterialSilver
@@ -103,6 +107,10 @@
   - type: StorageFill
     contents:
     - id: IngotSilver
+  # Fire edit start
+  - type: AccessReader
+    access: [ [ "Research" ], [ "Command" ], [ "Engineering" ] ]
+  # Fire edit end
 
 - type: entity
   id: CrateMaterialCardboard

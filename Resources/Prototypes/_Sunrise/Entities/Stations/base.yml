@@ -9,13 +9,7 @@
 - type: entity
   id: BaseStationCentComm
   abstract: true
-  components:
-  - type: StationCentComm
-    station: SunriseCentComm
-    shuttleWhitelist:
-      components:
-      - CentCommShuttle
-      - ErtShuttle
+  # Fire edit - Я удалил карту
 
 - type: entity
   id: BaseStationImmortal

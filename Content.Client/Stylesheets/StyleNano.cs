@@ -215,7 +215,7 @@ namespace Content.Client.Stylesheets
 
             var windowHeaderTex = resCache.GetTexture("/Textures/Interface/Nano/window_header.png");
             // Fire edit start
-            var windowHeader = new StyleBoxTexture
+            var windowHeader = new StyleBoxFlat
             {
                 ContentMarginBottomOverride = 0,
                 BackgroundColor = SCPWhite,

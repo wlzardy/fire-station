@@ -5,7 +5,6 @@ using Content.Server.Medical.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared._Sunrise.Research.Artifact;
 using Content.Shared.Traits.Assorted;
-using Content.Shared._Scp.Research.Artifacts;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.IdentityManagement;

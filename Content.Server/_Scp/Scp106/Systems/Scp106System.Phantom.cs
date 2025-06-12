@@ -95,7 +95,7 @@ public sealed partial class Scp106System
         scp106PhantomComponent.Scp106BodyUid = ent;
         Dirty(ent);
 
-        args.Action.Comp.UseDelay = ent.Comp.PhantomCoolDown;
+        _actions.SetCooldown(args.Action.AsNullable(), ent.Comp.PhantomCoolDown);
         args.Handled = true;
     }
 }

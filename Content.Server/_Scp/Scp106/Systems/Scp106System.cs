@@ -10,6 +10,7 @@ using Content.Server.Stunnable;
 using Content.Shared._Scp.Scp106;
 using Content.Shared._Scp.Scp106.Components;
 using Content.Shared._Scp.Scp106.Systems;
+using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
@@ -44,6 +45,7 @@ public sealed partial class Scp106System : SharedScp106System
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

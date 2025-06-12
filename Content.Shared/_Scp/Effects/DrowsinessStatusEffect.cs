@@ -3,7 +3,7 @@ using Content.Shared.Drowsiness;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Scp.Effects;
+namespace Content.Shared._Scp.Effects;
 
 public sealed partial class DrowsinessStatusEffect : EntityEffect
 {

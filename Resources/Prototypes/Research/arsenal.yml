@@ -196,7 +196,9 @@
     state: display
   discipline: Arsenal
   tier: 2
-  cost: 7500
+  cost:
+    Default: 7500
+    Scp: 3250
   recipeUnlocks:
   - PKAUpgradeDamage
   - PKAUpgradeRange

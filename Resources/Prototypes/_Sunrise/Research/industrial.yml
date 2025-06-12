@@ -39,7 +39,9 @@
     state: ripleymkii
   discipline: Industrial
   tier: 2
-  cost: 5000
+  cost:
+    Default: 5000
+    Scp: 2500
   recipeUnlocks:
   - RipleyMKIIHarness
   - RipleyUpgradeKit
@@ -58,7 +60,9 @@
     state: clarke
   discipline: Industrial
   tier: 2
-  cost: 9000
+  cost:
+    Default: 9000
+    Scp: 4500
   recipeUnlocks:
   - ClarkeHarness
   - ClarkeHead

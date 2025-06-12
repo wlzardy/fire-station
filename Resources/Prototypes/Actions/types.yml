@@ -403,10 +403,9 @@
   - type: Action
     icon: Interface/Actions/eyeopen.png
     iconOn: Interface/Actions/eyeclose.png
-    useDelay: 1 # so u cant give yourself and observers eyestrain by rapidly spamming the action
+    useDelay: 2 # Fire edit
   - type: InstantAction
     event: !type:ToggleEyesActionEvent
-    useDelay: 2 # Sunrise-SCP edit.
 
 - type: entity
   parent: BaseToggleAction
