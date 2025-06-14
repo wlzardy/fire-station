@@ -654,6 +654,34 @@ SpawnHonkBot: SpawnMobHonkBot
 CrateFoodPizzaLarge: CrateFoodPizza
 CrateFoodSoftdrinksLarge: CrateFoodSoftdrinks
 
+# 2025-06-09
+BarSignAlignTile: BarSign
+BarSignComboCafeAlignTile: BarSignComboCafe
+BarSignEmergencyRumPartyAlignTile: BarSignEmergencyRumParty
+BarSignLV426AlignTile: BarSignLV426
+BarSignMaidCafeAlignTile: BarSignMaidCafe
+BarSignMalteseFalconAlignTile: BarSignMalteseFalcon
+BarSignOfficerBeerskyAlignTile: BarSignOfficerBeersky
+BarSignRobustaCafeAlignTile: BarSignRobustaCafe
+BarSignTheAleNathAlignTile: BarSignTheAleNath
+BarSignTheBirdCageAlignTile: BarSignTheBirdCage
+BarSignTheCoderbusAlignTile: BarSignTheCoderbus
+BarSignTheDrunkCarpAlignTile: BarSignTheDrunkCarp
+BarSignEngineChangeAlignTile: BarSignEngineChange
+BarSignTheHarmbatonAlignTile: BarSignTheHarmbaton
+BarSignTheLightbulbAlignTile: BarSignTheLightbulb
+BarSignTheLooseGooseAlignTile: BarSignTheLooseGoose
+BarSignTheNetAlignTile: BarSignTheNet
+BarSignTheOuterSpessAlignTile: BarSignTheOuterSpess
+BarSignTheSinguloAlignTile: BarSignTheSingulo
+BarSignTheSunAlignTile: BarSignTheSun
+BarSignWiggleRoomAlignTile: BarSignWiggleRoom
+BarSignZocaloAlignTile: BarSignZocalo
+BarSignEmprahAlignTile: BarSignEmprah
+BarSignSpacebucksAlignTile: BarSignSpacebucks
+BarSignMaltroachAlignTile: BarSignMaltroach
+BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
+
 # Sunrise migrations
 # AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked # Fire edit
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -749,6 +777,14 @@ TableWoodReinforced: null
 BoxMiniSyringe: null
 LauncherSyringeMed: null
 PlushieUunaMiira: null
+
+# Кто удалил и не добавил в миграции
+PrintedDocumentClosingIndictment: null
+PrintedDocumentPermissionDisposeBody: null
+PrintedDocumentDeathCertificate: null
+PrintedDocumentReportOnTheChaptersMeeting: null
+SheetPrinter1: null
+BorgModuleDefibrillator: null
 
 # Fire added start
 PosterDyshi: PosterBreath
@@ -1362,13 +1398,6 @@ FSCatwalkSteel: ScpCatwalkSteel
 FSCatwalkDark: ScpCatwalkDark
 FSCatwalkWhite: ScpCatwalkWhite
 Catwalk: ScpCatwalkSteel
-
-PrintedDocumentClosingIndictment: null
-PrintedDocumentPermissionDisposeBody: null
-PrintedDocumentDeathCertificate: null
-PrintedDocumentReportOnTheChaptersMeeting: null
-SheetPrinter1: null
-BorgModuleDefibrillator: null
 
 # Fire added end
 

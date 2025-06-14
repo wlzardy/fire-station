@@ -121,6 +121,7 @@
   # - HoloprojectorSecurity #Fire-Station
   - WeaponDisablerSMG
   - ClothingHeadHelmetPubg  # Sunrise-Add
+  - FlareGunSecurityUpgrade # Sunrise-Add
 
 - type: technology
   id: ExplosiveTechnology

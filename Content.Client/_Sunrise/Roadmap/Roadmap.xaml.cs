@@ -30,24 +30,17 @@ public sealed partial class Roadmap : DefaultWindow
 
     private void PopulateRoadmap(RoadmapVersionsPrototype roadmapVersions)
     {
-        var headerLocale = Loc.GetString("ui-roadmap-header");
+        var headerLocale = _loc.GetString("ui-roadmap-header");
         var header = $"{headerLocale} {roadmapVersions.Fork}";
-        Window.Title = header;
+        Title = header;
 
         MainBox.RemoveAllChildren();
 
         foreach (var data in roadmapVersions.Versions)
         {
             var column = CreateVersionColumn(data.Name);
-            var targetColumn = new BoxContainer
-            {
-                Orientation = BoxContainer.LayoutOrientation.Vertical,
-                Margin = new Thickness(0, 0, 10, 0),
-            };
 
-            column.AddChild(targetColumn);
-
-            GenerateGoals(data.Goals, targetColumn);
+            GenerateGoals(data.Goals, column);
 
             MainBox.AddChild(column);
         }
@@ -78,7 +71,7 @@ public sealed partial class Roadmap : DefaultWindow
         return column;
     }
 
-    private void GenerateGoals(IReadOnlyList<RoadmapGoal>goals, BoxContainer targetColumn)
+    private void GenerateGoals(IReadOnlyList<RoadmapGoal> goals, BoxContainer targetColumn)
     {
         foreach (var goal in goals)
         {

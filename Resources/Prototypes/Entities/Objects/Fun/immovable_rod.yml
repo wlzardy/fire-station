@@ -125,7 +125,7 @@
   categories: [ HideSpawnMenu ] # Fire
   components:
   - type: Sprite
-    sprite: Objects/Fun/sharkplush.rsi
+    sprite: Objects/Fun/Plushies/shark.rsi
     state: blue
     rotation: 90
     noRot: false
@@ -202,6 +202,6 @@
   categories: [ HideSpawnMenu ] # Fire
   components:
   - type: Sprite
-    sprite: Objects/Fun/toys.rsi
-    state: plushie_lizard
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: icon
     noRot: false
