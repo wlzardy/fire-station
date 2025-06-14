@@ -143,6 +143,10 @@
         tableId: ScpArtifactEffectsUltraFunnyTable
         weight: 1
   - type: WatchingTarget
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-scp-name
+    description: ghost-panel-antagonist-scp-description
+    priority: -10
   - type: MovementSpeedModifier
     baseWalkSpeed: 5
     baseSprintSpeed: 12

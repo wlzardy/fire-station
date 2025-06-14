@@ -2,25 +2,14 @@
   id: BaseCentCommShuttles
   abstract: true
   components:
-  - type: GridSpawn
-    groups:
-      shuttles: !type:GridSpawnGroup
-        addComponents:
-        - type: CentCommShuttle
-        paths:
-        - /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
-        nameGrid: false
+  - type: SpawnGridAndDockToStation
+    gridPath: /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
+    priorityTag: DockCentComm
 
 - type: entity
   id: BaseStationCentComm
   abstract: true
-  components:
-  - type: StationCentComm
-    station: SunriseCentComm
-    shuttleWhitelist:
-      components:
-      - CentCommShuttle
-      - ErtShuttle
+  # Fire edit - Я удалил карту
 
 - type: entity
   id: BaseStationImmortal
@@ -41,9 +30,9 @@
   - type: StationTransitHub
     map: /Maps/_Sunrise/Nonstations/transit_hub.yml
     biomes:
-    - Grasslands
-    - LowDesert
-    - Snow
+    - PlainGrasslands
+    - PlainLowDesert
+    - PlainSnow
 
 - type: entity
   id: BaseStationGoal
@@ -89,3 +78,9 @@
   abstract: true
   components:
   - type: StationMeteorSwarmTarget
+
+- type: entity
+  id: BaseStationRandomXenoArtifact
+  abstract: true
+  components:
+  - type: StationRandomXenoArtifact
