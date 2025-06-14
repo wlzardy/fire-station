@@ -1,4 +1,4 @@
-﻿using Content.Server._Scp.Helpers;
+﻿using Content.Server._Sunrise.Helpers;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared._Scp.Scp106.Components;
@@ -20,7 +20,7 @@ public sealed class Scp106ContainmentSystem : SharedScp106ContainmentSystem
     [Dependency] private readonly MobStateSystem _mobState  = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly ScpHelpersSystem _scpHelpers  = default!;
+    [Dependency] private readonly SunriseHelpersSystem _helpers  = default!;
 
     private static readonly SoundSpecifier ContainSound = new SoundPathSpecifier("/Audio/_Scp/scp106_contained_sound.ogg");
 
@@ -50,13 +50,13 @@ public sealed class Scp106ContainmentSystem : SharedScp106ContainmentSystem
 
     public bool TryContain()
     {
-        if (!_scpHelpers.TryGetFirst<Scp106Component>(out var scp106))
+        if (!_helpers.TryGetFirst<Scp106Component>(out var scp106))
             return false;
 
         if (scp106.Value.Comp.IsContained)
             return false;
 
-        if (!_scpHelpers.TryGetFirst<Scp106ContainmentCatwalkComponent>(out var chamberTile))
+        if (!_helpers.TryGetFirst<Scp106ContainmentCatwalkComponent>(out var chamberTile))
             return false;
 
         var ev = new Scp106RecontainmentAttemptEvent();

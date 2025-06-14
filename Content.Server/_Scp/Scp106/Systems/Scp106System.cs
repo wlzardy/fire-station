@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Content.Server._Scp.Helpers;
 using Content.Server._Scp.Scp106.Components;
+using Content.Server._Sunrise.Helpers;
 using Content.Server.DoAfter;
 using Content.Server.GameTicking;
 using Content.Server.Gateway.Systems;
@@ -36,7 +36,7 @@ public sealed partial class Scp106System : SharedScp106System
     [Dependency] private readonly StairsSystem _stairs = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ScpHelpersSystem _scpHelpers = default!;
+    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -264,7 +264,7 @@ public sealed partial class Scp106System : SharedScp106System
 
     public override void SendToStation(EntityUid target)
     {
-        if (!_scpHelpers.TryFindRandomTile(out _, out _, out _, out var targetCoords))
+        if (!_helpers.TryFindRandomTile(out _, out _, out _, out var targetCoords))
             return;
 
         _transform.SetCoordinates(target, targetCoords);
@@ -304,7 +304,7 @@ public sealed partial class Scp106System : SharedScp106System
 
     private HashSet<EntityCoordinates> SearchForMarks()
     {
-        return _scpHelpers.GetAll<Scp106BackRoomMarkComponent>()
+        return _helpers.GetAll<Scp106BackRoomMarkComponent>()
             .Select(entity => Transform(entity.Owner).Coordinates)
             .ToHashSet();
     }
