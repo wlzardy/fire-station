@@ -1,4 +1,5 @@
 ﻿using Content.Server._Sunrise.BloodCult;
+using Content.Shared._Scp.Scp035;
 using Content.Shared._Sunrise.Ghost;
 using Content.Shared.Zombies;
 
@@ -14,6 +15,11 @@ public sealed class GhostPanelAntagonistMarkerPinSystem : EntitySystem
     {
         base.Initialize();
 
+        // Fire edit start
+        SubscribeLocalEvent<Scp035MaskUserComponent, MapInitEvent>(OnScp035Equip);
+        SubscribeLocalEvent<Scp035MaskUserComponent, ComponentRemove>(OnScp035Remove);
+        // Fire edit end
+
         #region Zombie
 
         SubscribeLocalEvent<MetaDataComponent, EntityZombifiedEvent>(OnZombify);
@@ -27,6 +33,28 @@ public sealed class GhostPanelAntagonistMarkerPinSystem : EntitySystem
 
         #endregion
     }
+
+    // Fire edit start
+    #region Scp035
+
+    private void OnScp035Equip(Entity<Scp035MaskUserComponent> ent, ref MapInitEvent args)
+    {
+        var marker = EnsureComp<GhostPanelAntagonistMarkerComponent>(ent);
+
+        marker.Name = "ghost-panel-antagonist-scp-name";
+        marker.Description = "ghost-panel-antagonist-scp-description";
+        marker.Priority = -10;
+
+        Dirty(ent.Owner, marker);
+    }
+
+    private void OnScp035Remove(Entity<Scp035MaskUserComponent> ent, ref ComponentRemove args)
+    {
+        RemComp<GhostPanelAntagonistMarkerComponent>(ent);
+    }
+
+    #endregion
+    // Fire edit end
 
     #region Zombie
 
