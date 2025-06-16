@@ -3472,3 +3472,20 @@
   id: 138
   time: '2025-06-14T03:28:25.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/366
+- author: Parashut
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 Compact\
+      \ v14 -> v17."
+    type: Tweak
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 Standard\
+      \ v11 -> v14."
+    type: Tweak
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 Modular\
+      \ v3 -> v5."
+    type: Tweak
+  id: 139
+  time: '2025-06-16T01:42:00.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/376
