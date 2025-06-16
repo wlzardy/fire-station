@@ -2104,7 +2104,6 @@
   footstepSounds:
     collection: FootstepBlood
   itemDrop: FloorTileItemXeno
-  friction: 0.05 #slippy
   heatCapacity: 10000
 
 - type: tile
@@ -2116,20 +2115,22 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemXeno
+  itemDrop: FloorTileItemXenoSteel
   heatCapacity: 10000
+  allowRotationMirror: true
 
 - type: tile
-  id: FloorXenoSteelHorizontal
-  name: tiles-xeno-steel-horizontal
-  sprite: /Textures/Tiles/xeno_steel_horizontal.png
+  id: FloorXenoSteelCorner
+  name: tiles-xeno-steel-corner
+  sprite: /Textures/Tiles/xeno_steel_corner.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemXeno
+  itemDrop: FloorTileItemXenoSteelCorner
   heatCapacity: 10000
+  allowRotationMirror: true
 
 - type: tile
   id: FloorDarkSquiggly
@@ -2146,26 +2147,9 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemSteel
+  itemDrop: FloorTileItemDarkSquiggly
   heatCapacity: 10000
-
-- type: tile
-  id: FloorDarkSquigglyVertical
-  name: tiles-dark-squiggly-vertical
-  sprite: /Textures/Tiles/dark_squiggly_vertical.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepFloor
-  itemDrop: FloorTileItemSteel
-  heatCapacity: 10000
+  allowRotationMirror: true
 
 - type: tile
   id: FloorXenoMaint
@@ -2176,5 +2160,5 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepHull
-  itemDrop: FloorTileItemXeno
+  itemDrop: FloorTileItemXenoMaint
   heatCapacity: 10000

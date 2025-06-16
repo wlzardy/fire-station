@@ -2,3 +2,4 @@
   id: DefaultMapPool
   maps: # Fire edit - все стандартные карты удалены в качестве оптимизации RAM
   - Empty
+  - Exo
