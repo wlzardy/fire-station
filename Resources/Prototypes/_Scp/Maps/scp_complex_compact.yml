@@ -85,10 +85,13 @@
             StationAi: [ 1, 1 ]
         - type: RelativeJobsCount
           jobs:
-            ClassD:
+          - targetJob: ClassD
+            dependency:
               SecurityCommander: 2
               ExternalAdministrativeZoneCommandant: 2
               SeniorExternalAdministrativeZoneOfficer: 1
               ExternalAdministrativeZoneOfficer: 1
               JuniorExternalAdministrativeZoneOfficer: 1
-          maxCount: 10
+            maxSlots: 10
+          totalMaxCount:
+            ClassD: 10
