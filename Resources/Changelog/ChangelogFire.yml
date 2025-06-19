@@ -3598,3 +3598,13 @@
   id: 144
   time: '2025-06-18T18:28:00.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/388
+- author: EngineerLND
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E \u0437\u043D\u0430\u0447\
+      \u0435\u043D\u0438\u0435 \u0437\u0430\u043C\u0435\u0434\u043B\u0435\u043D\u0438\
+      \u044F \u0431\u0435\u0433\u0430 \u0443 \u0431\u0440\u043E\u043D\u0438 \u041D\
+      \u044E-7 (50% -> 40%)."
+    type: Tweak
+  id: 145
+  time: '2025-06-19T03:15:51.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/389
