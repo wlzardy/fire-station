@@ -274,6 +274,17 @@
   # Fire start
   - type: Blinkable
   - type: EyeClosing
+  - type: Fear
+    phobias:
+    - Exoremophobia
+    - Necrophobia
+  - type: ProximityTarget
+  - type: ComponentToggler
+    components:
+    - type: FearSource
+      phobiaType: Necrophobia
+      uponComeCloser: None
+    - type: WatchingTarget
   # Fire end
   - type: Barotrauma
     damage:

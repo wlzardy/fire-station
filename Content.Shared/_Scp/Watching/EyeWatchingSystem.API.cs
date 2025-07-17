@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Scp.Blinking;
-using Content.Shared.Examine;
+using Content.Shared._Scp.Proximity;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Storage.Components;
 
 namespace Content.Shared._Scp.Watching;
 
@@ -14,7 +15,6 @@ public sealed partial class EyeWatchingSystem
     [Dependency] private readonly SharedBlinkingSystem _blinking = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
     // Возможно удваивается на 2, что приводит к использованию поля зрения в 240 градусов в реальности
@@ -72,16 +72,34 @@ public sealed partial class EyeWatchingSystem
     /// В методе нет проверок на дополнительные состояния, такие как моргание/закрыты ли глаза/поле зрения т.п.
     /// Единственная проверка - можно ли физически увидеть цель(т.е. не закрыта ли она стеной и т.п.)
     /// </remarks>
-    /// <param name="ent">Цель, для которой ищем потенциальных смотрящих</param>
+    /// <param name="ent">Цель, для которой ищем потенциальных смотрящих</param>\
+    /// <param name="type">Требуемая прозрачность линии видимости.</param>
     /// <returns>Список всех, кто потенциально видит цель</returns>
-    public IEnumerable<EntityUid> GetAllVisibleTo<T>(Entity<TransformComponent?> ent) where T : IComponent
+    public IEnumerable<EntityUid> GetAllVisibleTo<T>(Entity<TransformComponent?> ent, LineOfSightBlockerLevel type = LineOfSightBlockerLevel.Transparent)
+        where T : IComponent
+    {
+        return GetAllEntitiesVisibleTo<T>(ent, type)
+            .Select(e => e.Owner);
+    }
+
+    /// <summary>
+    /// Получает и возвращает всех потенциально смотрящих на указанную цель.
+    /// </summary>
+    /// <remarks>
+    /// В методе нет проверок на дополнительные состояния, такие как моргание/закрыты ли глаза/поле зрения т.п.
+    /// Единственная проверка - можно ли физически увидеть цель(т.е. не закрыта ли она стеной и т.п.)
+    /// </remarks>
+    /// <param name="ent">Цель, для которой ищем потенциальных смотрящих</param>\
+    /// <param name="type">Требуемая прозрачность линии видимости.</param>
+    /// <returns>Список всех, кто потенциально видит цель</returns>
+    public IEnumerable<Entity<T>> GetAllEntitiesVisibleTo<T>(Entity<TransformComponent?> ent, LineOfSightBlockerLevel type = LineOfSightBlockerLevel.Transparent)
+        where T : IComponent
     {
         if (!Resolve(ent.Owner, ref ent.Comp))
             return [];
 
-        return _lookup.GetEntitiesInRange<T>(ent.Comp.Coordinates, ExamineSystemShared.ExamineRange)
-            .Where(eye => _examine.InRangeUnOccluded(eye, ent, ignoreInsideBlocker: false))
-            .Select(e => e.Owner);
+        return _lookup.GetEntitiesInRange<T>(ent.Comp.Coordinates, SeeRange)
+            .Where(eye => _proximity.IsRightType(ent, eye, type, out _));
     }
 
     /// <summary>
@@ -120,6 +138,22 @@ public sealed partial class EyeWatchingSystem
     }
 
     /// <summary>
+    /// Простая проверка на то, видят ли переданную сущность другие сущности.
+    /// Вместо проверки на интервальное моргание используется проверка на мануальное закрытие глаз.
+    /// </summary>
+    /// <param name="target">Сущность, на которую смотрят</param>
+    /// <param name="watchers">Смотрящие</param>
+    /// <returns>Смотри ли хоть кто-нибудь из переданных</returns>
+    public bool SimpleIsWatchedBy(EntityUid target, IEnumerable<EntityUid> watchers)
+    {
+        var viewers = watchers
+            .Where(eye => CanBeWatched(eye, target))
+            .Where(eye => !_blinking.AreEyesClosedManually(eye));
+
+        return viewers.Any();
+    }
+
+    /// <summary>
     /// Проверяет, может ли цель вообще быть увидена смотрящим
     /// </summary>
     /// <remarks>
@@ -134,6 +168,9 @@ public sealed partial class EyeWatchingSystem
             return false;
 
         if (viewer.Owner == target)
+            return false;
+
+        if (HasComp<InsideEntityStorageComponent>(target))
             return false;
 
         return true;
