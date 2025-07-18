@@ -4026,3 +4026,16 @@
   id: 160
   time: '2025-07-18T03:17:26.0000000+00:00'
   url: https://github.com/space-sunrise/fire-station/pull/421
+- author: Nicolay
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 Compact\
+      \ v19 -> v20"
+    type: Tweak
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043A\u0430\u0440\
+      \u0442\u0430 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u0430 Modular\
+      \ v7 -> v8"
+    type: Tweak
+  id: 161
+  time: '2025-07-18T03:28:00.0000000+00:00'
+  url: https://github.com/space-sunrise/fire-station/pull/423
