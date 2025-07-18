@@ -1,22 +1,8 @@
 - type: petSelection
-  id: PetSelectionRabbit
-  name: pet-selection-rabbit-name
-  description: pet-selection-rabbit-description
-  petEntity: PetRabbit
-  sponsorOnly: true
-
-- type: petSelection
   id: PetSelectionAnteater
   name: pet-selection-anteater-name
   description: pet-selection-anteater-description
   petEntity: PetAnteater
-  sponsorOnly: true
-
-- type: petSelection
-  id: PetSelectionOctopus
-  name: pet-selection-octopus-name
-  description: pet-selection-octopus-description
-  petEntity: PetOctopus
   sponsorOnly: true
 
 - type: petSelection
@@ -52,13 +38,6 @@
   name: pet-selection-mcgriff-name
   description: pet-selection-mcgriff-description
   petEntity: PetMcGriff
-  sponsorOnly: true
-
-- type: petSelection
-  id: PetSelectionSlimesPet
-  name: pet-selection-slimes-pet-name
-  description: pet-selection-slimes-pet-description
-  petEntity: PetMobSlimesPet
   sponsorOnly: true
 
 - type: petSelection
@@ -129,13 +108,6 @@
   name: pet-selection-goose-name
   description: pet-selection-goose-description
   petEntity: PetMobGoose
-  sponsorOnly: true
-
-- type: petSelection
-  id: PetSelectionClownGoblin
-  name: pet-selection-clown-goblin-name
-  description: pet-selection-clown-goblin-description
-  petEntity: PetMobClownGoblin
   sponsorOnly: true
 
 - type: petSelection

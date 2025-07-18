@@ -121,7 +121,7 @@
     - sekrit
   name: secret-title
   showInVote: true
-  hide: true # Sunrise-Edit
+  hide: false # Fire edit
   description: secret-description
   rules:
     - Secret
