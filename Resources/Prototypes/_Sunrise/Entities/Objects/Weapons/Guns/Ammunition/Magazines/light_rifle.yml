@@ -326,7 +326,6 @@
     - MagazineSTG44
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
     whitelist:
       tags:
       - CartridgeLightRifle  # 762x39
