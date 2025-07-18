@@ -20,13 +20,27 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
 
     // Until stations are a prototype, this is how it's going to have to be.
-    public const string DefaultAlertLevelSet = "FacilityAlerts"; // Fire edit
-
+    public const string DefaultAlertLevelSet = "FacilityAlerts";
+    private const string EpsilonAlertLevel = "epsilon";
     public override void Initialize()
     {
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialize);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
+        // Sunrise start - Epsilon alert silicon lawset event
+        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+        // Sunrise end
     }
+
+    // Sunrise start - Epsilon alert silicon lawset event
+    [Dependency] private readonly GameTicking.GameTicker _gameTicker = default!;
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        if (ev.AlertLevel == EpsilonAlertLevel)
+        {
+            _gameTicker.AddGameRule("EpsilonDeathSquadLawset");
+        }
+    }
+    // Sunrise end
 
     public override void Update(float time)
     {

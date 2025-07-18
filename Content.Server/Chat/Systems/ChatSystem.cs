@@ -12,6 +12,7 @@ using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -183,6 +184,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
+        if (TryComp<AbductorComponent>(source, out var comp))
+        {
+            _prototypeManager.TryIndex<CollectiveMindPrototype>(comp.AbductorCollectiveMindProto, out var channel);
+            SendCollectiveMindChat(source, message, channel);
+            return;
+        }
         if (HasComp<GhostComponent>(source))
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
@@ -470,7 +477,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -548,7 +555,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(originalMessage);
+        var sanEvent = new ChatSanRequestEvent(source, originalMessage);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -629,7 +636,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(originalMessage);
+        var sanEvent = new ChatSanRequestEvent(source, originalMessage);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -727,7 +734,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(action);
+        var sanEvent = new ChatSanRequestEvent(source, action);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -777,7 +784,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendLOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -806,7 +813,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
         // Sunrise-Start
-        var sanEvent = new ChatSanRequestEvent(message);
+        var sanEvent = new ChatSanRequestEvent(source, message);
         RaiseLocalEvent(ref sanEvent);
         if (sanEvent.Cancelled)
             return;
@@ -887,7 +894,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
+    public void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, Color? color = null)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -895,7 +902,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
-            _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+            _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author, colorOverride: color);
         }
 
         _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
