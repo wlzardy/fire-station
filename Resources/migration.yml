@@ -786,6 +786,10 @@ PrintedDocumentDeathCertificate: null
 PrintedDocumentReportOnTheChaptersMeeting: null
 SheetPrinter1: null
 BorgModuleDefibrillator: null
+MagazineM16A4: null
+MagazineG36: null
+MagazineFamas: null
+# Sunrise migrations end
 
 # Fire added start
 PosterDyshi: PosterBreath
@@ -1403,7 +1407,3 @@ FSCatwalkWhite: ScpCatwalkWhite
 Catwalk: ScpCatwalkSteel
 
 # Fire added end
-
-MagazineM16A4: null
-MagazineG36: null
-MagazineFamas: null

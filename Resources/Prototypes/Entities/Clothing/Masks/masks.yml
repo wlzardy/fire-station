@@ -16,28 +16,15 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - FaceCovered # INTERACTIONS
+    - FaceCovered # Sunrise-Edit
     - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       Snout: Mask
     hideOnToggle: true
 
-# SUNRISE EDIT
 - type: entity
-  abstract: true
-  parent: ClothingMaskGas
-  id: ClothingMaskGasFaceOpen
-  name: gas mask covered
-  components:
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
-# SUNRISE EDIT
-
-- type: entity
-  parent: [ClothingMaskGasFaceOpen, BaseSecurityContraband] # SUNRISE EDIT
+  parent: [ClothingMaskGas, BaseSecurityContraband]
   id: ClothingMaskGasSecurity
   name: security gas mask
   description: A standard issue Security gas mask.
@@ -48,6 +35,12 @@
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Clothing
     sprite: Clothing/Mask/gassecurity.rsi
+  # Surnise-Start
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  # Surnise-End
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -74,7 +67,7 @@
     sprite: Clothing/Mask/gasatmos.rsi
 
 - type: entity
-  parent: [ClothingMaskGas, BaseCommandContraband]
+  parent: [ClothingMaskGasAtmos, BaseCommandContraband]
   id: ClothingMaskGasCaptain
   name: captain's gas mask
   description: Nanotrasen cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
@@ -354,7 +347,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
+    - FaceCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -362,7 +355,7 @@
     - HeadTop
     - HeadSide
     hideOnToggle: true
-  - type: FlashImmunity #BALANCE PR
+  - type: FlashImmunity # Sunrise-Edit
 
 - type: entity
   parent: [ ClothingMaskGas, BaseSecurityCargoContraband ]
@@ -388,7 +381,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
+    - FaceCovered # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Hair
@@ -427,7 +420,7 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - FaceCovered # INTERACTIONS
+    - FaceCovered # Sunrise-Edit
     - WhitelistChameleon
   - type: HideLayerClothing
     slots:
@@ -449,12 +442,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -471,12 +464,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -493,12 +486,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -515,12 +508,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -537,12 +530,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -559,12 +552,12 @@
   - type: HideLayerClothing
     slots:
     - Snout
-  # SUNRISE EDIT
+  # Sunrise-Start
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
-  # SUNRISE EDIT
+    - FaceCovered
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskBase
@@ -708,7 +701,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - FaceCovered # INTERACTIONS
+    - FaceCovered # Sunrise-Edit
 
 # Entity tables
 - type: entityTable
