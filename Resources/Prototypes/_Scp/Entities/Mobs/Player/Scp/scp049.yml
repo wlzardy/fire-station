@@ -36,6 +36,8 @@
     priority: -10
   - type: Inventory
     templateId: scp049
+  - type: FieldOfView
+    angle: 240
   - type: Hands
   - type: Body
     prototype: Human
