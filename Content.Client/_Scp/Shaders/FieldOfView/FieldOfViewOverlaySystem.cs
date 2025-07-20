@@ -16,12 +16,14 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
 {
     [Dependency] private readonly FieldOfViewSystem _fov = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<FieldOfViewComponent> _fovQuery;
     private EntityQuery<FOVHiddenSpriteComponent> _hiddenQuery;
+    private EntityQuery<SpriteComponent> _spriteQuery;
 
     private TimeSpan _nextTimeUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(0.1f);
@@ -34,9 +36,20 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
 
         _fovQuery = GetEntityQuery<FieldOfViewComponent>();
         _hiddenQuery = GetEntityQuery<FOVHiddenSpriteComponent>();
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         Overlay.ConeOpacity = _configuration.GetCVar(ScpCCVars.FieldOfViewOpacity);
         _configuration.OnValueChanged(ScpCCVars.FieldOfViewOpacity, OnOpacityChanged);
+
+        SubscribeLocalEvent<FOVHiddenSpriteComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnShutdown(Entity<FOVHiddenSpriteComponent> ent, ref ComponentShutdown args)
+    {
+        if (!_spriteQuery.TryComp(ent, out var sprite))
+            return;
+
+        _sprite.SetVisible((ent, sprite), true);
     }
 
     public override void Update(float frameTime)
@@ -88,6 +101,9 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
 
         if (sprite.Visible && !inFov && !isHidden)
         {
+            if (!_transform.InRange(player, uid, 25f))
+                return;
+
             HideSprite(uid, ref sprite);
             return;
         }
@@ -98,6 +114,13 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
         }
     }
 
+    protected override void OnPlayerAttached(Entity<FieldOfViewComponent> ent, ref LocalPlayerAttachedEvent args)
+    {
+        base.OnPlayerAttached(ent, ref args);
+
+        Overlay = new FieldOfViewOverlay();
+        Overlay.ConeOpacity = _configuration.GetCVar(ScpCCVars.FieldOfViewOpacity);
+    }
 
     protected override void OnPlayerDetached(Entity<FieldOfViewComponent> ent, ref LocalPlayerDetachedEvent args)
     {
@@ -130,7 +153,6 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
         if (sprite.Visible)
             return;
 
-        _sprite.SetVisible((uid, sprite), true);
         RemComp<FOVHiddenSpriteComponent>(uid);
     }
 
