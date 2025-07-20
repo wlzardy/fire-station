@@ -2,12 +2,13 @@
 using Content.Shared._Scp.ScpCCVars;
 using Content.Shared._Scp.Watching.FOV;
 using Content.Shared._Sunrise.Footprints;
+using Content.Shared.Item;
+using Content.Shared.Mobs.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Scp.Shaders.FieldOfView;
 
@@ -17,9 +18,13 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<FieldOfViewComponent> _fovQuery;
     private EntityQuery<FOVHiddenSpriteComponent> _hiddenQuery;
+
+    private TimeSpan _nextTimeUpdate = TimeSpan.Zero;
+    private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(0.1f);
 
     public override void Initialize()
     {
@@ -43,40 +48,53 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
         if (!_fovQuery.HasComp(player))
             return;
 
-        var query = EntityQueryEnumerator<PhysicsComponent, SpriteComponent>();
+        if (_timing.CurTime < _nextTimeUpdate)
+            return;
 
-        while (query.MoveNext(out var uid, out var physics, out var sprite))
+        var query = EntityQueryEnumerator<ItemComponent, SpriteComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var sprite))
         {
-            if (physics.BodyType == BodyType.Static)
+            ManageSprites(player.Value, uid, ref sprite);
+        }
+
+        var mobQuery = EntityQueryEnumerator<MobStateComponent, SpriteComponent>();
+
+        while (mobQuery.MoveNext(out var uid, out _, out var sprite))
+        {
+            if (uid == player)
                 continue;
 
-            if (player == uid)
-                continue;
-
-            ManageSprites(player.Value, uid, sprite);
+            ManageSprites(player.Value, uid, ref sprite);
         }
 
         var footprintQuery = EntityQueryEnumerator<FootprintComponent, SpriteComponent>();
 
         while (footprintQuery.MoveNext(out var uid, out _, out var sprite))
         {
-            ManageSprites(player.Value, uid, sprite);
+            ManageSprites(player.Value, uid, ref sprite);
         }
+
+        _nextTimeUpdate = _timing.CurTime + _updateCooldown;
     }
 
-    private void ManageSprites(EntityUid player, EntityUid uid, SpriteComponent sprite)
+    private void ManageSprites(EntityUid player, EntityUid uid, ref SpriteComponent sprite)
     {
-        var inFov = _fov.IsInViewAngle(player, uid);
+        if (IsClientSide(uid))
+            return;
 
-        if (sprite.Visible && !inFov && !_hiddenQuery.HasComp(uid))
+        var inFov = _fov.IsInViewAngle(player, uid);
+        var isHidden = _hiddenQuery.HasComp(uid);
+
+        if (sprite.Visible && !inFov && !isHidden)
         {
-            HideSprite(uid, sprite);
+            HideSprite(uid, ref sprite);
             return;
         }
 
-        if (inFov && _hiddenQuery.HasComp(uid))
+        if (inFov && isHidden)
         {
-            ShowSprite(uid, sprite);
+            ShowSprite(uid, ref sprite);
         }
     }
 
@@ -94,18 +112,24 @@ public sealed class FieldOfViewOverlaySystem : ComponentOverlaySystem<FieldOfVie
 
         while (query.MoveNext(out var uid, out _, out var sprite))
         {
-            ShowSprite(uid, sprite);
+            ShowSprite(uid, ref sprite);
         }
     }
 
-    private void HideSprite(EntityUid uid, SpriteComponent sprite)
+    private void HideSprite(EntityUid uid, ref SpriteComponent sprite)
     {
+        if (sprite.Visible)
+            return;
+
         _sprite.SetVisible((uid, sprite), false);
         AddComp<FOVHiddenSpriteComponent>(uid);
     }
 
-    private void ShowSprite(EntityUid uid, SpriteComponent sprite)
+    private void ShowSprite(EntityUid uid, ref SpriteComponent sprite)
     {
+        if (!sprite.Visible)
+            return;
+
         _sprite.SetVisible((uid, sprite), true);
         RemComp<FOVHiddenSpriteComponent>(uid);
     }
