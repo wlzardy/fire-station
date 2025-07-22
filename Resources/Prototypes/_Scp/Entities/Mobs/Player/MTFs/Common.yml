@@ -181,7 +181,7 @@
   id: TrackingImplantMTF
   components:
     - type: Rattle
-      radioChannel: "RegionalAdministration"
+      radioChannel: RegionalAdministration
 
 - type: entity
   parent: BoxErtImplants
@@ -310,6 +310,11 @@
   - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
+  voiceWhitelist:
+  - CBMTF1
+  - CBMTF2
+  genderWhitelist:
+  - Male
   components:
   - type: RandomMetadata
     nameSegments:
@@ -322,6 +327,7 @@
     - Scp049ProtectionImplant
     - TrackingImplantMTF
     - MindShieldImplant
+  - type: TTS
   - type: Fear
     phobias:
     - Exoremophobia
@@ -389,7 +395,6 @@
     - NamesLeader
     - NamesMilitaryLast
     nameFormat: name-format-ert
-  - type: NoEmotions
 
 # Оперативник
 - type: randomHumanoidSettings
@@ -402,8 +407,6 @@
     - NamesOperativeFirst
     - NamesOperativeLast
     nameFormat: name-format-ert
-  - type: NoEmotions
-
 
 # ЗВАНИЯ
 - type: localizedDataset
