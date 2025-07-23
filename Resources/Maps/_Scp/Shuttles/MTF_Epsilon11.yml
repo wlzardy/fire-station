@@ -1107,14 +1107,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-- proto: GeneratorBasic
-  entities:
-  - uid: 145
-    components:
-    - type: Transform
-      pos: -3.5,-3.5
-      parent: 1
-    - type: CMExplosionEffect
 - proto: GravityGeneratorMini
   entities:
   - uid: 146
